@@ -37,20 +37,35 @@ nav a:hover {
     background: #0073e6;
 }
 
-/* Zone iframe */
-.content {
-    max-width: 1200px;
-    margin: 20px auto;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
+section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
 }
 
-iframe {
-    width: 100%;
-    height: 700px;
+h2 {
+    color: #005baa;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #005baa;
+    color: white;
     border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #003f7d;
 }
 
 footer {
@@ -65,9 +80,6 @@ footer {
     nav {
         flex-direction: column;
     }
-    iframe {
-        height: 500px;
-    }
 }
 </style>
 
@@ -80,20 +92,49 @@ footer {
     <p>Section internationale - École bilingue</p>
 </header>
 
-<!-- MENU QUI CHARGE DANS L'IFRAME -->
+<!-- MENU AVEC LIENS DIRECTS -->
 <nav>
-    <a href="http://bilingue31.free.fr/bilingue.htm" target="framecontent">Accueil</a>
-    <a href="http://bilingue31.free.fr/calendrier2026.htm" target="framecontent">Calendrier 2026</a>
-    <a href="http://bilingue31.free.fr/inscription.htm" target="framecontent">Inscription</a>
+    <a href="http://bilingue31.free.fr/bilingue.htm">Accueil</a>
+    <a href="http://bilingue31.free.fr/calendrier2026.htm">Calendrier 2026</a>
+    <a href="http://bilingue31.free.fr/inscription.htm">Inscription</a>
 </nav>
 
-<!-- ZONE D'AFFICHAGE -->
-<div class="content">
-    <iframe 
-        name="framecontent"
-        src="http://bilingue31.free.fr/bilingue.htm">
-    </iframe>
-</div>
+<section>
+    <h2>Présentation</h2>
+    <div class="card">
+        <p>
+            Bienvenue sur le site de l’Association Bilingue 31.
+            Nous accompagnons les familles dans le parcours bilingue.
+        </p>
+        <button onclick="window.location.href='http://bilingue31.free.fr/bilingue.htm'">
+            En savoir plus
+        </button>
+    </div>
+</section>
+
+<section>
+    <h2>Calendrier 2026</h2>
+    <div class="card">
+        <p>
+            Retrouvez ici toutes les dates importantes pour l'année 2026.
+        </p>
+        <button onclick="window.location.href='http://bilingue31.free.fr/calendrier2026.htm'">
+            Voir le calendrier complet
+        </button>
+    </div>
+</section>
+
+<section>
+    <h2>Inscription</h2>
+    <div class="card">
+        <p>
+            Les inscriptions sont ouvertes pour l’année scolaire 2026.
+        </p>
+        <button onclick="window.location.href='http://bilingue31.free.fr/inscription.htm'">
+            Accéder au formulaire
+        </button>
+    </div>
+</section>
 
 <footer>
     © 2026 Association Bilingue 31 - Tous droits réservés
