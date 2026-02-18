@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Association Bilingue 31</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+header {
+    background: #005baa;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #003f7d;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background: #0073e6;
+}
+
+section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    color: #005baa;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #005baa;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #003f7d;
+}
+
+footer {
+    background: #003f7d;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>Association Bilingue 31</h1>
+    <p>Section internationale - École bilingue</p>
+</header>
+
+<nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#calendrier">Calendrier 2026</a>
+    <a href="#inscription">Inscription</a>
+</nav>
+
+<section id="accueil">
+    <h2>Présentation</h2>
+    <div class="card">
+        <p>
+            Bienvenue sur le site de l’Association Bilingue 31.
+            Nous accompagnons les familles dans le parcours bilingue.
+        </p>
+    </div>
+</section>
+
+<section id="calendrier">
+    <h2>Calendrier 2026</h2>
+    <div class="card">
+        <p>
+            Retrouvez ici toutes les dates importantes pour l'année 2026.
+        </p>
+        <button onclick="window.location.href='calendrier2026.htm'">
+            Voir le calendrier complet
+        </button>
+    </div>
+</section>
+
+<section id="inscription">
+    <h2>Inscription</h2>
+    <div class="card">
+        <p>
+            Les inscriptions sont ouvertes pour l’année scolaire 2026.
+        </p>
+        <button onclick="window.location.href='inscription.htm'">
+            Accéder au formulaire
+        </button>
+    </div>
+</section>
+
+<footer>
+    © 2026 Association Bilingue 31 - Tous droits réservés
+</footer>
+
+</body>
+</html>
