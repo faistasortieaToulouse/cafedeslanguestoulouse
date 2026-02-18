@@ -1,0 +1,1489 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <meta http-equiv="Content-Language" content="fr">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>Bilingue</title>
+  <style type="text/css">#title9
+.suit {
+	FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red
+}
+.suit1 {
+	FONT-WEIGHT: bold; COLOR: white
+	}
+.over {
+	FONT-WEIGHT: bold; COLOR: white
+}
+.out {
+	FONT-WEIGHT: bold; COLOR: #5F1879
+}
+  </style>
+
+  
+  
+  
+  
+  
+  
+  <style type="text/css">
+.gris {
+	BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
+}
+.blanc {
+	BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
+}
+.sous {
+	COLOR: #00CC00; FONT-SIZE: 40px; Text-Decoration: underline
+}
+}
+.oui {
+	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #cccccc
+}
+.non {
+	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #FFFFFF
+}
+.oui1 {
+	FONT-WEIGHT: bold; COLOR: green
+}
+.non1 {
+	FONT-WEIGHT: bold; COLOR: red
+}
+.green1 {
+	FONT-WEIGHT: bold; COLOR: red
+}
+  </style>
+</head>
+
+
+<body bgcolor="#ccffff">
+
+
+
+
+
+
+
+<script language="JavaScript" type="text/javascript">
+
+var xCol = "#FF0000";
+var yCol = "#00FF00";
+var zCol = "#0000FF";
+var n = 6;   //number of dots per trail.
+var t = 40;  //setTimeout speed.
+var s = 0.2; //effect speed.
+
+var r,h,w;
+var d = document;
+var my = 10;
+var mx = 10;
+var stp = 0;
+var evn = 360/3;
+var vx = new Array();
+var vy = new Array();
+var vz = new Array();
+var dy = new Array();
+var dx = new Array();
+
+var pix = "px";
+
+var strictmod = ((document.compatMode) && 
+document.compatMode.indexOf("CSS") != -1);
+
+var domWw = (typeof window.innerWidth == "number");
+var domSy = (typeof window.pageYOffset == "number");
+var idx = d.getElementsByTagName('div').length;
+
+for (i = 0; i < n; i++)
+{
+   var dims = (i+1)/2;
+   d.write('<div id="x'+(idx+i)+'" style="position:absolute;'
+      +'top:0px;left:0px;width:'+dims+'px;height:'+dims+'px;'
+      +'background-color:'+xCol+';font-size:'+dims+'px"><\/div>'
+      +'<div id="y'+(idx+i)+'" style="position:absolute;top:0px;'
+      +'left:0px;width:'+dims+'px;height:'+dims+'px;'
+      +'background-color:'+yCol+';font-size:'+dims+'px"><\/div>'
+      +'<div id="z'+(idx+i)+'" style="position:absolute;top:0px;'
+      +'left:0px;width:'+dims+'px;height:'+dims+'px;'
+      +'background-color:'+zCol+';font-size:'+dims+'px"><\/div>');
+}
+
+if (domWw) r = window;
+else
+{ 
+   if (d.documentElement && 
+     typeof d.documentElement.clientWidth == "number" && 
+     d.documentElement.clientWidth != 0)
+     r = d.documentElement;
+   else
+   { 
+      if (d.body && typeof d.body.clientWidth == "number")
+         r = d.body;
+   }
+}
+
+function winsize()
+{
+   var oh,sy,ow,sx,rh,rw;
+   if (domWw)
+   {
+      if (d.documentElement && d.defaultView && 
+         typeof d.defaultView.scrollMaxY == "number")
+      {
+         oh = d.documentElement.offsetHeight;
+         sy = d.defaultView.scrollMaxY;
+         ow = d.documentElement.offsetWidth;
+         sx = d.defaultView.scrollMaxX;
+         rh = oh-sy;
+         rw = ow-sx;
+      }
+      else
+      {
+         rh = r.innerHeight;
+         rw = r.innerWidth;
+      }
+      h = rh; 
+      w = rw;
+   }
+   else
+   {
+      h = r.clientHeight; 
+      w = r.clientWidth;
+   }
+}
+
+function scrl(yx)
+{
+   var y,x;
+   if (domSy)
+   {
+      y = r.pageYOffset;
+      x = r.pageXOffset;
+   }
+   else
+   {
+      y = r.scrollTop;
+      x = r.scrollLeft;
+   }
+   return (yx == 0)?y:x;
+}
+
+function mouse(e)
+{
+   var msy = (domSy)?window.pageYOffset:0;
+   if (!e) e = window.event;    
+   if (typeof e.pageY == 'number')
+   {
+     my = e.pageY - msy + 16;
+     mx = e.pageX + 6;
+   }
+   else
+   {
+     my = e.clientY - msy + 16;
+     mx = e.clientX + 6;
+   }
+   if (my > h-65) my = h-65;
+   if (mx > w-50) mx = w-50;
+}
+
+function assgn()
+{
+   for (j = 0; j < 3; j++)
+   {
+      dy[j] = my + 50 * Math.cos(stp+j*evn*Math.PI/180) * Math.sin((stp+j*25)/2) + scrl(0) + pix;
+      dx[j] = mx + 50 * Math.sin(stp+j*evn*Math.PI/180) * Math.sin((stp+j*25)/2) * Math.sin(stp/4) + pix;
+   }
+   stp+=s;
+
+   for (i = 0; i < n; i++)
+   {
+      if (i < n-1)
+      {
+         vx[i].top = vx[i+1].top; vx[i].left = vx[i+1].left; 
+         vy[i].top = vy[i+1].top; vy[i].left = vy[i+1].left;
+         vz[i].top = vz[i+1].top; vz[i].left = vz[i+1].left;
+      } 
+      else
+      {
+         vx[i].top = dy[0]; vx[i].left = dx[0];
+         vy[i].top = dy[1]; vy[i].left = dx[1];
+         vz[i].top = dy[2]; vz[i].left = dx[2];
+      }
+   }
+   setTimeout(assgn,t);
+}
+
+function init()
+{
+   for (i = 0; i < n; i++)
+   {
+      vx[i] = document.getElementById("x"+(idx+i)).style;
+      vy[i] = document.getElementById("y"+(idx+i)).style;
+      vz[i] = document.getElementById("z"+(idx+i)).style;
+   }
+   winsize();
+   assgn();
+}
+
+if (window.addEventListener)
+{
+   window.addEventListener("resize",winsize,false);
+   window.addEventListener("load",init,false);
+   document.addEventListener("mousemove",mouse,false);
+}  
+else 
+if (window.attachEvent)
+{
+   window.attachEvent("onload",init);
+   document.attachEvent("onmousemove",mouse);
+   window.attachEvent("onresize",winsize);
+} 
+
+</script>
+<table style="text-align: center; vertical-align: text-top; position: absolute; width: 1186px;" id="table1" border="0" width="100%">
+
+
+
+
+
+
+
+	<tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+
+		<td style="width: 250px;" height="110">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;" height="110">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 648px;" height="110">
+		<img src="bilingue1.jpg" border="0" height="126" width="371"></td>
+
+
+
+
+
+
+
+		<td style="width: 0px;" height="110">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;" height="110">&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="width: 250px;" height="21">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;" height="21">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 648px;" height="21">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;" height="21">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;" height="21">&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="width: 250px;" height="129">
+		<img src="0Cartagena.jpg" border="0" height="114" width="200"></td>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 0px;" height="129">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td colspan="1" rowspan="5" style="vertical-align: top; width: 648px; text-align: left;" height="129">
+ 
+      
+      <table style="border-collapse: collapse; width: 480pt;" border="0" cellpadding="0" cellspacing="0" width="639">
+
+        <col style="width: 169pt;" width="225">
+ <col style="width: 311pt;" width="414">
+ <tbody>
+
+          <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl63" style="height: 15.75pt; width: 169pt; color: rgb(0, 153, 0); font-weight: bold;" height="21" width="225">pratique
+  des langues :</td>
+
+
+  <td class="xl64" style="width: 311pt; color: rgb(0, 153, 0); font-weight: bold;" width="414">Au niveau international :</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">caf&eacute; des langues,</td>
+
+
+  <td class="xl66">&eacute;changes entre pays,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">initiations et ateliers de
+  langues,</td>
+
+
+  <td class="xl66">s&eacute;minaires,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">soir&eacute;es jeux linguistiques,</td>
+
+
+  <td class="xl66">concours de chant,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">soir&eacute;es quiz culturels,</td>
+
+
+  <td class="xl66">voyages &agrave; l'&eacute;tranger,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">blind tests musicaux,</td>
+
+
+  <td class="xl66">club de voyage.</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">animations linguistiques.</td>
+
+
+  <td class="xl66">&nbsp;</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">&nbsp;</td>
+
+
+  <td class="xl66">&nbsp;</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl67" style="height: 15.75pt; color: rgb(0, 153, 0); font-weight: bold;" height="21">Activit&eacute; en g&eacute;n&eacute;ral :</td>
+
+
+  <td style="color: rgb(0, 153, 0); font-weight: bold;" class="xl68">Accueil des nouveaux et des &eacute;trangers :</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">jeu de piste,</td>
+
+
+  <td class="xl66">atelier CV et recherche d'emploi,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">Semaine internationale,</td>
+
+
+  <td class="xl66">atelier botanique,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">conf&eacute;rence,</td>
+
+
+  <td class="xl66">atelier danse,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">exposition,</td>
+
+
+  <td class="xl66">atelier cuisine du monde,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">concert,</td>
+
+
+  <td class="xl66">atelier couture et tricot,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">pique nique,</td>
+
+
+  <td class="xl66">soir&eacute;es jeux,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">repas,</td>
+
+
+  <td class="xl66">atelier couture,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">cin&eacute;ma,</td>
+
+
+  <td class="xl66">visite de la ville,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">&eacute;change de cours,</td>
+
+
+  <td class="xl66">visite de la r&eacute;gion,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">&eacute;change de services,</td>
+
+
+  <td class="xl66">cueillette de plantes m&eacute;dicinales, comestibles et
+  ornementales,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">auberge espagnole,</td>
+
+
+  <td class="xl66">randonn&eacute;e,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">c&eacute;l&eacute;bration des f&ecirc;tes
+  locales,</td>
+
+
+  <td class="xl66">sorties plage, ski,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">melting pot party.</td>
+
+
+  <td class="xl66">soir&eacute;es d&eacute;bats,</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">&nbsp;</td>
+
+
+  <td class="xl66">conf&eacute;rences.</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">&nbsp;</td>
+
+
+  <td class="xl66">&nbsp;</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl67" style="height: 15.75pt; color: rgb(0, 153, 0); font-weight: bold;" height="21">Ev&egrave;nements :</td>
+
+
+  <td class="xl66">&nbsp;</td>
+
+
+ </tr>
+
+
+ <tr style="height: 15.75pt;" height="21">
+
+
+  <td class="xl65" style="height: 15.75pt;" height="21">semaine Europ&eacute;enne des
+  Langues.</td>
+
+
+  <td class="xl66">&nbsp;</td>
+
+
+ </tr>
+
+        
+        </tbody>
+      
+      </table>
+
+      </td>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 0px;" height="129">
+		&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="129">
+      
+      
+      
+      
+      
+      
+      <div class="blanc">
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
+      
+      
+      
+      
+      
+      
+      <p>
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Pr&eacute;sentation</a></p>
+
+
+
+
+
+
+
+	&nbsp;</div>
+
+
+
+
+
+
+
+		</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="21">
+&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;">
+		&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="136">
+      
+      
+      
+      
+      
+      
+      <div class="blanc">
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
+      
+      
+      
+      
+      
+      
+      <p>
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activit&eacute;s</a></p>
+
+
+
+
+
+
+
+	&nbsp;</div>
+
+
+
+
+
+
+
+		</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;">
+		<img src="0Douglas.jpg" border="0" height="130" width="200"></td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="width: 250px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;">&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="width: 250px;"><img src="0Dublin.jpg" border="0" height="131" width="200"></td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="129">
+      
+      
+      
+      
+      
+      
+      <div class="blanc">
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a>
+      
+      
+      
+      
+      
+      
+      <p>
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
+
+
+
+
+
+
+
+	&nbsp;</div>
+
+
+
+
+
+
+
+		</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="width: 250px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 648px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;">&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="136">
+		</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 648px;">
+		
+      
+      
+      
+      
+      
+      
+      <div class="blanc">
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a>
+      
+      
+      
+      
+      
+      
+      <p>
+	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
+
+
+
+
+
+
+
+	&nbsp;</div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="129">
+&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="21">
+&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 648px;" bgcolor="#ffffff"><a href="cafelangues.htm">caf&eacute; des 
+        langues</a><br>
+
+
+
+
+
+
+      <span style="vertical-align: top;">(AL, BG, </span><span style="vertical-align: top;">CZ,</span><span style="vertical-align: top;"> DK</span><span style="vertical-align: top;">, GR</span><span style="vertical-align: top;">, </span><span style="vertical-align: top;">HR, </span><span style="vertical-align: top;">HU,</span><span style="vertical-align: top;"> NL,</span><span style="vertical-align: top;"> NO,</span><span style="vertical-align: top;"> PL,</span><span style="vertical-align: top;"> RO, RS,&nbsp;RU, SE).</span></td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;">
+		&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+	<tr>
+
+
+
+
+
+
+
+		<td style="vertical-align: top; width: 250px;" height="21">
+&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 648px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+		<td style="width: 250px;">
+		&nbsp;</td>
+
+
+
+
+
+
+
+	</tr>
+
+
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+
+
+      <td style="width: 250px;">&nbsp;</td>
+
+
+
+
+
+
+
+
+      <td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+
+      <td style="width: 648px;">&nbsp;</td>
+
+
+
+
+
+
+
+
+      <td style="width: 0px;">&nbsp;</td>
+
+
+
+
+
+
+
+
+      <td style="width: 250px;">&nbsp;</td>
+
+
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+
+
+      <td style="width: 250px;" colspan="5"><a href="http://www.bilingue.new.fr/">
+      <img src="2007_3_22_10h36_182735.gif" border="0" height="60" width="468"></a></td>
+
+
+
+
+
+
+
+
+      </tr>
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+</body>
+</html>
