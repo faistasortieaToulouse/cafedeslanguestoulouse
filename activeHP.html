@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Programme des Activités</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header & Logo */
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .logo-main {
+            max-width: 90%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            text-decoration: none;
+            color: #5F1879;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        /* Layout Principal */
+        .main-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            padding: 0 15px;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar { order: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .content { order: 1; }
+        }
+
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Contenu des Activités */
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .activity-grid { grid-template-columns: 1fr; }
+        }
+
+        h2 {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        li {
+            padding: 4px 0;
+            border-bottom: 1px dotted #eee;
+            font-size: 0.95rem;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--primary-blue);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+        }
+
+        /* Footer */
+        .lang-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .banner-link {
+            display: block;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Points Script Styles */
+        .dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue Logo" class="logo-main">
+</header>
+
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
+<div class="main-container">
+    <aside class="sidebar">
+        <img src="0Cartagena.jpg" alt="Cartagena">
+        <img src="0Dublin.jpg" alt="Dublin">
+    </aside>
+
+    <article class="content">
+        <div class="activity-grid">
+            <div>
+                <h2>Pratique des langues</h2>
+                <ul>
+                    <li>Café des langues</li>
+                    <li>Initiations et ateliers</li>
+                    <li>Soirées jeux linguistiques</li>
+                    <li>Soirées quiz culturels</li>
+                    <li>Blind tests musicaux</li>
+                    <li>Animations linguistiques</li>
+                </ul>
+
+                <h2>Activité en général</h2>
+                <ul>
+                    <li>Jeu de piste</li>
+                    <li>Semaine internationale</li>
+                    <li>Conférence & Exposition</li>
+                    <li>Concert</li>
+                    <li>Pique-nique & Repas</li>
+                    <li>Cinéma</li>
+                    <li>Echange de cours / services</li>
+                    <li>Auberge espagnole</li>
+                    <li>Fêtes locales</li>
+                    <li>Melting pot party</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>Au niveau international</h2>
+                <ul>
+                    <li>Échanges entre pays</li>
+                    <li>Séminaires</li>
+                    <li>Concours de chant</li>
+                    <li>Voyages à l'étranger</li>
+                    <li>Club de voyage</li>
+                </ul>
+
+                <h2>Accueil & Étrangers</h2>
+                <ul>
+                    <li>Atelier CV & Emploi</li>
+                    <li>Atelier botanique</li>
+                    <li>Atelier danse</li>
+                    <li>Cuisine du monde</li>
+                    <li>Couture, tricot & jeux</li>
+                    <li>Visite de la ville & région</li>
+                    <li>Cueillette plantes comestibles</li>
+                    <li>Randonnée, Plage, Ski</li>
+                    <li>Soirées débats</li>
+                </ul>
+
+                <h2>Évènements</h2>
+                <ul>
+                    <li>Semaine Européenne des Langues</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lang-footer">
+            <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+            <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+        </div>
+    </article>
+
+    <aside class="sidebar">
+        <img src="0Douglas.jpg" alt="Douglas">
+        </aside>
+</div>
+
+<div class="banner-link">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%;">
+    </a>
+</div>
+
+<script>
+    const dots = [];
+    const n = 10; 
+    const colors = ['#FF0000', '#00FF00', '#0000FF'];
+
+    for (let i = 0; i < n; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        d.style.backgroundColor = colors[i % 3];
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
+
+    let mX = 0, mY = 0;
+    window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
+
+    function tick() {
+        let x = mX, y = mY;
+        dots.forEach((dot) => {
+            dot.x += (x - dot.x) * 0.35;
+            dot.y += (y - dot.y) * 0.35;
+            dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+            x = dot.x; y = dot.y;
+        });
+        requestAnimationFrame(tick);
+    }
+    tick();
+</script>
+
+</body>
+</html>
