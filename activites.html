@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Activités</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo-main {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Menu de navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 50px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5F1879;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        /* Grille de contenu */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .section-card {
+                flex-direction: row;
+            }
+            .section-card.reverse {
+                flex-direction: row-reverse;
+            }
+            .section-card img {
+                width: 250px;
+            }
+        }
+
+        .section-card img {
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .text-content {
+            flex: 1;
+            color: var(--primary-blue);
+            font-size: 1.1em;
+        }
+
+        /* Liste des langues */
+        .lang-box {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .lang-box a {
+            color: var(--accent-red);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Script Traînée (Dots) */
+        .dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue Logo" class="logo-main">
+</header>
+
+<div class="container">
+    <nav>
+        <a href="bilingue.htm">Accueil</a>
+        <a href="present.htm">Présentation</a>
+        <a href="lieux.htm">Lieux</a>
+        <a href="active.htm">Activités</a>
+        <a href="contact.htm">Contact</a>
+        <a href="liens.htm">Liens</a>
+        <a href="photos.htm">Photos</a>
+        <a href="inscription.htm">Inscription</a>
+    </nav>
+
+    <div class="content-grid">
+        <div class="section-card">
+            <img src="0Cartagena.jpg" alt="Cartagena">
+            <div class="text-content">
+                L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
+            </div>
+        </div>
+
+        <div class="section-card reverse">
+            <img src="0Douglas.jpg" alt="Douglas">
+            <div class="text-content">
+                Chaque participant pourra proposer des activités autre que se réunir autour d’un verre à condition qu’elles soient pratiquées dans une langue souhaitée. Les participants sélectionnent les activités dans la langue étrangère qui les intéressent.
+            </div>
+        </div>
+
+        <div class="section-card">
+            <img src="0Dublin.jpg" alt="Dublin">
+            <div class="text-content">
+                <strong>Activités à Toulouse :</strong>
+                <ul>
+                    <li>Echange de conversation Gratuit !</li>
+                    <li>Accueil des nouveaux toulousains et étrangers</li>
+                    <li>Visite de Toulouse et de sa région</li>
+                    <li>Cuisine de plats étrangers et régionaux</li>
+                    <li>Films en VO, théâtre et spectacles</li>
+                    <li>Soirées dans des pubs ou restaurants étrangers</li>
+                    <li>Conférences et expositions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-box">
+        <a href="cafelangues.htm">Café des langues</a><br>
+        <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+    </div>
+</div>
+
+<footer>
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Bilingue Banner" border="0">
+    </a>
+</footer>
+
+<script>
+    const dots = [];
+    const n = 12; // Nombre de points
+    const colors = ['#FF0000', '#00FF00', '#0000FF'];
+
+    for (let i = 0; i < n; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.backgroundColor = colors[i % 3];
+        document.body.appendChild(dot);
+        dots.push({ el: dot, x: 0, y: 0 });
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animate() {
+        let x = mouseX;
+        let y = mouseY;
+
+        dots.forEach((dot, index) => {
+            const nextDot = dots[index + 1] || dots[0];
+            dot.x += (x - dot.x) * 0.3;
+            dot.y += (y - dot.y) * 0.3;
+            dot.el.style.left = dot.x + 'px';
+            dot.el.style.top = dot.y + 'px';
+            x = dot.x;
+            y = dot.y;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+
+</body>
+</html>
