@@ -22,14 +22,12 @@
             color: #333;
         }
 
-        /* En-tête */
         header {
             text-align: center;
             padding: 20px;
             background: white;
         }
 
-        /* Navigation Moderne */
         nav {
             display: flex;
             justify-content: center;
@@ -53,7 +51,6 @@
             background: var(--accent-red); 
         }
 
-        /* Layout 3 Colonnes */
         .main-layout {
             display: grid;
             grid-template-columns: 220px 1fr 220px;
@@ -83,19 +80,14 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* Bloc Central Blanc (La Carte) */
         .content-card {
             background: white;
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-height: 600px; /* Allongé vers le bas */
+            min-height: 800px;
         }
 
-        .content-card h2 { color: var(--primary-green); border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .content-card p { margin-bottom: 15px; text-align: left; }
-
-        /* Formulaire stylisé */
         form {
             background: #fdfdfd;
             padding: 25px;
@@ -136,7 +128,6 @@
         }
         input[type="submit"]:hover { background: #007700; transform: scale(1.05); }
 
-        /* Footer */
         .lang-footer {
             text-align: center;
             margin-top: 40px;
@@ -169,14 +160,14 @@
 <div class="main-layout">
     <aside class="sidebar">
         <img src="0LondonGare.jpg" alt="Gare de Londres">
-        <p style="text-align:center"><a href="calendrier2006.htm" style="color:var(--nav-purple); font-weight:bold;">Notre calendrier passé</a></p>
+        <p style="text-align:center"><a href="calendrier2006.htm" style="color:var(--nav-purple); font-weight:bold; text-decoration:none;">Notre calendrier passé</a></p>
     </aside>
 
     <main>
         <article class="content-card">
             <p><strong>Attention !</strong> À la fin de chaque session : Les étrangers pourront parler en français !</p>
             
-            <p>Concernant les évènements où les lieux ne sont pas indiqués, l'inscription est obligatoire. <br>
+            <p>Concernant les évènements où les lieux ne sont pas indiqués, l'inscription est obligatoire.<br>
             <span style="color: var(--primary-green); font-weight: bold; text-decoration: underline;">
             En vous inscrivant, vous recevrez l'adresse exacte et les informations de la soirée.</span></p>
 
@@ -187,49 +178,150 @@
             </p>
 
             <form action="mailto:bilingue@ass0.fr" method="post" enctype="text/plain">
-                <label>Votre nom et prénom :</label>
+                <label><strong>Votre nom et prénom :</strong></label>
                 <input name="membre" type="text" placeholder="Ex: Jean Dupont">
 
-                <label>Votre adresse e-mail :</label>
-                <textarea name="email" rows="2" placeholder="votre@email.com"></textarea>
+                <label><strong>Votre adresse e-mail :</strong></label>
+                <textarea name="commentaire" rows="2" placeholder="votre@email.com"></textarea>
 
                 <p style="color: var(--primary-blue); font-weight: bold;">Vous êtes intéressé pour discuter en :</p>
                 <div class="checkbox-group">
-                    <label><input name="langue" value="anglais" type="checkbox"> Anglais</label>
-                    <label><input name="langue" value="espagnol" type="checkbox"> Espagnol</label>
-                    <label><input name="langue" value="italien" type="checkbox"> Italien</label>
-                    <label><input name="langue" value="allemand" type="checkbox"> Allemand</label>
-                    <label><input name="langue" value="france" type="checkbox"> Français</label>
-                    <label><input name="langue" value="autre" type="checkbox"> Autre</label>
+                    <label><input name="langue" value="anglais" type="checkbox"> en anglais</label>
+                    <label><input name="langue" value="espagnol" type="checkbox"> en espagnol</label>
+                    <label><input name="langue" value="italien" type="checkbox"> en italien</label>
+                    <label><input name="langue" value="allemand" type="checkbox"> en allemand</label>
+                    <label><input name="langue" value="france" type="checkbox"> en français</label>
+                    <label><input name="langue" value="autre" type="checkbox"> autre langue</label>
                 </div>
 
-                <label>Nombre de personnes :</label>
-                <input name="quantite" type="text" style="width: 80px;">
+                <label style="color: var(--primary-blue); font-weight: bold;">Inscrivez le nombre de personnes :</label>
+                <input name="nombre" type="text" style="width: 100px;">
 
                 <label style="color: var(--primary-blue); font-weight: bold;">Sélectionnez votre atelier :</label>
-                <select name="soir" size="5">
-                    <option>je cherche un atelier d'allemand</option>
-                    <option>je cherche un atelier d'anglais</option>
-                    <option>je cherche un atelier d'espagnol</option>
-                    <option>je cherche un atelier d'italien</option>
-                    <option>je cherche un atelier de russe</option>
-                    <option>je propose un atelier d'anglais</option>
-                    <option>je propose un atelier de cuisine</option>
-                    </select>
+                <select name="soir" size="10" multiple="multiple">
+                    <option> je cherche un atelier d'albanais </option>
+                    <option> je cherche un atelier d'allemand </option>
+                    <option> je cherche un atelier d'amharique </option>
+                    <option> je cherche un atelier d'anglais </option>
+                    <option> je cherche un atelier d'arabe </option>
+                    <option> je cherche un atelier d'arménien </option>
+                    <option> je cherche un atelier de basque </option>
+                    <option> je cherche un atelier de berbère </option>
+                    <option> je cherche un atelier de breton </option>
+                    <option> je cherche un atelier de bulgare </option>
+                    <option> je cherche un atelier de catalan </option>
+                    <option> je cherche un atelier de chinois </option>
+                    <option> je cherche un atelier de coréen </option>
+                    <option> je cherche un atelier de corse </option>
+                    <option> je cherche un atelier de croate </option>
+                    <option> je cherche un atelier de danois </option>
+                    <option> je cherche un atelier d'espagnol </option>
+                    <option> je cherche un atelier d'espéranto </option>
+                    <option> je cherche un atelier de finnois </option>
+                    <option> je cherche un atelier de français </option>
+                    <option> je cherche un atelier de grec </option>
+                    <option> je cherche un atelier de hongrois </option>
+                    <option> je cherche un atelier d'indonésien </option>
+                    <option> je cherche un atelier d'italien </option>
+                    <option> je cherche un atelier de japonais </option>
+                    <option> je cherche un atelier de LSF </option>
+                    <option> je cherche un atelier de malais </option>
+                    <option> je cherche un atelier de néerlandais </option>
+                    <option> je cherche un atelier de norvégien </option>
+                    <option> je cherche un atelier d'occitan </option>
+                    <option> je cherche un atelier de persan </option>
+                    <option> je cherche un atelier de polonais </option>
+                    <option> je cherche un atelier de portugais </option>
+                    <option> je cherche un atelier de roumain </option>
+                    <option> je cherche un atelier de russe </option>
+                    <option> je cherche un atelier de serbe </option>
+                    <option> je cherche un atelier de suédois </option>
+                    <option> je cherche un atelier de tchèque </option>
+                    <option> je cherche un atelier de thaï </option>
+                    <option> je cherche un atelier de turc </option>
+                    <option> je cherche un atelier de vietnamien </option>
+                    <option> je cherche un atelier administratif </option>
+                    <option> je cherche un atelier de botanique </option>
+                    <option> je cherche un atelier de bricolage </option>
+                    <option> je cherche un ateliere séance de cours </option>
+                    <option> je cherche un atelier de couture </option>
+                    <option> je cherche un atelier de cuisine </option>
+                    <option> je cherche un atelier de CV et Emploi </option>
+                    <option> je cherche un atelier de danse </option>
+                    <option> je cherche un atelier de dessin </option>
+                    <option> je cherche un atelier de jardinage </option>
+                    <option> je cherche de la création d'objets </option>
+                    <option> je cherche un atelier de recyclage </option>
+                    <option> je cherche un atelier de troc </option>
+                    <option> je cherche : autres </option>
+                    <option> je cherche un atelier échange de services </option>
+                    <option> je propose un atelier d'albanais </option>
+                    <option> je propose un atelier d'allemand </option>
+                    <option> je propose un atelier d'amharique </option>
+                    <option> je propose un atelier d'anglais </option>
+                    <option> je propose un atelier d'arabe </option>
+                    <option> je propose un atelier d'arménien </option>
+                    <option> je propose un atelier de basque </option>
+                    <option> je propose un atelier de berbère </option>
+                    <option> je propose un atelier de breton </option>
+                    <option> je propose un atelier de bulgare </option>
+                    <option> je propose un atelier de catalan </option>
+                    <option> je propose un atelier de chinois </option>
+                    <option> je propose un atelier de coréen </option>
+                    <option> je propose un atelier de corse </option>
+                    <option> je propose un atelier de croate </option>
+                    <option> je propose un atelier de danois </option>
+                    <option> je propose un atelier d'espagnol </option>
+                    <option> je propose un atelier d'espéranto </option>
+                    <option> je propose un atelier de finnois </option>
+                    <option> je propose un atelier de français </option>
+                    <option> je propose un atelier de grec </option>
+                    <option> je propose un atelier de hongrois </option>
+                    <option> je propose un atelier d'indonésien </option>
+                    <option> je propose un atelier d'italien </option>
+                    <option> je propose un atelier de japonais </option>
+                    <option> je propose un atelier de LSF </option>
+                    <option> je propose un atelier de malais </option>
+                    <option> je propose un atelier de néerlandais </option>
+                    <option> je propose un atelier de norvégien </option>
+                    <option> je propose un atelier d'occitan </option>
+                    <option> je propose un atelier de persan </option>
+                    <option> je propose un atelier de polonais </option>
+                    <option> je propose un atelier de portugais </option>
+                    <option> je propose un atelier de roumain </option>
+                    <option> je propose un atelier de russe </option>
+                    <option> je propose un atelier de serbe </option>
+                    <option> je propose un atelier de suédois </option>
+                    <option> je propose un atelier de tchèque </option>
+                    <option> je propose un atelier de thaï </option>
+                    <option> je propose un atelier de turc </option>
+                    <option> je propose un atelier de vietnamien </option>
+                    <option> je propose un atelier administratif </option>
+                    <option> je propose un atelier de botanique </option>
+                    <option> je propose un atelier de bricolage </option>
+                    <option> je propose un ateliere séance de cours </option>
+                    <option> je propose un atelier de couture </option>
+                    <option> je propose un atelier de cuisine </option>
+                    <option> je propose un atelier de CV et Emploi </option>
+                    <option> je propose un atelier de danse </option>
+                    <option> je propose un atelier de dessin </option>
+                    <option> je propose un atelier de jardinage </option>
+                    <option> je propose de la création d'objets </option>
+                    <option> je propose un atelier de recyclage </option>
+                    <option> je propose un atelier de troc </option>
+                    <option> je propose : autres </option>
+                    <option> je propose un atelier échange de services </option>
+                </select>
 
                 <div style="text-align: center; margin-top: 20px;">
-                    <input value="S'inscrire maintenant" type="submit">
+                    <input value="S'inscrire" type="submit">
                 </div>
             </form>
 
             <div class="lang-footer">
                 <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.1rem;">CAFÉ DES LANGUES</a><br>
-                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+                <small style="color: #666;">(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
             </div>
-            
-            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
-                Si le formulaire ne fonctionne pas : <a href="mailto:bilingue@ass0.fr">bilingue@ass0.fr</a>
-            </p>
         </article>
     </main>
 
