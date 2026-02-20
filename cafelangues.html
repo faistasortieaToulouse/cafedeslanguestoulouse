@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Café des Langues</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --nav-purple: #5F1879;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--nav-purple);
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+        }
+
+        /* Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .side-menu {
+            background: white;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .side-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin: 5px 0;
+            transition: color 0.2s;
+        }
+        .side-menu a:hover { color: var(--accent-red); }
+
+        .sidebar img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .content-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+
+        .lang-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px dashed var(--primary-blue);
+        }
+
+        .banner-link { text-align: center; padding: 40px 0; }
+
+        h2 { color: var(--nav-purple); border-bottom: 2px solid var(--bg-color); padding-bottom: 10px; }
+        b { color: #000; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue">
+</header>
+
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <div class="side-menu">
+            <a href="lieux.htm">Lieux</a>
+            <a href="active.htm">Activités</a>
+        </div>
+
+        <img src="0BerlinColonne.jpg" alt="Berlin">
+
+        <div class="side-menu">
+            <a href="contact.htm">Contact</a>
+            <a href="liens.htm">Liens</a>
+        </div>
+    </aside>
+
+    <main>
+        <article class="content-card">
+            <p style="text-align: left;"><b>Principe du café des langues :</b></p>
+            <p style="text-align: left;">Le café des langues a pour but de permettre à des personnes qui veulent parler une langue peu usitée par petits groupes, chaque langue est parlée à une table.</p>
+            
+            <p style="text-align: left;">Pour l'instant, l'allemand et l'italien feront parties des langues pratiquées au cours du café des langues.</p>
+            
+            <p style="text-align: left;"><b>Les langues proposées sont les suivantes :</b></p>
+            <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                <li>- allemand</li>
+                <li>- italien</li>
+                <li>- portugais</li>
+                <li>- autres langues : polonais, serbo-croate (bosniaque, slovène), tchèque (slovaque), néerlandais, russe, hongrois.</li>
+            </ul>
+
+            <p style="text-align: left;"><b>Si certains sont intéressés, il est possible de monter les groupes suivants :</b></p>
+            <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                <li>- langues scandinaves (suédois, norvégien, danois, islandais)</li>
+                <li>- finois</li>
+                <li>- albanais</li>
+                <li>- bulgare</li>
+                <li>- estonie, leton, lituanien</li>
+                <li>- roumain</li>
+                <li>- grec</li>
+                <li>- chinois</li>
+                <li>- japonais</li>
+                <li>- occitan</li>
+                <li>- langage des signes LSF</li>
+            </ul>
+
+            <p style="text-align: left;"><b>Accueil des étrangers :</b></p>
+            <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                <li>- français pour les étrangers</li>
+                <li>- accueil des nouveaux venus francophones à Toulouse</li>
+            </ul>
+
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.1rem;">CAFÉ DES LANGUES</a><br>
+                <small style="color: #666;">(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <div class="side-menu">
+            <a href="bilingue.htm">Accueil</a>
+            <a href="present.htm">Présentation</a>
+        </div>
+
+        <img src="0Kholn.jpg" alt="Kholn">
+
+        <div class="side-menu">
+            <a href="photos.htm">Photos</a>
+            <a href="inscription.htm">Inscription</a>
+        </div>
+    </aside>
+</div>
+
+<div class="banner-link">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
+    </a>
+</div>
+
+</body>
+</html>
