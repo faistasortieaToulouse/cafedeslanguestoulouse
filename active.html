@@ -1,1129 +1,282 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Activités</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
+        /* Header & Logo */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: white;
+        }
+        .logo-main {
+            max-width: 90%;
+            height: auto;
+            border-radius: 10px;
+        }
 
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: #5F1879;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            background: var(--accent-red);
+            color: white;
+        }
 
+        /* Layout Principal */
+        .main-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            padding: 0 15px;
+        }
 
+        @media (max-width: 950px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        }
 
-  
-  
-  
-  
-  
-  <meta http-equiv="Content-Language" content="fr">
+        /* Colonnes latérales */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            transition: transform 0.2s;
+        }
+        .sidebar img:hover { transform: scale(1.03); }
 
+        /* Contenu Principal */
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            color: var(--primary-blue);
+        }
 
+        .content h2 {
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
 
+        .content p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
 
+        .activity-list {
+            list-style: none;
+            padding: 0;
+        }
 
+        .activity-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            border-bottom: 1px dotted #eee;
+            padding-bottom: 5px;
+        }
 
+        .activity-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <title>Bilingue</title>
-  <style type="text/css">#title9
-.suit {
-	FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red
-}
-.suit1 {
-	FONT-WEIGHT: bold; COLOR: white
-	}
-.over {
-	FONT-WEIGHT: bold; COLOR: white
-}
-.out {
-	FONT-WEIGHT: bold; COLOR: #5F1879
-}
-     #table1 {
-        margin: 0 auto;    /* C'est la commande magique pour centrer */
-        position: relative; /* On change absolute par relative */
-        width: 1000px;      /* On fixe une largeur pour que le centrage soit visible */
-    }
-  </style>
+        /* Footer interne */
+        .lang-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
 
-  
-  
-  
-  
-  
-  <style type="text/css">
-.gris {
-	BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
-}
-.blanc {
-	BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
-}
-.sous {
-	COLOR: #00CC00; FONT-SIZE: 40px; Text-Decoration: underline
-}
-}
-.oui {
-	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #cccccc
-}
-.non {
-	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #FFFFFF
-}
-.oui1 {
-	FONT-WEIGHT: bold; COLOR: green
-}
-.non1 {
-	FONT-WEIGHT: bold; COLOR: red
-}
-.green1 {
-	FONT-WEIGHT: bold; COLOR: red
-}
-  </style>
+        .banner-link {
+            display: block;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Script Dots */
+        .dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
 </head>
+<body>
 
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue Logo" class="logo-main">
+</header>
 
-<body bgcolor="#ccffff">
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
 
+<div class="main-container">
+    <aside class="sidebar">
+        <img src="0Cartagena.jpg" alt="Cartagena">
+        
+        <a href="http://semaineeuropeennedeslangues.venez.fr/" target="_blank">
+            <img src="drapeauUEO1.jpg" alt="Semaine Européenne des Langues">
+        </a>
+        
+        <img src="0Dublin.jpg" alt="Dublin">
+        
+        <a href="http://www.lepetittou.com/" target="_blank">
+            <img src="lepetittou.jpg" alt="Le Petit Tou">
+        </a>
+    </aside>
 
+    <article class="content">
+        <h2>Nos Activités</h2>
+        <p>
+            L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
+        </p>
 
+        <p>
+            Chaque participant pourra proposer des activités autre que se réunir autour d’un verre à condition qu’elles soient pratiquées dans une langue souhaitée. Les participants sélectionnent les activités dans la langue étrangère qui les intéressent.
+        </p>
 
+        <ul class="activity-list">
+            <li>Echange de conversation à Toulouse ! Gratuit !</li>
+            <li>Accueil des nouveaux toulousains et étrangers !</li>
+            <li>Visite de Toulouse et de sa région.</li>
+            <li>Lecture en langue étrangère, cuisine de plats étrangers et régionaux.</li>
+            <li>Participation aux spectacles en langues étrangères et soirées théâtre.</li>
+            <li>Sorties au cinéma pour voir des films en VO.</li>
+            <li>Soirées festives et culturelles à thèmes.</li>
+            <li>Soirées dans des pubs, des cafés ou restaurants étrangers.</li>
+            <li>Conférence, exposition sur des pays lointains.</li>
+        </ul>
 
+        <div class="lang-footer">
+            <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+            <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+        </div>
+    </article>
 
-<script language="JavaScript" type="text/javascript">
+    <aside class="sidebar">
+        <img src="0Douglas.jpg" alt="Douglas">
+        
+        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
+            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
+        </a>
+        
+        <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
+            <img src="jobetudiant200.jpg" alt="Job Etudiant">
+        </a>
 
-var xCol = "#FF0000";
-var yCol = "#00FF00";
-var zCol = "#0000FF";
-var n = 6;   //number of dots per trail.
-var t = 40;  //setTimeout speed.
-var s = 0.2; //effect speed.
+        <a href="http://hp31.lei-web.com/" target="_blank">
+            <img src="happypeoplenew200.jpg" alt="Happy People Toulouse">
+        </a>
+    </aside>
+</div>
 
-var r,h,w;
-var d = document;
-var my = 10;
-var mx = 10;
-var stp = 0;
-var evn = 360/3;
-var vx = new Array();
-var vy = new Array();
-var vz = new Array();
-var dy = new Array();
-var dx = new Array();
+<div class="banner-link">
+    <a href="http://www.bilingue.fr.nf/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%;">
+    </a>
+</div>
 
-var pix = "px";
+<script>
+    // Script des points suiveurs
+    const dots = [];
+    const n = 10; 
+    const colors = ['#FF0000', '#00FF00', '#0000FF'];
 
-var strictmod = ((document.compatMode) && 
-document.compatMode.indexOf("CSS") != -1);
+    for (let i = 0; i < n; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        d.style.backgroundColor = colors[i % 3];
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
 
-var domWw = (typeof window.innerWidth == "number");
-var domSy = (typeof window.pageYOffset == "number");
-var idx = d.getElementsByTagName('div').length;
+    let mX = 0, mY = 0;
+    window.addEventListener('mousemove', (e) => { 
+        mX = e.clientX; 
+        mY = e.clientY; 
+    });
 
-for (i = 0; i < n; i++)
-{
-   var dims = (i+1)/2;
-   d.write('<div id="x'+(idx+i)+'" style="position:absolute;'
-      +'top:0px;left:0px;width:'+dims+'px;height:'+dims+'px;'
-      +'background-color:'+xCol+';font-size:'+dims+'px"><\/div>'
-      +'<div id="y'+(idx+i)+'" style="position:absolute;top:0px;'
-      +'left:0px;width:'+dims+'px;height:'+dims+'px;'
-      +'background-color:'+yCol+';font-size:'+dims+'px"><\/div>'
-      +'<div id="z'+(idx+i)+'" style="position:absolute;top:0px;'
-      +'left:0px;width:'+dims+'px;height:'+dims+'px;'
-      +'background-color:'+zCol+';font-size:'+dims+'px"><\/div>');
-}
-
-if (domWw) r = window;
-else
-{ 
-   if (d.documentElement && 
-     typeof d.documentElement.clientWidth == "number" && 
-     d.documentElement.clientWidth != 0)
-     r = d.documentElement;
-   else
-   { 
-      if (d.body && typeof d.body.clientWidth == "number")
-         r = d.body;
-   }
-}
-
-function winsize()
-{
-   var oh,sy,ow,sx,rh,rw;
-   if (domWw)
-   {
-      if (d.documentElement && d.defaultView && 
-         typeof d.defaultView.scrollMaxY == "number")
-      {
-         oh = d.documentElement.offsetHeight;
-         sy = d.defaultView.scrollMaxY;
-         ow = d.documentElement.offsetWidth;
-         sx = d.defaultView.scrollMaxX;
-         rh = oh-sy;
-         rw = ow-sx;
-      }
-      else
-      {
-         rh = r.innerHeight;
-         rw = r.innerWidth;
-      }
-      h = rh; 
-      w = rw;
-   }
-   else
-   {
-      h = r.clientHeight; 
-      w = r.clientWidth;
-   }
-}
-
-function scrl(yx)
-{
-   var y,x;
-   if (domSy)
-   {
-      y = r.pageYOffset;
-      x = r.pageXOffset;
-   }
-   else
-   {
-      y = r.scrollTop;
-      x = r.scrollLeft;
-   }
-   return (yx == 0)?y:x;
-}
-
-function mouse(e)
-{
-   var msy = (domSy)?window.pageYOffset:0;
-   if (!e) e = window.event;    
-   if (typeof e.pageY == 'number')
-   {
-     my = e.pageY - msy + 16;
-     mx = e.pageX + 6;
-   }
-   else
-   {
-     my = e.clientY - msy + 16;
-     mx = e.clientX + 6;
-   }
-   if (my > h-65) my = h-65;
-   if (mx > w-50) mx = w-50;
-}
-
-function assgn()
-{
-   for (j = 0; j < 3; j++)
-   {
-      dy[j] = my + 50 * Math.cos(stp+j*evn*Math.PI/180) * Math.sin((stp+j*25)/2) + scrl(0) + pix;
-      dx[j] = mx + 50 * Math.sin(stp+j*evn*Math.PI/180) * Math.sin((stp+j*25)/2) * Math.sin(stp/4) + pix;
-   }
-   stp+=s;
-
-   for (i = 0; i < n; i++)
-   {
-      if (i < n-1)
-      {
-         vx[i].top = vx[i+1].top; vx[i].left = vx[i+1].left; 
-         vy[i].top = vy[i+1].top; vy[i].left = vy[i+1].left;
-         vz[i].top = vz[i+1].top; vz[i].left = vz[i+1].left;
-      } 
-      else
-      {
-         vx[i].top = dy[0]; vx[i].left = dx[0];
-         vy[i].top = dy[1]; vy[i].left = dx[1];
-         vz[i].top = dy[2]; vz[i].left = dx[2];
-      }
-   }
-   setTimeout(assgn,t);
-}
-
-function init()
-{
-   for (i = 0; i < n; i++)
-   {
-      vx[i] = document.getElementById("x"+(idx+i)).style;
-      vy[i] = document.getElementById("y"+(idx+i)).style;
-      vz[i] = document.getElementById("z"+(idx+i)).style;
-   }
-   winsize();
-   assgn();
-}
-
-if (window.addEventListener)
-{
-   window.addEventListener("resize",winsize,false);
-   window.addEventListener("load",init,false);
-   document.addEventListener("mousemove",mouse,false);
-}  
-else 
-if (window.attachEvent)
-{
-   window.attachEvent("onload",init);
-   document.attachEvent("onmousemove",mouse);
-   window.attachEvent("onresize",winsize);
-} 
-
+    function tick() {
+        let x = mX, y = mY;
+        dots.forEach((dot) => {
+            dot.x += (x - dot.x) * 0.35;
+            dot.y += (y - dot.y) * 0.35;
+            dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+            x = dot.x; y = dot.y;
+        });
+        requestAnimationFrame(tick);
+    }
+    tick();
 </script>
-<table id="table1" border="0">
-
-
-
-
-
-
-	<tbody>
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-		<td style="width: 250px;" height="110">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;" height="110">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;" height="110">
-		<img src="bilingue1.jpg" border="0" height="126" width="371"></td>
-
-
-
-
-
-
-		<td style="width: 0px;" height="110">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;" height="110">&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="width: 250px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;" height="21">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;" height="21">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;" height="21">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="width: 250px;" height="129">
-		<img src="0Cartagena.jpg" border="0" height="114" width="200"></td>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 0px;" height="129">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 648px;" height="129">
-		
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">L'association Bilingue 
-		a pour but d'organiser des &eacute;changes de discussion entre des fran&ccedil;ais et 
-		des &eacute;trangers r&eacute;sidant en France. L'&eacute;change peut avoir lieu autour d'un 
-		th&egrave;me d&eacute;fini auparavant.</font></p>
-
-
-
-
-
-      </td>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 0px;" height="129">
-		&nbsp;</td>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="129">
-      
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
-      
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Pr&eacute;sentation</a></p>
-
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-
-		</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="21">
-&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;">
-		&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="136">
-      
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
-      
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activit&eacute;s</a></p>
-
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-
-		</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;">
-		
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">Chaque participant 
-		pourra proposer des activit&eacute;s autre que se r&eacute;unir autour d&rsquo;un verre &agrave; 
-		condition qu&rsquo;elles soient pratiqu&eacute;es dans une langue souhait&eacute;e. Les 
-		participants s&eacute;lectionnent les activit&eacute;s dans la langue &eacute;trang&egrave;re qui 
-		les int&eacute;ressent.</font></p>
-
-
-
-
-
-
-&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;">
-		<img src="0Douglas.jpg" border="0" height="130" width="200"></td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="width: 250px;"><img src="0Dublin.jpg" border="0" height="131" width="200"></td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="text-align: left; color: rgb(0, 0, 255); width: 648px;">Echange de conversation &agrave; Toulouse ! Gratuit !<br>
-
-
-
-
-Accueil des nouveaux toulousains et &eacute;trangers !<br>
-
-
-
-
-Visite de Toulouse et de sa r&eacute;gion.<br>
-
-
-
-
-Lecture en langue &eacute;trang&egrave;re, cuisine de plats &eacute;trangers et r&eacute;gionaux.<br>
-
-
-
-
-Les participants sont invit&eacute;s &agrave; aller aux spectacles en
-langues &eacute;trang&egrave;res, aux soir&eacute;es
-th&eacute;&acirc;tre, mais aussi propose aux participants &agrave;
-aller voir des films en VO au cin&eacute;ma.<br>
-
-
-
-
-Soir&eacute;es festives et culturelles &agrave; th&egrave;mes.<br>
-
-
-
-
-Soir&eacute;es dans des pubs, des caf&eacute;s ou restaurants &eacute;trangers.<br>
-
-
-
-
-Conf&eacute;rence, exposition sur des pays lointains.</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="129">
-      
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a>
-      
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
-
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-
-		</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="136">
-		</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;">
-		
-      
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a>
-      
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
-
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-      </td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="129">
-&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="21">
-&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;" bgcolor="#ffffff"><a href="cafelangues.htm">caf&eacute; des 
-        langues</a><br>
-
-
-
-
-
-      <span style="vertical-align: top;">(AL, BG, </span><span style="vertical-align: top;">CZ,</span><span style="vertical-align: top;"> DK</span><span style="vertical-align: top;">, GR</span><span style="vertical-align: top;">, </span><span style="vertical-align: top;">HR, </span><span style="vertical-align: top;">HU,</span><span style="vertical-align: top;"> NL,</span><span style="vertical-align: top;"> NO,</span><span style="vertical-align: top;"> PL,</span><span style="vertical-align: top;"> RO, RS,&nbsp;RU, SE).</span></td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;">
-		&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-	<tr>
-
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="21">
-&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 648px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-		<td style="width: 250px;">
-		&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-
-      <td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-
-      <td style="width: 648px;">&nbsp;</td>
-
-
-
-
-
-
-
-      <td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-      <td style="text-align: center;" colspan="5"><a href="http://www.bilingue.fr.nf/">
-      <img src="2007_3_22_10h36_182735.gif" border="0" height="60" width="468"></a></td>
-
-
-
-
-
-
-
-      </tr>
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  </tbody>
-</table>
-
-
-
-
-
-
 
 </body>
 </html>
