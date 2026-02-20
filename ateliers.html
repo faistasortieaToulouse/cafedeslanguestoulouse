@@ -28,7 +28,6 @@
             background: white;
         }
 
-        /* Navigation du haut */
         nav {
             display: flex;
             justify-content: center;
@@ -73,7 +72,6 @@
             gap: 15px;
         }
 
-        /* Blocs de liens dans les colonnes */
         .side-menu {
             background: white;
             width: 100%;
@@ -81,6 +79,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             text-align: center;
+            box-sizing: border-box;
         }
         .side-menu a {
             display: block;
@@ -98,7 +97,9 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
+        .sidebar img:hover { transform: scale(1.05); }
 
         .content-card {
             background: white;
@@ -147,6 +148,24 @@
         }
         input[type="submit"]:hover { background: #007700; transform: scale(1.05); }
 
+        /* Galerie du bas */
+        .bottom-gallery {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+        .bottom-gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
         .lang-footer {
             text-align: center;
             margin-top: 40px;
@@ -184,7 +203,20 @@
         </div>
 
         <img src="0LondonGare.jpg" alt="Gare de Londres">
-        <p style="text-align:center"><a href="calendrier2006.htm" style="color:var(--nav-purple); font-weight:bold; text-decoration:none; font-size: 0.9em;">Notre calendrier passé</a></p>
+
+        <a href="http://semaineeuropeennedeslangues.venez.fr/" target="_blank">
+            <img src="drapeauUEO1.jpg" alt="Semaine Européenne des Langues">
+        </a>
+        
+        <a href="http://www.lepetittou.com/" target="_blank">
+            <img src="lepetittou.jpg" alt="Le Petit Tou - Guide de Toulouse">
+        </a>
+
+        <img src="0AntiguaBarbuda.jpg" alt="Antigua Barbuda">
+        
+        <p style="text-align:center">
+            <a href="calendrier2006.htm" style="color:var(--nav-purple); font-weight:bold; text-decoration:none; font-size: 0.9em;">Notre calendrier passé</a>
+        </p>
 
         <div class="side-menu">
             <a href="contact.htm">Contact</a>
@@ -362,17 +394,39 @@
 
         <img src="0Nevis.jpg" alt="Nevis">
 
+        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
+            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
+        </a>
+        
+        <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
+            <img src="jobetudiant200.jpg" alt="Job Etudiant">
+        </a>
+
+        <img src="0Barbados.jpg" alt="Barbados">
+
+        <a href="http://hp31.lei-web.com/" target="_blank">
+            <img src="happypeoplenew200.jpg" alt="Happy People Toulouse">
+        </a>
+
         <div class="side-menu">
             <a href="photos.htm">Photos</a>
             <a href="inscription.htm">Inscription</a>
         </div>
 
-        <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
-            <a target="_blank" href="http://hp31.lei-web.com/" style="text-decoration:none; color: var(--primary-green); font-weight: bold; font-size: 0.85em;">
-                Inscription aux soirées Happy People
+        <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; width: 100%; box-sizing: border-box;">
+            <a target="_blank" href="http://www.newamigos.com/" style="text-decoration:none; color: var(--primary-green); font-weight: bold; font-size: 0.85em;">
+                <img src="newamigos.jpg" alt="New Amigos" style="margin-bottom: 5px; max-width: 150px;">
+                <br>Soirées linguistiques
             </a>
         </div>
     </aside>
+</div>
+
+<div class="bottom-gallery">
+    <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo">
+    <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo">
+    <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo">
+    <img src="Photo%20094fv1.jpg" alt="Soirée Over-culture">
 </div>
 
 <div class="banner-link">
