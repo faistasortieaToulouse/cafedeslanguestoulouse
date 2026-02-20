@@ -1,33 +1,145 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta http-equiv="Content-Language" content="fr">
-  <title>Bilingue - Liens</title>
-  <style type="text/css">
-    body { background-color: #ccffff; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    .blanc { background-color: #ffffff; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
-    .green1 { font-weight: bold; color: red; text-decoration: none; }
-    .oui1 { font-weight: bold; color: green; text-decoration: none; }
-    .spanstyle {
-      position: fixed;
-      visibility: visible;
-      top: -50px;
-      font-size: 10pt;
-      font-family: Verdana;
-      font-weight: bold;
-      color: black;
-      pointer-events: none;
-      z-index: 1000;
-    }
-    /* Style pour les images bullet */
-    .bullet-style { position: fixed; pointer-events: none; z-index: 999; }
-    /* Table layout */
-    #table1 { text-align: center; margin: auto; width: 100%; border-collapse: collapse; }
-    td { padding: 10px; vertical-align: top; }
-    a { color: #0000ff; }
-  </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Liens et Recommandations</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --nav-purple: #5F1879;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        /* Style pour le texte qui suit la souris */
+        .spanstyle {
+            position: absolute;
+            visibility: visible;
+            top: -50px;
+            font-size: 10pt;
+            font-family: Verdana;
+            font-weight: bold;
+            color: black;
+            pointer-events: none; /* Pour pouvoir cliquer à travers le texte */
+            z-index: 1000;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .txt-clignotant {
+            animation: blink 0.8s infinite;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--nav-purple);
+            font-weight: bold;
+            padding: 5px 12px;
+            transition: 0.3s;
+        }
+        nav a:hover { color: var(--primary-green); text-decoration: underline; }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border: 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .content-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .link-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-column a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .link-column a:hover { text-decoration: underline; color: var(--accent-red); }
+
+        .bottom-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .bottom-gallery img { width: 200px; height: 150px; object-fit: cover; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
+        .footer-banner { text-align: center; margin: 20px 0; }
+
+        .menu-link { color: #00CC00; font-weight: bold; text-decoration: none; font-size: 1.1rem; }
+        .menu-link:hover { color: red; }
+    </style>
+</head>
 <body>
   
 <script type="text/javascript">
@@ -96,188 +208,175 @@
 </script>
   
 
-<div id="dotContainer">
-    <div id="adot0" class="bullet-style" style="visibility: hidden;"><img src="bullet.png"></div>
-    <div id="adot1" class="bullet-style"><img src="bullet.png"></div>
-    <div id="adot2" class="bullet-style"><img src="bullet.png"></div>
-    <div id="adot3" class="bullet-style"><img src="bullet.png"></div>
-    <div id="adot4" class="bullet-style"><img src="bullet.png"></div>
-    <div id="adot5" class="bullet-style"><img src="bullet.png"></div>
-    <div id="adot6" class="bullet-style"><img src="bullet.png"></div>
+<header>
+    <div class="txt-clignotant">Bilingue Groupes</div>
+    <img src="bilingue1.jpg" alt="Bilingue Logo">
+    <div class="txt-clignotant">Liens et recommandations</div>
+</header>
+
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <img src="0Escorial.jpg" alt="Escorial">
+        
+        <div style="text-align:center">
+            <a href="bilingue.htm" class="menu-link">Accueil</a><br><br>
+            <a href="present.htm" class="menu-link">Présentation</a>
+        </div>
+
+        <img src="0KeyWest.jpg" alt="KeyWest">
+
+        <div style="text-align:center">
+            <a href="lieux.htm" class="menu-link">Lieux</a><br><br>
+            <a href="active.htm" class="menu-link">Activités</a>
+        </div>
+    </aside>
+
+    <main>
+        <article class="content-card">
+            <h3 style="color: var(--primary-blue); border-bottom: 2px solid var(--bg-color); padding-bottom: 5px;">Sites recommandés :</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="link-column">
+                    <a target="_blank" href="http://unlimited.production.free.fr/">Unlimited Production</a>
+                    <a target="_blank" href="http://npagescorrespondant.neuf.fr/">Correspondant de Presse</a>
+                    <a target="_blank" href="http://www.toulouseblog.fr">Toulouse Blog</a>
+                    <a target="_blank" href="http://www.toulouseinfos.fr.nf/">Toulouse Infos</a>
+                    <a target="_blank" href="https://lecactustoulouse.fr/cafe-des-langues/">Café le Cactus</a>
+                    <hr>
+                    <a target="_blank" href="http://www.cinelatino.com.fr/">Festival Ciné Amérique Latine</a>
+                    <a target="_blank" href="http://www.cinespagnol.com/">Festival Ciné España</a>
+                    <a target="_blank" href="http://www.cinemaitalientoulouse.com/">Cinéma italien</a>
+                    <a target="_blank" href="http://www.cinemas-utopia.org/toulouse/">Cinéma Utopia</a>
+                    <a target="_blank" href="http://www.abc-toulouse.net/">Cinéma ABC</a>
+                </div>
+                
+                <div class="link-column">
+                    <a target="_blank" href="http://ensemble.ass0.fr/">Association Ensemble</a>
+                    <a target="_blank" href="http://www.akrojeux.net/">Akrojeux</a>
+                    <a target="_blank" href="http://www.ludimonde.fr/">Ludimonde</a>
+                    <a target="_blank" href="http://www.newamigos.com/">Jeu New Amigos</a>
+                    <a target="_blank" href="http://www.premiere-reponse.com/JT/">Le Journal Toulousain</a>
+                    <hr>
+                    <a target="_blank" href="http://www.tchin-tchine.com/">Tchin-Chine : Chinois</a>
+                    <a target="_blank" href="http://www.maxime-and-co.com/">Maxime and Co : Russe</a>
+                    <a target="_blank" href="http://agart31.free.fr/">Amicale Antillais Guyanais</a>
+                    <a target="_blank" href="http://www.toulangues.org/">Toulangues</a>
+                    <a target="_blank" href="http://esperanto.toulouse.free.fr/">Centre culturel Esperanto</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; background: #f9f9f9; padding: 15px; border-radius: 5px;">
+                <a href="http://www.assocomunicarte.com/" target="_blank"><img src="comunicarte.jpg" height="80" style="margin-right:15px;"></a>
+                <a href="http://www.locals.aegee.org/toulouse/" target="_blank"><img src="logoaegee2.jpg" height="40"></a>
+                <br><br>
+                <a href="http://lang.russe.free.fr/" target="_blank"><img src="polyglot.jpg" style="max-width: 100%; height: auto;" alt="Polyglot"></a>
+            </div>
+            
+            <p style="font-size: 0.9rem; margin-top: 20px;">
+                <b>PolyglotClub.com</b> is a FREE Language Exchange Community. PolyglotClub.com promotes languages and cultures through BOTH on-line and off-line exchanges.
+            </p>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <img src="0Gibraltar.jpg" alt="Gibraltar">
+        
+        <div style="text-align:center">
+            <a href="contact.htm" class="menu-link">Contact</a><br><br>
+            <a href="liens.htm" class="menu-link">Liens</a>
+        </div>
+
+        <img src="0Barbados.jpg" alt="Barbados">
+
+        <div style="text-align:center">
+            <a href="photos.htm" class="menu-link">Photos</a><br><br>
+            <a href="inscription.htm" class="menu-link">Inscription</a>
+        </div>
+    </aside>
+</div>
+
+<div class="bottom-gallery">
+    <a href="Photo%20147ym.jpg" target="_blank"><img src="Photo%20147ym1.jpg" alt="Soirée Papagayo 1"></a>
+    <a href="Photo%20154ym.jpg" target="_blank"><img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2"></a>
+    <a href="Photo%20179ym.jpg" target="_blank"><img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3"></a>
+    <a href="Photo%20094fv.jpg" target="_blank"><img src="Photo%20094fv1.jpg" alt="Soirée Over-culture"></a>
+</div>
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <a href="cafelangues.htm" style="font-weight: bold; color: var(--primary-blue); text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+    <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+</div>
+
+<div class="footer-banner">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner Bilingue">
+    </a>
 </div>
 
 <script type="text/javascript">
 (function() {
-    // --- CONFIGURATION ---
+    var x, y;
+    var step = 20;
+    var flag = 0;
     var message = "Bilingue Groupes";
     var msgArray = message.split("");
-    var xCol = "#FF0000", yCol = "#00FF00", zCol = "#0000FF";
-    var mouseX = 0, mouseY = 0;
-    var stp = 0, sSpeed = 0.2;
+    var xpos = new Array();
+    var ypos = new Array();
 
-    // Création des spans pour le texte
     for (var i = 0; i < msgArray.length; i++) {
-        document.write('<span id="span' + i + '" class="spanstyle">' + msgArray[i] + '</span>');
+        xpos[i] = -100;
+        ypos[i] = -100;
     }
 
-    // Création des points orbitaux
-    var d = document;
-    var orbContainer = d.createElement('div');
-    for (var i = 0; i < 6; i++) {
-        var size = (i + 1) / 2;
-        orbContainer.innerHTML += 
-            '<div id="vx'+i+'" style="position:fixed;width:'+size+'px;height:'+size+'px;background:'+xCol+';z-index:999;pointer-events:none;"></div>' +
-            '<div id="vy'+i+'" style="position:fixed;width:'+size+'px;height:'+size+'px;background:'+yCol+';z-index:999;pointer-events:none;"></div>' +
-            '<div id="vz'+i+'" style="position:fixed;width:'+size+'px;height:'+size+'px;background:'+zCol+';z-index:999;pointer-events:none;"></div>';
-    }
-    d.body.appendChild(orbContainer);
-
-    var xpos = [], ypos = [];
-    var dots = [];
-    for (var i = 0; i < 20; i++) { xpos[i] = -50; ypos[i] = -50; }
-    for (var i = 0; i < 7; i++) { dots[i] = {X:0, Y:0, dx:0, dy:0}; }
-
-    d.onmousemove = function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    };
-
-    function animate() {
-        // 1. Texte qui suit (Snake effect)
-        xpos[0] = mouseX + 20;
-        ypos[0] = mouseY;
-        for (var i = msgArray.length - 1; i >= 1; i--) {
-            xpos[i] = xpos[i-1] + 15;
-            ypos[i] = ypos[i-1];
-        }
+    window.addEventListener('DOMContentLoaded', function() {
         for (var i = 0; i < msgArray.length; i++) {
-            var s = d.getElementById("span" + i).style;
-            s.left = xpos[i] + "px";
-            s.top = ypos[i] + "px";
+            var span = document.createElement('span');
+            span.id = 'span' + i;
+            span.className = 'spanstyle';
+            span.innerHTML = msgArray[i];
+            document.body.appendChild(span);
         }
+        makesnake();
+    });
 
-        // 2. Points orbitaux RVB
-        var evn = 360 / 3;
-        var dy = [], dx = [];
-        for (var j = 0; j < 3; j++) {
-            dy[j] = mouseY + 50 * Math.cos(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2);
-            dx[j] = mouseX + 50 * Math.sin(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2) * Math.sin(stp / 4);
-        }
-        stp += sSpeed;
-        for (var i = 0; i < 6; i++) {
-            var vxi = d.getElementById("vx"+i).style, vyi = d.getElementById("vy"+i).style, vzi = d.getElementById("vz"+i).style;
-            if (i < 5) {
-                vxi.top = d.getElementById("vx"+(i+1)).style.top; vxi.left = d.getElementById("vx"+(i+1)).style.left;
-                vyi.top = d.getElementById("vy"+(i+1)).style.top; vyi.left = d.getElementById("vy"+(i+1)).style.left;
-                vzi.top = d.getElementById("vz"+(i+1)).style.top; vzi.left = d.getElementById("vz"+(i+1)).style.left;
-            } else {
-                vxi.top = dy[0]+"px"; vxi.left = dx[0]+"px";
-                vyi.top = dy[1]+"px"; vyi.left = dx[1]+"px";
-                vzi.top = dy[2]+"px"; vzi.left = dx[2]+"px";
+    document.addEventListener('mousemove', function(e) {
+        x = e.pageX;
+        y = e.pageY;
+        flag = 1;
+    });
+
+    function makesnake() {
+        if (flag == 1) {
+            for (var i = msgArray.length - 1; i >= 1; i--) {
+                xpos[i] = xpos[i - 1] + step;
+                ypos[i] = ypos[i - 1];
+            }
+            xpos[0] = x + step;
+            ypos[0] = y;
+
+            for (var i = 0; i < msgArray.length; i++) {
+                var letter = document.getElementById("span" + i);
+                if (letter) {
+                    letter.style.left = xpos[i] + "px";
+                    letter.style.top = ypos[i] + "px";
+                }
             }
         }
-
-        // 3. Boules bleues (Elastic)
-        dots[0].X = mouseX; dots[0].Y = mouseY;
-        for (var i = 1; i < 7; i++) {
-            dots[i].dx += ((dots[i-1].X - dots[i].X) * 10 / 1 - dots[i].dx * 10) * 0.01;
-            dots[i].dy += (((dots[i-1].Y - dots[i].Y) * 10 / 1 + 50) - dots[i].dy * 10) * 0.01;
-            dots[i].X += dots[i].dx; dots[i].Y += dots[i].dy;
-            var el = d.getElementById("adot"+i).style;
-            el.left = dots[i].X + "px"; el.top = dots[i].Y + "px";
-        }
-
-        setTimeout(animate, 25);
+        setTimeout(makesnake, 30);
     }
-    window.onload = animate;
 })();
 </script>
-
-<table id="table1" border="0">
-  <tbody>
-    <tr>
-      <td style="width: 250px;"><img src="0Escorial.jpg" width="200" height="131" alt="Escorial"></td>
-      <td><img src="bilingue1.jpg" width="371" height="126" alt="Logo"></td>
-      <td style="width: 250px;">
-        <div class="blanc">
-          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a><br><br>
-          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Présentation</a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="blanc">
-          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a><br><br>
-          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activités</a>
-        </div>
-      </td>
-      <td style="text-align: left; color: blue;">
-        <strong>Sites recommandés :</strong><br><br>
-        <a target="_blank" href="http://unlimited.production.free.fr/">Unlimited Production</a><br>
-        <a target="_blank" href="http://npagescorrespondant.neuf.fr/">Correspondant de Presse</a><br>
-        <a target="_blank" href="http://www.toulouseblog.fr">Toulouse Blog</a><br>
-        <a target="_blank" href="http://www.toulouseinfos.fr.nf/">Toulouse Infos</a><br>
-        <a target="_blank" href="https://lecactustoulouse.fr/cafe-des-langues/">Café le Cactus</a>
-      </td>
-      <td><img src="0Gibraltar.jpg" width="200" height="136" alt="Gibraltar"></td>
-    </tr>
-    <tr>
-      <td><img src="0KeyWest.jpg" width="200" height="126" alt="KeyWest"></td>
-      <td>
-        <a href="http://www.assocomunicarte.com/" target="_blank"><img src="comunicarte.jpg" height="100" border="0"></a>
-        <a href="http://www.locals.aegee.org/toulouse/" target="_blank"><img src="logoaegee2.jpg" height="50" border="0"></a><br>
-        <a href="http://lang.russe.free.fr/" target="_blank"><img src="polyglot.jpg" width="300" border="0"></a>
-      </td>
-      <td>
-        <div class="blanc">
-          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a><br><br>
-          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: left; font-size: 0.9em;">
-        <a target="_blank" href="http://www.cinelatino.com.fr/">Ciné Latino</a><br>
-        <a target="_blank" href="http://www.cinespagnol.com/">Ciné España</a><br>
-        <a target="_blank" href="http://www.cinemaitalientoulouse.com/">Cinéma Italien</a><br>
-        <a target="_blank" href="http://www.cinemas-utopia.org/toulouse/">Utopia</a>
-      </td>
-      <td style="text-align: left; font-size: 0.9em;">
-        <a target="_blank" href="http://ensemble.ass0.fr/">Asso Ensemble</a><br>
-        <a target="_blank" href="http://www.akrojeux.net/">Akrojeux</a><br>
-        <a target="_blank" href="http://www.ludimonde.fr/">Ludimonde</a>
-      </td>
-      <td style="text-align: left; font-size: 0.9em;">
-        <a target="_blank" href="http://www.tchin-tchine.com/">Tchin-Chine</a><br>
-        <a target="_blank" href="http://www.maxime-and-co.com/">Russe</a><br>
-        <a target="_blank" href="http://www.toulangues.org/">Toulangues</a>
-      </td>
-    </tr>
-    <tr>
-        <td colspan="3" bgcolor="#ffffff" style="border: 1px solid #ccc; padding: 20px;">
-            <a href="http://www.polyglot-learn-language.com/"><img src="logo_bleu_petit.gif" border="0"></a><br>
-            <strong>PolyglotClub.com</strong> is a FREE Language Exchange Community.
-        </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        <div class="blanc">
-          <a class="green1" href="photos.htm">Photos</a> | 
-          <a class="green1" href="inscription.htm">Inscription</a>
-        </div>
-        <div style="background: white; padding: 5px; display: inline-block;">
-            <a href="cafelangues.htm">Café des langues</a> (AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        <a href="http://www.bilingue.new.fr/"><img src="2007_3_22_10h36_182735.gif" width="468" height="60" border="0"></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 </body>
 </html>
