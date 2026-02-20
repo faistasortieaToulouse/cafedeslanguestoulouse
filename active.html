@@ -175,6 +175,75 @@
     </style>
 </head>
 <body>
+    
+<script type="text/javascript">
+(function() {
+    var xCol = "#FF0000", yCol = "#00FF00", zCol = "#0000FF";
+    var n = 6, t = 40, s = 0.2;
+    var r, h, w, my = 10, mx = 10, stp = 0;
+    var evn = 360 / 3;
+    var vx = [], vy = [], vz = [], dy = [], dx = [];
+
+    // Initialisation propre sans document.write
+    window.addEventListener('load', function() {
+        for (var i = 0; i < n; i++) {
+            var dims = (i + 1) / 2;
+            createDot('x' + i, xCol, dims);
+            createDot('y' + i, yCol, dims);
+            createDot('z' + i, zCol, dims);
+            vx[i] = document.getElementById('x' + i).style;
+            vy[i] = document.getElementById('y' + i).style;
+            vz[i] = document.getElementById('z' + i).style;
+        }
+        winsize();
+        assgn();
+    });
+
+    function createDot(id, col, size) {
+        var d = document.createElement('div');
+        d.id = id;
+        d.style.cssText = "position:absolute;top:0;left:0;width:"+size+"px;height:"+size+"px;background-color:"+col+";font-size:"+size+"px;pointer-events:none;z-index:9999;";
+        document.body.appendChild(d);
+    }
+
+    function winsize() {
+        h = window.innerHeight;
+        w = window.innerWidth;
+    }
+
+    window.addEventListener("resize", winsize);
+
+    document.addEventListener("mousemove", function(e) {
+        my = e.clientY + 16;
+        mx = e.clientX + 6;
+    });
+
+    function assgn() {
+        var scrlY = window.pageYOffset || document.documentElement.scrollTop;
+        var scrlX = window.pageXOffset || document.documentElement.scrollLeft;
+
+        for (var j = 0; j < 3; j++) {
+            dy[j] = (my + 50 * Math.cos(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2) + scrlY) + "px";
+            dx[j] = (mx + 50 * Math.sin(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2) * Math.sin(stp / 4) + scrlX) + "px";
+        }
+        stp += s;
+
+        for (var i = 0; i < n; i++) {
+            if (i < n - 1) {
+                vx[i].top = vx[i + 1].top; vx[i].left = vx[i + 1].left;
+                vy[i].top = vy[i + 1].top; vy[i].left = vy[i + 1].left;
+                vz[i].top = vz[i + 1].top; vz[i].left = vz[i + 1].left;
+            } else {
+                vx[i].top = dy[0]; vx[i].left = dx[0];
+                vy[i].top = dy[1]; vy[i].left = dx[1];
+                vz[i].top = dy[2]; vz[i].left = dx[2];
+            }
+        }
+        setTimeout(assgn, t);
+    }
+})();
+</script>
+    
 
 <header>
     <div class="txt-clignotant">Groupe de discussion</div>
