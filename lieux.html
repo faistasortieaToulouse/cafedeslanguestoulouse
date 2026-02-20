@@ -97,7 +97,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* BLANC CENTRAL ALLONGÉ */
         .content-card {
             background: white;
             padding: 40px;
@@ -114,17 +113,24 @@
             font-size: 1.1rem;
         }
 
-        .photo-grid-center {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            justify-items: center;
+        /* STYLE DU TABLEAU DE PHOTOS CENTRALES */
+        .photo-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 15px;
             margin: 30px 0;
         }
-        .photo-grid-center img {
+        .photo-table img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 100%;
+            border: 1px solid #eee;
+        }
+        .photo-table td {
+            text-align: center;
+            vertical-align: middle;
         }
 
         .lang-footer {
@@ -154,11 +160,10 @@
 
         .banner-link { text-align: center; padding: 40px 0; }
 
-        /* Animation Points */
         .dot {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background-color: var(--accent-red);
             pointer-events: none;
@@ -186,12 +191,10 @@
 <div class="main-layout">
     <aside class="sidebar">
         <img src="0MadridPalais.jpg" alt="Madrid Palais">
-        
         <div class="side-menu">
             <a href="lieux.htm">Lieux</a>
             <a href="active.htm">Activités</a>
         </div>
-
         <img src="0Palacio.jpg" alt="Palacio">
         <img src="0Segovia.jpg" alt="Segovia">
         <img src="bistrotvoyageur.jpg" alt="Bistrot Voyageur">
@@ -203,9 +206,19 @@
                 L'association se réunit dans un lieu public ou privé et organise des échanges de conversation dans une langue donnée.
             </div>
 
-            <div id="moving-text" style="color: blue; font-weight: bold; margin: 20px 0;">
-                Présentation des lieux de discussion
-            </div>
+            <table class="photo-table">
+                <tr>
+                    <td><img src="P1010195a.jpg" alt="Café Florida"><br><small>Café Florida</small></td>
+                    <td><img src="P1010196a.jpg" alt="Café La Maison"><br><small>Café La Maison</small></td>
+                </tr>
+                <tr>
+                    <td><img src="P1010197a.jpg" alt="Le Don Huevo"><br><small>Le Don Huevo</small></td>
+                    <td><img src="P1010280.jpg" alt="Le Jo de Bruges"><br><small>Le Jo de Bruges</small></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><img src="lepapagayo.jpg" alt="Le Papagayo"><br><small>Le Papagayo</small></td>
+                </tr>
+            </table>
 
             <div class="intro-text" style="font-size: 0.95rem; color: #444;">
                 Les discussions en anglais ont lieu au café Jo de Bruges (17, rue de Toul) et au Roof au café Florida (12, place du Capitole). 
@@ -214,14 +227,6 @@
                 Les discussions en allemand ont lieu au café La Maison (9, rue Gabriel Péri). 
                 Bistrot Voyageur au 14, pl Arnaud Bernard et le Kalimera au 15, rue de Toul. 
                 Au Papagayo, 31, rue Deville.
-            </div>
-
-            <div class="photo-grid-center">
-                <img src="P1010195a.jpg" alt="Café Florida">
-                <img src="P1010196a.jpg" alt="Café La Maison">
-                <img src="P1010197a.jpg" alt="Le Don Huevo">
-                <img src="P1010280.jpg" alt="Le Jo de Bruges">
-                <img src="lepapagayo.jpg" alt="Le Papagayo">
             </div>
 
             <div class="side-menu" style="display:inline-block; width: auto; padding: 20px 40px;">
@@ -241,14 +246,11 @@
             <a href="bilingue.htm">Accueil</a>
             <a href="present.htm">Présentation</a>
         </div>
-
         <img src="0MadridPlaca.jpg" alt="Madrid Placa">
-
         <div class="side-menu">
             <a href="contact.htm">Contact</a>
             <a href="liens.htm">Liens</a>
         </div>
-
         <img src="0SanSebastian.jpg" alt="San Sebastian">
         <img src="0StLucia.jpg" alt="St Lucia">
         <img src="kalimera.jpg" alt="Le Kalimera">
@@ -269,32 +271,45 @@
 </div>
 
 <script>
-    // Script des points suiveurs
-    const nDots = 8;
+    // 1. SCRIPT DU TEXTE REBONDISSANT (MODERNISÉ)
+    (function() {
+        const message = "Présentation des lieux de discussion";
+        const el = document.createElement('div');
+        el.style.cssText = "position:fixed; color:blue; font-size:13px; font-weight:bold; z-index:10000; white-space:nowrap; pointer-events:none;";
+        el.innerText = message;
+        document.body.appendChild(el);
+
+        let x = 50, y = 50, dx = 2, dy = 2;
+        function bounce() {
+            const rect = el.getBoundingClientRect();
+            if (x + rect.width >= window.innerWidth || x <= 0) dx = -dx;
+            if (y + rect.height >= window.innerHeight || y <= 0) dy = -dy;
+            x += dx; y += dy;
+            el.style.left = x + 'px'; el.style.top = y + 'px';
+            requestAnimationFrame(bounce);
+        }
+        bounce();
+    })();
+
+    // 2. SCRIPT DES POINTS SUIVEURS
+    const nDots = 6;
     const dots = [];
     let mX = 0, mY = 0;
-
     for (let i = 0; i < nDots; i++) {
         const d = document.createElement('div');
         d.className = 'dot';
         document.body.appendChild(d);
         dots.push({ el: d, x: 0, y: 0 });
     }
-
-    window.addEventListener('mousemove', (e) => {
-        mX = e.clientX;
-        mY = e.clientY + window.scrollY;
-    });
-
+    window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY + window.scrollY; });
     function tick() {
-        let x = mX;
-        let y = mY;
+        let targetX = mX, targetY = mY;
         dots.forEach((dot) => {
-            dot.x += (x - dot.x) * 0.25;
-            dot.y += (y - dot.y) * 0.25;
+            dot.x += (targetX - dot.x) * 0.2;
+            dot.y += (targetY - dot.y) * 0.2;
             dot.el.style.left = dot.x + 'px';
             dot.el.style.top = dot.y + 'px';
-            x = dot.x; y = dot.y;
+            targetX = dot.x; targetY = dot.y;
         });
         requestAnimationFrame(tick);
     }
