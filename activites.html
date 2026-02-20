@@ -99,7 +99,16 @@
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-
+        
+        .lang-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px dashed var(--primary-blue);
+        }
+        
         /* Styles spécifiques au formulaire */
         form { background: #fdfdfd; padding: 15px; border: 1px solid #eee; margin: 20px 0; }
         label { display: inline-block; width: 160px; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
@@ -125,9 +134,7 @@
 <body>
 
 <header>
-    <div class="txt-clignotant">Groupe de discussion</div>
     <img src="bilingue1.jpg" alt="Bilingue Logo">
-    <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
 </header>
 
 <nav>
@@ -171,6 +178,13 @@
 
     <main>
         <article class="content-card">
+
+                <div class="txt-clignotant">Groupe de discussion</div>
+                
+            <div class="side-menu" style="text-align: left; margin-bottom: 30px;">
+                <span style="color: var(--accent-red); font-weight: bold; font-size: 20px;">Activités</span>
+            </div>
+            
             <div style="color: blue; text-align: left;">
                 L'association Bilingue a pour but d'organiser des échanges de conversation entre des français et des étrangers résidant en France. 17 langues sont proposées. 
                 <a href="calendrier.htm" style="background: #33cc00; color: white; padding: 2px 5px; font-weight: bold; text-decoration: none;">L'agenda complet de Bilingue</a>. 
@@ -220,6 +234,8 @@
                 </div>
             </form>
 
+            <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
+
             <div style="background: #eee; padding: 15px; border: 1px solid #ccc;">
                 <h4 style="margin-top: 0;">Soirées linguistiques à Toulouse !</h4>
                 <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
@@ -237,6 +253,12 @@
             <p style="text-align: center; color: green; font-weight: bold; margin-top: 20px;">
                 Langues prévues : Suédois, Grec, Roumain, Occitan, Japonais, Polonais, Russe...
             </p>
+            
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.1rem;">CAFÉ DES LANGUES</a><br>
+                <small style="color: #666;">(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+            
         </article>
     </main>
 
@@ -269,10 +291,10 @@
             <img src="toulousecolocBI.jpg" alt="Toulouse Coloc">
         </a>
 
-        <a href="http://www.happypeople.asso.st/" target="_blank">
-            <img src="logoHP.png" alt="Logo Happy People" style="width: 100px;">
-            <p style="font-size: 0.8rem; font-style: italic;">Happy People : Echanges internationaux !</p>
-        </a>
+    <a href="http://www.happypeople.asso.st/" target="_blank">
+        <img src="logoHP.png" alt="Happy People : Echanges internationaux" style="width: 137px; height: 137px;">
+    </a>
+        
     </aside>
 </div>
 
@@ -281,11 +303,6 @@
     <a href="Photo%20154ym.jpg" target="_blank"><img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2"></a>
     <a href="Photo%20179ym.jpg" target="_blank"><img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3"></a>
     <a href="Photo%20094fv.jpg" target="_blank"><img src="Photo%20094fv1.jpg" alt="Soirée Over-culture"></a>
-</div>
-
-<div style="text-align: center; margin-bottom: 20px;">
-    <a href="cafelangues.htm" style="font-weight: bold; color: var(--primary-blue); text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
-    <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
 </div>
 
 <div class="footer-banner">
