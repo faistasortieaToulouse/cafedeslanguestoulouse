@@ -537,8 +537,7 @@ function animate()
       
       
       
-      <p style="text-align: left;">
-		<a href="mailto:bilingue@0rg.fr">bilingue@0rg.fr</a></p>
+<p id="email-container" style="text-align: left; font-weight: bold; min-height: 1.6em;"></p>
 
 
 
@@ -1132,7 +1131,37 @@ if (document.all||document.getElementById)
 </table>
 
 
+<script>
+(function() {
+    const container = document.getElementById('email-container');
+    
+    // L'adresse est encodée ici (invisible pour les robots scanneurs)
+    const encoded = "Y29udGFjdEBjYWZlZGVzbGFuZ3Vlc3RvdWxvdXNlLmNvbQ==";
+    const finalEmail = atob(encoded); // Le navigateur décode l'adresse ici
+    
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let iterations = 0;
 
+    const interval = setInterval(() => {
+        container.innerText = finalEmail
+            .split("")
+            .map((letter, index) => {
+                if (index < iterations) {
+                    return finalEmail[index];
+                }
+                return characters[Math.floor(Math.random() * characters.length)];
+            })
+            .join("");
+
+        if (iterations >= finalEmail.length) {
+            clearInterval(interval);
+            container.innerHTML = `<a href="mailto:${finalEmail}" style="color: var(--accent-red); text-decoration: none;">${finalEmail}</a>`;
+        }
+        
+        iterations += 1/2; // Vitesse un peu plus rapide car l'adresse est longue
+    }, 30);
+})();
+</script>
 
 
 </body>
