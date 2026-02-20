@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilingue - Accueil des nouveaux et étrangers</title>
+    <title>Bilingue - Accueil</title>
     <style>
         :root {
             --primary-blue: #0000ff;
@@ -21,25 +21,19 @@
             color: #333;
         }
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .txt-clignotant {
-            animation: blink 1s infinite;
-            color: var(--accent-red);
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
+        /* Header & Logo */
         header {
             text-align: center;
             padding: 20px;
             background: white;
         }
+        .logo-main {
+            max-width: 371px;
+            width: 90%;
+            height: auto;
+        }
 
+        /* Navigation */
         nav {
             display: flex;
             justify-content: center;
@@ -48,9 +42,7 @@
             background: #fff;
             padding: 15px 0;
             margin-bottom: 20px;
-            width: 100%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-top: 1px solid #eee;
         }
         nav a {
             text-decoration: none;
@@ -65,6 +57,7 @@
             background: var(--accent-red); 
         }
 
+        /* Layout */
         .main-layout {
             display: grid;
             grid-template-columns: 220px 1fr 220px;
@@ -88,52 +81,46 @@
         .sidebar img {
             width: 100%;
             max-width: 200px;
-            height: auto;
             border-radius: 8px;
-            margin-bottom: 30px; 
+            margin-bottom: 20px; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        
-        .sidebar img:hover {
-            transform: scale(1.03);
         }
 
+        /* Carte de contenu centrale */
         .content-card {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            color: var(--primary-blue);
         }
 
-        /* Formulaire */
-        form {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-top: 20px;
-        }
-        fieldset {
-            border: none;
-            padding: 0;
+        .content-card p {
             margin-bottom: 20px;
         }
-        label {
-            display: inline-block;
-            width: 150px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        input[type="text"], select {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: calc(100% - 170px);
-            min-width: 200px;
+
+        .activity-text {
+            text-align: left;
+            margin-top: 30px;
+            line-height: 1.8;
         }
 
-        /* STYLE DE LA GALERIE HARMONISÉ */
+        .lang-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+        }
+        .lang-footer a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Galerie du bas */
         .bottom-gallery {
             max-width: 1100px;
             margin: 40px auto;
@@ -146,33 +133,12 @@
         .bottom-gallery img {
             width: 100%;
             max-width: 230px;
-            height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 5px solid white; /* Cadre blanc propre */
-            transition: transform 0.3s ease;
+            border: 5px solid white;
+            transition: transform 0.3s;
         }
-        .bottom-gallery img:hover {
-            transform: translateY(-5px);
-        }
-
-        .lang-footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 15px;
-        }
-
-        .btn-submit {
-            background: var(--primary-green);
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        .bottom-gallery img:hover { transform: translateY(-5px); }
 
         .banner-link {
             display: block;
@@ -180,6 +146,7 @@
             padding: 40px 0;
         }
 
+        /* Script Dots */
         .dot {
             position: fixed;
             width: 6px;
@@ -193,9 +160,7 @@
 <body>
 
 <header>
-    <div class="txt-clignotant">Groupe de discussion</div>
-    <img src="bilingue1.jpg" alt="Bilingue">
-    <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
+    <img src="bilingue1.jpg" alt="Bilingue" class="logo-main">
 </header>
 
 <nav>
@@ -211,92 +176,47 @@
 
 <div class="main-layout">
     <aside class="sidebar">
-        <img src="0AntiguaBarbuda.jpg" alt="Antigua Barbuda">
-        
-        <a href="http://semaineeuropeennedeslangues.venez.fr/" target="_blank">
-            <img src="drapeauUEO1.jpg" alt="Semaine Européenne des Langues">
-        </a>
-        
-        <a href="http://www.lepetittou.com/" target="_blank">
-            <img src="lepetittou.jpg" alt="Le Petit Tou - Guide de Toulouse">
-        </a>
-        
-        <img src="0BerlinPalais.jpg" alt="Berlin Palais">
-        
-        <a href="http://hp31.lei-web.com/" target="_blank">
-            <img src="happypeoplenew200.jpg" alt="Happy People Toulouse">
-        </a>
+        <img src="0Cartagena.jpg" alt="Cartagena">
+        <img src="0Dublin.jpg" alt="Dublin">
     </aside>
 
     <main>
         <article class="content-card">
-            <p style="color: var(--primary-blue); font-weight: bold;">
-                L'association Bilingue organise des échanges de conversation entre Français et étrangers. 
-                17 langues proposées. <a href="calendrier.htm" style="background: #33cc00; padding: 2px 5px; color: white; text-decoration: none; border-radius: 3px;">Consultez l'agenda complet</a>.
+            <p>
+                L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et 
+                des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
             </p>
 
-            <div style="border-left: 4px solid var(--primary-green); padding-left: 15px; margin: 20px 0;">
-                <p><strong>Universités d'été :</strong> 80 destinations européennes. 90€ le séjour (15j), cours et hébergement inclus. Contactez-nous !</p>
-                <p><strong>Semaine Européenne des Langues :</strong> Du 20 au 29 septembre à Toulouse.</p>
+            <p>
+                Chaque participant pourra proposer des activités autre que se réunir autour d’un verre à 
+                condition qu’elles soient pratiquées dans une langue souhaitée. Les participants sélectionnent 
+                les activités dans la langue étrangère qui les intéressent.
+            </p>
+
+            <div class="activity-text">
+                Echange de conversation à Toulouse ! Gratuit !<br>
+                Accueil des nouveaux toulousains et étrangers !<br>
+                Visite de Toulouse et de sa région.<br>
+                Lecture en langue étrangère, cuisine de plats étrangers et régionaux.<br>
+                Les participants sont invités à aller aux spectacles en langues étrangères, aux soirées théâtre, 
+                mais aussi propose aux participants à aller voir des films en VO au cinéma.<br>
+                Soirées festives et culturelles à thèmes.<br>
+                Soirées dans des pubs, des cafés ou restaurants étrangers.<br>
+                Conférence, exposition sur des pays lointains.
             </div>
 
-            <hr>
-
-            <form method="post" action="transfert.php">
-                <h3>Formulaire de participation</h3>
-                <fieldset>
-                    <label>Civilité :</label>
-                    <input name="civilite" value="M." type="radio"> M. 
-                    <input name="civilite" value="Mlle" type="radio"> Mlle 
-                    <input name="civilite" value="Mme" type="radio"> Mme
-                </fieldset>
-
-                <fieldset>
-                    <label>Prénom :</label> <input name="prenom" type="text"><br><br>
-                    <label>Nom :</label> <input name="nom" type="text"><br><br>
-                    <label>Email :</label> <input name="email" type="text"><br><br>
-                    <label>Tranche d'âge :</label>
-                    <select name="age">
-                        <option value="16">16-18</option>
-                        <option value="18">18-25</option>
-                        <option value="20">25-35</option>
-                        <option value="35">plus de 35</option>
-                    </select>
-                </fieldset>
-
-                <div style="text-align: center;">
-                    <input value="Envoyer mon inscription" type="submit" class="btn-submit">
-                </div>
-            </form>
-
             <div class="lang-footer">
-                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
-                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+                <a href="cafelangues.htm">café des langues</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE).</small>
             </div>
         </article>
     </main>
 
     <aside class="sidebar">
-        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
-            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
+        <img src="0Douglas.jpg" alt="Douglas">
+        <a href="http://www.bilingue.new.fr/" target="_blank">
+            <img src="2007_3_22_10h36_182735.gif" alt="Bilingue Info" style="box-shadow: none;">
         </a>
-        
-        <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
-            <img src="jobetudiant200.jpg" alt="Job Etudiant">
-        </a>
-        
-        <img src="0Barbados.jpg" alt="Barbados">
-        
-        <a href="http://www.toulouse.com/bon-plan-toulouse-le-bracelet-toulouse-vip/" target="_blank">
-            <img src="bracelettoulousevip.jpg" alt="Toulouse VIP">
-        </a>
-        
-        <div style="text-align:center; padding: 10px; background: white; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            <a href="http://www.newamigos.com/" target="_blank">
-                <img src="newamigos.jpg" alt="New Amigos" style="margin-bottom: 5px;">
-                <br><small><strong>Soirées linguistiques</strong></small>
-            </a>
-        </div>
     </aside>
 </div>
 
@@ -309,7 +229,7 @@
 
 <div class="banner-link">
     <a href="http://www.bilingue.fr.nf/">
-        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%;">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 90%;">
     </a>
 </div>
 
