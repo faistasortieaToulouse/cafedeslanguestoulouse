@@ -1,2509 +1,283 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <meta http-equiv="Content-Language" content="fr">
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <title>Bilingue</title>
-  <style type="text/css">#title9
-.suit {
-FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red
-}
-.suit1 {
-FONT-WEIGHT: bold; COLOR: white
-}
-.over {
-FONT-WEIGHT: bold; COLOR: white
-}
-.out {
-FONT-WEIGHT: bold; COLOR: #5F1879
-}
-  </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <title>Bilingue - Liens</title>
   <style type="text/css">
-.gris {
-BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; }
-.blanc {
-BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; }
-.sous {
-COLOR: #00CC00; FONT-SIZE: 40px; Text-Decoration: underline
-}
-}
-.oui {
-FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #cccccc
-}
-.non {
-FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #FFFFFF
-}
-.oui1 {
-FONT-WEIGHT: bold; COLOR: green
-}
-.non1 {
-FONT-WEIGHT: bold; COLOR: red
-}
-.green1 {
-FONT-WEIGHT: bold; COLOR: red
-}
-  </style>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <style>
-.spanstyle {
-position:absolute;
-visibility:visible;
-top:-50px;
-font-size:10pt;
-font-family:Verdana;
-font-weight:bold;
-color:black;
-}
+    body { background-color: #ccffff; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    .blanc { background-color: #ffffff; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+    .green1 { font-weight: bold; color: red; text-decoration: none; }
+    .oui1 { font-weight: bold; color: green; text-decoration: none; }
+    .spanstyle {
+      position: fixed;
+      visibility: visible;
+      top: -50px;
+      font-size: 10pt;
+      font-family: Verdana;
+      font-weight: bold;
+      color: black;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    /* Style pour les images bullet */
+    .bullet-style { position: fixed; pointer-events: none; z-index: 999; }
+    /* Table layout */
+    #table1 { text-align: center; margin: auto; width: 100%; border-collapse: collapse; }
+    td { padding: 10px; vertical-align: top; }
+    a { color: #0000ff; }
   </style>
 </head>
 
+<body>
+  
+<script type="text/javascript">
+(function() {
+    var x, y;
+    var step = 20;
+    var flag = 0;
+    var message = "Bilingue Groupes";
+    var msgArray = message.split("");
+    var xpos = new Array();
+    var ypos = new Array();
 
-<body style="background-color: rgb(204, 255, 255);">
+    // Initialisation des positions hors écran
+    for (var i = 0; i < msgArray.length; i++) {
+        xpos[i] = -100;
+        ypos[i] = -100;
+    }
 
+    // 1. Création des lettres (remplace le document.write ancien)
+    window.addEventListener('DOMContentLoaded', function() {
+        for (var i = 0; i < msgArray.length; i++) {
+            var span = document.createElement('span');
+            span.id = 'span' + i;
+            span.className = 'spanstyle';
+            span.style.position = 'absolute'; // Assure le mouvement
+            span.style.pointerEvents = 'none'; // Évite de gêner les clics sur les liens
+            span.innerHTML = msgArray[i];
+            document.body.appendChild(span);
+        }
+        makesnake();
+    });
 
+    // 2. Capture de la souris (Version moderne)
+    document.addEventListener('mousemove', function(e) {
+        // On utilise pageX/Y pour inclure le scroll
+        x = e.pageX;
+        y = e.pageY;
+        flag = 1;
+    });
 
+    // 3. Animation de la chenille
+    function makesnake() {
+        if (flag == 1) {
+            // Chaque lettre suit la précédente
+            for (var i = msgArray.length - 1; i >= 1; i--) {
+                xpos[i] = xpos[i - 1] + step;
+                ypos[i] = ypos[i - 1];
+            }
+            // La première lettre suit la souris
+            xpos[0] = x + step;
+            ypos[0] = y;
 
-
-
-
-
-
-
-
-
-<script language="JavaScript" type="text/javascript">
-/*
-Cursor Trailor Text- By Peter Gehrig (http://www.24fun.com/)
-*/
-var x,y;
-var step=20;
-var flag=0;
-var message="Bilingue Groupes";
-message=message.split("");
-var xpos=new Array();
-for (i=0;i<=message.length-1;i++) {
-xpos[i]=-50;
-}
-var ypos=new Array();
-for (i=0;i<=message.length-1;i++) {
-ypos[i]=-50;
-}
-function handlerMM(e)
-{
-if (!e) var e = window.event||window.Event; if ('undefined' != typeof e.pageX) { x = e.pageX; y = e.pageY; } else { x = e.clientX + document.body.scrollLeft; y = e.clientY + document.body.scrollTop; } // x = (document.layers) ? e.pageX : document.body.scrollLeft+e.clientX;
-//y = (document.layers) ? e.pageY : document.body.scrollTop+e.clientY;
-// x = (document.layers) ? e.pageX : document.body.scrollLeft+event.clientX;
-// y = (document.layers) ? e.pageY : document.body.scrollTop+event.clientY;
-flag=1;
-}
-function makesnake() {
-if (flag==1 && document.all) {
-for (i=message.length-1; i>=1; i--) {
-xpos[i]=xpos[i-1]+step;
-ypos[i]=ypos[i-1];
-}
-xpos[0]=x+step;
-ypos[0]=y;
-for (i=0; i<message.length-1; i++) {
-var thisspan = eval("span"+(i)+".style");
-thisspan.posLeft=xpos[i];
-thisspan.posTop=ypos[i];
-}
-}
-else if (flag==1)// && document.layers) {
-for (i=message.length-1; i>=1; i--) {
-xpos[i]=xpos[i-1]+step;
-ypos[i]=ypos[i-1];
-}
-xpos[0]=x+step;
-ypos[0]=y;
-for (i=0; i<message.length-1; i++) {
-var thisspan = eval("document.span"+i);
-thisspan.left=xpos[i];
-thisspan.top=ypos[i];
-}
-}
-var timer=setTimeout("makesnake()",30);
-}
+            // Mise à jour de l'affichage
+            for (var i = 0; i < msgArray.length; i++) {
+                var letter = document.getElementById("span" + i);
+                if (letter) {
+                    letter.style.left = xpos[i] + "px";
+                    letter.style.top = ypos[i] + "px";
+                }
+            }
+        }
+        // Rafraîchissement toutes les 30ms
+        setTimeout(makesnake, 30);
+    }
+})();
 </script>
-<script language="JavaScript" type="text/javascript">
-for (i=0;i<=message.length-1;i++) {
-document.write("<span id='span"+i+"' class='spanstyle'>");
-document.write(message[i]);
-document.write("</span>");
-}
-if (document.layers)
-{
-document.captureEvents(Event.MOUSEMOVE);
-}
-document.onmousemove = handlerMM;
-makesnake();
+  
+
+<div id="dotContainer">
+    <div id="adot0" class="bullet-style" style="visibility: hidden;"><img src="bullet.png"></div>
+    <div id="adot1" class="bullet-style"><img src="bullet.png"></div>
+    <div id="adot2" class="bullet-style"><img src="bullet.png"></div>
+    <div id="adot3" class="bullet-style"><img src="bullet.png"></div>
+    <div id="adot4" class="bullet-style"><img src="bullet.png"></div>
+    <div id="adot5" class="bullet-style"><img src="bullet.png"></div>
+    <div id="adot6" class="bullet-style"><img src="bullet.png"></div>
+</div>
+
+<script type="text/javascript">
+(function() {
+    // --- CONFIGURATION ---
+    var message = "Bilingue Groupes";
+    var msgArray = message.split("");
+    var xCol = "#FF0000", yCol = "#00FF00", zCol = "#0000FF";
+    var mouseX = 0, mouseY = 0;
+    var stp = 0, sSpeed = 0.2;
+
+    // Création des spans pour le texte
+    for (var i = 0; i < msgArray.length; i++) {
+        document.write('<span id="span' + i + '" class="spanstyle">' + msgArray[i] + '</span>');
+    }
+
+    // Création des points orbitaux
+    var d = document;
+    var orbContainer = d.createElement('div');
+    for (var i = 0; i < 6; i++) {
+        var size = (i + 1) / 2;
+        orbContainer.innerHTML += 
+            '<div id="vx'+i+'" style="position:fixed;width:'+size+'px;height:'+size+'px;background:'+xCol+';z-index:999;pointer-events:none;"></div>' +
+            '<div id="vy'+i+'" style="position:fixed;width:'+size+'px;height:'+size+'px;background:'+yCol+';z-index:999;pointer-events:none;"></div>' +
+            '<div id="vz'+i+'" style="position:fixed;width:'+size+'px;height:'+size+'px;background:'+zCol+';z-index:999;pointer-events:none;"></div>';
+    }
+    d.body.appendChild(orbContainer);
+
+    var xpos = [], ypos = [];
+    var dots = [];
+    for (var i = 0; i < 20; i++) { xpos[i] = -50; ypos[i] = -50; }
+    for (var i = 0; i < 7; i++) { dots[i] = {X:0, Y:0, dx:0, dy:0}; }
+
+    d.onmousemove = function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    };
+
+    function animate() {
+        // 1. Texte qui suit (Snake effect)
+        xpos[0] = mouseX + 20;
+        ypos[0] = mouseY;
+        for (var i = msgArray.length - 1; i >= 1; i--) {
+            xpos[i] = xpos[i-1] + 15;
+            ypos[i] = ypos[i-1];
+        }
+        for (var i = 0; i < msgArray.length; i++) {
+            var s = d.getElementById("span" + i).style;
+            s.left = xpos[i] + "px";
+            s.top = ypos[i] + "px";
+        }
+
+        // 2. Points orbitaux RVB
+        var evn = 360 / 3;
+        var dy = [], dx = [];
+        for (var j = 0; j < 3; j++) {
+            dy[j] = mouseY + 50 * Math.cos(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2);
+            dx[j] = mouseX + 50 * Math.sin(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2) * Math.sin(stp / 4);
+        }
+        stp += sSpeed;
+        for (var i = 0; i < 6; i++) {
+            var vxi = d.getElementById("vx"+i).style, vyi = d.getElementById("vy"+i).style, vzi = d.getElementById("vz"+i).style;
+            if (i < 5) {
+                vxi.top = d.getElementById("vx"+(i+1)).style.top; vxi.left = d.getElementById("vx"+(i+1)).style.left;
+                vyi.top = d.getElementById("vy"+(i+1)).style.top; vyi.left = d.getElementById("vy"+(i+1)).style.left;
+                vzi.top = d.getElementById("vz"+(i+1)).style.top; vzi.left = d.getElementById("vz"+(i+1)).style.left;
+            } else {
+                vxi.top = dy[0]+"px"; vxi.left = dx[0]+"px";
+                vyi.top = dy[1]+"px"; vyi.left = dx[1]+"px";
+                vzi.top = dy[2]+"px"; vzi.left = dx[2]+"px";
+            }
+        }
+
+        // 3. Boules bleues (Elastic)
+        dots[0].X = mouseX; dots[0].Y = mouseY;
+        for (var i = 1; i < 7; i++) {
+            dots[i].dx += ((dots[i-1].X - dots[i].X) * 10 / 1 - dots[i].dx * 10) * 0.01;
+            dots[i].dy += (((dots[i-1].Y - dots[i].Y) * 10 / 1 + 50) - dots[i].dy * 10) * 0.01;
+            dots[i].X += dots[i].dx; dots[i].Y += dots[i].dy;
+            var el = d.getElementById("adot"+i).style;
+            el.left = dots[i].X + "px"; el.top = dots[i].Y + "px";
+        }
+
+        setTimeout(animate, 25);
+    }
+    window.onload = animate;
+})();
 </script>
-<table id="table1" style="text-align: center; vertical-align: text-top; position: absolute; width: 1178px;" border="0">
 
-
-
-
-
-
-
-
-
-
-
-
+<table id="table1" border="0">
   <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
     <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;" height="110">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;" height="110"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;" height="110"> <img src="bilingue1.jpg" border="0" height="126" width="371"></td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;" height="110"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;" height="110">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;" height="21"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;" height="21"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;" height="21"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;" height="129"> <img src="0Escorial.jpg" border="0" height="131" width="200"></td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 2px;" height="129"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 651px;" height="129">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">Voici
-quelques sites que nous vous recommandons :</font></p>
-
-
-
-
-
-
-
-
-
-
-
-
+      <td style="width: 250px;"><img src="0Escorial.jpg" width="200" height="131" alt="Escorial"></td>
+      <td><img src="bilingue1.jpg" width="371" height="126" alt="Logo"></td>
+      <td style="width: 250px;">
+        <div class="blanc">
+          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a><br><br>
+          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Présentation</a>
+        </div>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 3px;" height="129"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 250px;" height="129">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Pr&eacute;sentation</a></p>
-
-
-
-
-
-
-
-
-
-
-
-
-&nbsp;</div>
-
-
-
-
-
-
-
-
-
-
-
-
+    </tr>
+    <tr>
+      <td>
+        <div class="blanc">
+          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a><br><br>
+          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activités</a>
+        </div>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 251px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 251px;" height="136">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activit&eacute;s</a></p>
-
-
-
-
-
-
-
-
-
-
-
-
-&nbsp;</div>
-
-
-
-
-
-
-
-
-
-
-
-
+      <td style="text-align: left; color: blue;">
+        <strong>Sites recommandés :</strong><br><br>
+        <a target="_blank" href="http://unlimited.production.free.fr/">Unlimited Production</a><br>
+        <a target="_blank" href="http://npagescorrespondant.neuf.fr/">Correspondant de Presse</a><br>
+        <a target="_blank" href="http://www.toulouseblog.fr">Toulouse Blog</a><br>
+        <a target="_blank" href="http://www.toulouseinfos.fr.nf/">Toulouse Infos</a><br>
+        <a target="_blank" href="https://lecactustoulouse.fr/cafe-des-langues/">Café le Cactus</a>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 651px;">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://unlimited.production.free.fr/">Unlimited
-Production : Tournage de courts et longs-m&eacute;trages</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">
-      <a target="_blank" href="http://npagescorrespondant.neuf.fr/">Correspondant de
-Presse pour les associations</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">
-      <a target="_blank" href="http://www.toulouseblog.fr">Toulouse
-Blog</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">
-      <a target="_blank" href="http://www.toulouseinfos.fr.nf/">Toulouse Infos :
-Toute l'info sur Toulouse</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">
-      <a target="_blank" href="https://lecactustoulouse.fr/cafe-des-langues/">Cafe le Cactus :
-Cafe de Toulouse</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
+      <td><img src="0Gibraltar.jpg" width="200" height="136" alt="Gibraltar"></td>
+    </tr>
+    <tr>
+      <td><img src="0KeyWest.jpg" width="200" height="126" alt="KeyWest"></td>
+      <td>
+        <a href="http://www.assocomunicarte.com/" target="_blank"><img src="comunicarte.jpg" height="100" border="0"></a>
+        <a href="http://www.locals.aegee.org/toulouse/" target="_blank"><img src="logoaegee2.jpg" height="50" border="0"></a><br>
+        <a href="http://lang.russe.free.fr/" target="_blank"><img src="polyglot.jpg" width="300" border="0"></a>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;"> <img src="0Gibraltar.jpg" border="0" height="136" width="200"></td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;"><img src="0KeyWest.jpg" border="0" height="126" width="200"></td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <table style="width: 100px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="2" cellspacing="2">
-
-
-
-
-
-
-
-
-
-
-
-
-        <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-            <td style="background-color: rgb(204, 255, 255); text-align: center;"><a href="http://www.assocomunicarte.com/" target="_blank"><img style="border: 0px solid ; width: 63px; height: 150px;" alt="Association Comunicarte" src="comunicarte.jpg"></a></td>
-
-
-
-
-
-
-
-
-
-
-
-
-            <td style="background-color: rgb(204, 255, 255); text-align: center;"><a href="http://www.locals.aegee.org/toulouse/" target="_blank"><img style="border: 0px solid ; width: 126px; height: 67px;" alt="Association AEGEE : Echanges avec des &eacute;trangers" src="logoaegee2.jpg"></a></td>
-
-
-
-
-
-
-
-
-
-
-
-
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        </tbody>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      </table>
-
-
-
-
-
-
-
-
-
-
-
-
-      <a href="http://lang.russe.free.fr/" target="_blank"><img style="border: 0px solid ; width: 400px; height: 60px;" alt="chatter dans diverses langues" src="polyglot.jpg"></a><a href="http://www.locals.aegee.org/toulouse/" target="_blank"><br>
-
-
-
-
-
-
-
-
-
-
-
-
-      </a></td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 250px;" height="129">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
-
-
-
-
-
-
-
-
-
-
-
-
-&nbsp;</div>
-
-
-
-
-
-
-
-
-
-
-
-
+      <td>
+        <div class="blanc">
+          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a><br><br>
+          <a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a>
+        </div>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
     </tr>
-
-
-
-
-
-
-
-
-
-
-
-
     <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="text-align: left; vertical-align: top; width: 251px;"><font color="#0000ff"><a target="_blank" href="http://www.cinelatino.com.fr/">Festival de cin&eacute;ma d'Am&eacute;rique Latine</a></font>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><a target="_blank" href="http://www.cinespagnol.com/"><font color="#0000ff">Festival Cin&eacute; Espa</font></a><a target="_blank" href="http://www.cinespagnol.com/"><span class="a">&ntilde;</span></a><font color="#0000ff"><a href="http://www.cinespagnol.com/">a</a></font></p>
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.cinemaitalientoulouse.com/">Rencontre du cin&eacute;ma italien</a></font></p>
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.cinemas-utopia.org/toulouse/">Cin&eacute;ma Utopia</a></font></p>
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.abc-toulouse.net/">Cin&eacute;ma ABC</a></font></p>
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.toulouse.fr/fr-32/sports-loisirs-3/animations-socioculturelles-137/centre-culturel-theatre-mazades-60.html">Th&eacute;&acirc;tre des Mazades</a></font></p>
-
-
-
-
-
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.universcenes.eu/">Universc&egrave;nes</a></font></p>
-
-
-
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.librairie-terranova.fr/">Librairie Terra Nova</a></font></p>
-
-
-
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://langoland.free.fr/">Langloland</a></font></p>
-
-
-
-
-
-
-
-
-
+      <td style="text-align: left; font-size: 0.9em;">
+        <a target="_blank" href="http://www.cinelatino.com.fr/">Ciné Latino</a><br>
+        <a target="_blank" href="http://www.cinespagnol.com/">Ciné España</a><br>
+        <a target="_blank" href="http://www.cinemaitalientoulouse.com/">Cinéma Italien</a><br>
+        <a target="_blank" href="http://www.cinemas-utopia.org/toulouse/">Utopia</a>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 651px;">
-      
-
-      <span style="text-decoration: underline;"> </span>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div style="text-align: left;"><span style="text-decoration: underline;"></span><font color="#0000ff"><a target="_blank" href="http://ensemble.ass0.fr/">Association
-Ensemble : Emploi - Stage - Formation</a></font><br>
-
-
-
-
-
-
-
-
-
-
-
-
-      <span style="text-decoration: underline;"></span></div>
-
-
-
-
-
-
-
-
-
-
-
-
-      <span style="text-decoration: underline;"></span>
-      
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.akrojeux.net/">Akrojeux</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.ludimonde.fr/">Ludimonde</a></font></p>
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.newamigos.com/">Jeu New Amigos</a></font></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.premiere-reponse.com/JT/index.php?NewsTab=3">Le
-Journal Toulousain</a></font></p>
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.follow-me.fr/">Sorties, soir&eacute;es : Follow Me</a></font></p>
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.tourdesfetes.com/">Manifestations dans votre r&eacute;gion : Tour des F&ecirc;tes</a></font></p>
-
-
-
-
-
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.arnaud-bernard.net/">Carrefour Culturel Arnaud Bernard</a></font></p>
-
-
-
-
-
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.goursau.com/">Dictionnaires linguistiques, Editions Goursau<br>
-
-
-
-
-
-
-
-
-
-
-      </a></font></p>
-
-
-
-
-
-
-
-
-
-
+      <td style="text-align: left; font-size: 0.9em;">
+        <a target="_blank" href="http://ensemble.ass0.fr/">Asso Ensemble</a><br>
+        <a target="_blank" href="http://www.akrojeux.net/">Akrojeux</a><br>
+        <a target="_blank" href="http://www.ludimonde.fr/">Ludimonde</a>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 250px;"><a href="http://www.locals.aegee.org/toulouse/" target="_blank">
-      
-
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.tchin-tchine.com/">Tchin-Chine
-: Chinois</a></font>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.maxime-and-co.com/">Maxime
-and Co : Russe</a></font></p>
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://agart31.free.fr/">AGART
-: Amicale des Antillais et Guyanais</a></font></p>
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><a target="_blank" href="http://www.acatmp.org/">Association des Camerounais de Toulouse et de Midi-Pyr&eacute;n&eacute;es</a></p>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.toulangues.org/">Toulangues</a></font></p>
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.locals.aegee.org/toulouse/">AEGEE-Toulouse</a></font></p>
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://esperanto.toulouse.free.fr/">Centre culturel Esperanto</a></font></p>
-
-
-
-
-
-      
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff"><a target="_blank" href="http://www.maisonvietnam.org/">Maison du Vietnam</a></font></p>
-
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-
+      <td style="text-align: left; font-size: 0.9em;">
+        <a target="_blank" href="http://www.tchin-tchine.com/">Tchin-Chine</a><br>
+        <a target="_blank" href="http://www.maxime-and-co.com/">Russe</a><br>
+        <a target="_blank" href="http://www.toulangues.org/">Toulangues</a>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
     </tr>
-
-
-
-
-
-
-
     <tr>
-
-
-
-      <td style="width: 250px;" colspan="5" rowspan="1"><a href="http://www.polyglot-learn-language.com/" class=""><img src="logo_bleu_petit.gif" alt="Polyglot, Learn Languages an Make Friends Online" border="0"></a><br>
-
-
-      <a href="http://www.polyglot-learn-language.com/" class="">PolyglotClub.com</a>
-is a FREE Language Exchange Community. PolyglotClub.com promotes
-languages and cultures through BOTH on-line and off-line exchanges. If
-you want to improve your foreign language skills while making friends,
-this is YOUR HUB!</td>
-
-
-
+        <td colspan="3" bgcolor="#ffffff" style="border: 1px solid #ccc; padding: 20px;">
+            <a href="http://www.polyglot-learn-language.com/"><img src="logo_bleu_petit.gif" border="0"></a><br>
+            <strong>PolyglotClub.com</strong> is a FREE Language Exchange Community.
+        </td>
     </tr>
-
-
-
-
-
-
-
-
-
-
     <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 251px;" height="136"> </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
-
-
-
-
-
-
-
-
-
-
-
-
-&nbsp;</div>
-
-
-
-
-
-
-
-
-
-
-
-
+      <td colspan="3">
+        <div class="blanc">
+          <a class="green1" href="photos.htm">Photos</a> | 
+          <a class="green1" href="inscription.htm">Inscription</a>
+        </div>
+        <div style="background: white; padding: 5px; display: inline-block;">
+            <a href="cafelangues.htm">Café des langues</a> (AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)
+        </div>
       </td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 250px;" height="129">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
     </tr>
-
-
-
-
-
-
-
-
-
-
-
-
     <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 251px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;" bgcolor="#ffffff"><a href="cafelangues.htm">caf&eacute; des langues</a><br>
-
-
-
-
-
-
-
-
-
-
-
-
-      <span style="vertical-align: top;">(AL, BG, </span><span style="vertical-align: top;">CZ,</span><span style="vertical-align: top;"> DK</span><span style="vertical-align: top;">, GR</span><span style="vertical-align: top;">, </span><span style="vertical-align: top;">HR, </span><span style="vertical-align: top;">HU,</span><span style="vertical-align: top;"> NL,</span><span style="vertical-align: top;"> NO,</span><span style="vertical-align: top;"> PL,</span><span style="vertical-align: top;"> RO, RS,&nbsp;RU, SE).</span></td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
+      <td colspan="3">
+        <a href="http://www.bilingue.new.fr/"><img src="2007_3_22_10h36_182735.gif" width="468" height="60" border="0"></a>
+      </td>
     </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="vertical-align: top; width: 251px;" height="21">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;"> &nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 2px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 651px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 3px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-      <td style="width: 250px;" colspan="5"><a href="http://www.bilingue.new.fr/"> <img src="2007_3_22_10h36_182735.gif" border="0" height="60" width="468"></a></td>
-
-
-
-
-
-
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
