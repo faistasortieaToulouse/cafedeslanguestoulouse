@@ -73,22 +73,25 @@
 
 <script type="text/javascript">
 (function() {
+    // --- CONFIGURATION ---
     var xCol = "#FF0000", yCol = "#00FF00", zCol = "#0000FF";
-    var n = 6;    // Nombre de points par traînée
-    var t = 40;   // Vitesse du rafraîchissement (ms)
-    var s = 0.2;  // Vitesse de l'effet orbital
-
-    var d = document;
+    var nOrbit = 6;  // Points de couleur
+    var nDots = 7;   // Images bullet.png
     var mouseX = 0, mouseY = 0;
-    var stp = 0;
-    var evn = 360 / 3;
     
+    // Variables pour l'effet élastique (ancien script bullet)
+    var dots = [];
+    var SPRINGK = 10, MASS = 1, GRAVITY = 50, RESISTANCE = 10, DELTAT = 0.01;
+    
+    // Variables pour l'effet orbital (points RVB)
+    var stp = 0, sSpeed = 0.2;
     var vx = [], vy = [], vz = [];
     var dy = [], dx = [];
 
-    // 1. Création dynamique des points
+    // --- 1. INITIALISATION DES ÉLÉMENTS ---
+    var d = document;
     var container = d.createElement('div');
-    for (var i = 0; i < n; i++) {
+    for (var i = 0; i < nOrbit; i++) {
         var size = (i + 1) / 2;
         container.innerHTML += 
             '<div id="vx'+i+'" style="position:fixed; top:0; left:0; width:'+size+'px; height:'+size+'px; background:'+xCol+'; z-index:999; pointer-events:none;"></div>' +
@@ -97,24 +100,32 @@
     }
     d.body.appendChild(container);
 
-    // 2. Capture de la position de la souris (Moderne)
+    // Initialisation des objets "bullet"
+    for (var i = 0; i < nDots; i++) {
+        dots[i] = {
+            X: 0, Y: 0, dx: 0, dy: 0,
+            obj: d.getElementById("adot" + i).style
+        };
+    }
+
+    // --- 2. CAPTURE DE LA SOURIS ---
     d.addEventListener('mousemove', function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
 
-    // 3. Animation
+    // --- 3. LOGIQUE D'ANIMATION ---
     function animate() {
-        // Calcul des 3 positions orbitales
+        // A. Gestion des points orbitaux (RVB)
+        var evn = 360 / 3;
         for (var j = 0; j < 3; j++) {
             dy[j] = mouseY + 50 * Math.cos(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2);
             dx[j] = mouseX + 50 * Math.sin(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2) * Math.sin(stp / 4);
         }
-        stp += s;
+        stp += sSpeed;
 
-        // Effet de traînée (chaque point suit le suivant)
-        for (var i = 0; i < n; i++) {
-            if (i < n - 1) {
+        for (var i = 0; i < nOrbit; i++) {
+            if (i < nOrbit - 1) {
                 vx[i].top = vx[i+1].top; vx[i].left = vx[i+1].left;
                 vy[i].top = vy[i+1].top; vy[i].left = vy[i+1].left;
                 vz[i].top = vz[i+1].top; vz[i].left = vz[i+1].left;
@@ -124,12 +135,35 @@
                 vz[i].top = dy[2] + "px"; vz[i].left = dx[2] + "px";
             }
         }
-        setTimeout(animate, t);
+
+        // B. Gestion des boules bleues (Effet élastique)
+        dots[0].X = mouseX;
+        dots[0].Y = mouseY;
+        
+        for (var i = 1; i < nDots; i++) {
+            var springX = (dots[i-1].X - dots[i].X) * SPRINGK;
+            var springY = (dots[i-1].Y - dots[i].Y) * SPRINGK;
+            
+            // Ajout de la gravité et résistance
+            var accelX = springX / MASS;
+            var accelY = (springY / MASS) + GRAVITY;
+            
+            dots[i].dx += (accelX - dots[i].dx * RESISTANCE) * DELTAT;
+            dots[i].dy += (accelY - dots[i].dy * RESISTANCE) * DELTAT;
+            
+            dots[i].X += dots[i].dx;
+            dots[i].Y += dots[i].dy;
+            
+            dots[i].obj.left = dots[i].X + "px";
+            dots[i].obj.top = dots[i].Y + "px";
+        }
+
+        setTimeout(animate, 20);
     }
 
-    // 4. Initialisation
+    // --- 4. LANCEMENT ---
     window.addEventListener('load', function() {
-        for (var i = 0; i < n; i++) {
+        for (var i = 0; i < nOrbit; i++) {
             vx[i] = d.getElementById("vx" + i).style;
             vy[i] = d.getElementById("vy" + i).style;
             vz[i] = d.getElementById("vz" + i).style;
