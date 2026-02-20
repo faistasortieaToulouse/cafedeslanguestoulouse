@@ -1,1032 +1,312 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Accueil</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --nav-purple: #5F1879;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
 
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+        }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--nav-purple);
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+        }
 
-  
-  
-  
-  <meta http-equiv="Content-Language" content="fr">
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
+        /* Espacement entre les photos des colonnes latérales */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px; /* Espace augmenté entre les images */
+        }
 
+        .side-menu {
+            background: white;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .side-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin: 8px 0;
+            transition: 0.2s;
+        }
+        .side-menu a:hover { color: var(--accent-red); }
 
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
+        .content-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 800px; 
+            text-align: center;
+        }
 
-  
-  
-  
-  
-  
-  
-  <title>Bilingue</title>
-  <style type="text/css">#title9
-.suit {
-	FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red
-}
-.suit1 {
-	FONT-WEIGHT: bold; COLOR: white
-	}
-.over {
-	FONT-WEIGHT: bold; COLOR: white
-}
-.out {
-	FONT-WEIGHT: bold; COLOR: #5F1879
-}
-  </style>
+        .intro-text-blue {
+            color: var(--primary-blue);
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
 
-  
-  
-  
-  <style type="text/css">
-.gris {
-	BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
-}
-.blanc {
-	BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
-}
-.sous {
-	COLOR: #00CC00; FONT-SIZE: 40px; Text-Decoration: underline
-}
-}
-.oui {
-	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #cccccc
-}
-.non {
-	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #FFFFFF
-}
-.oui1 {
-	FONT-WEIGHT: bold; COLOR: green
-}
-.non1 {
-	FONT-WEIGHT: bold; COLOR: red
-}
-.green1 {
-	FONT-WEIGHT: bold; COLOR: red
-}
-  </style>
-  
-  
-  
-  <style type="text/css">
-<!--
-.css1
-{
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   width: 16px;
-   height: 16px;
-   font-family: Arial,sans-serif;
-   font-size: 16px;
-   text-align: center;
-   font-weight: bold;
-}
+        .lang-footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px dashed var(--primary-blue);
+        }
 
-.css2
-{
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   width: 10px;
-   height: 10px;
-   font-family: Arial,sans-serif;
-   font-size: 10px;
-   text-align: center;
-}
-//-->
-  </style>
+        .bottom-gallery {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+        .bottom-gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        .banner-link { text-align: center; padding: 40px 0; }
+
+        /* Points suiveurs */
+        .dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-red);
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
 </head>
+<body>
 
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue">
+</header>
 
-<body bgcolor="#ccffff">
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
 
+<div class="main-layout">
+    <aside class="sidebar">
+        <img src="0Cambridge.jpg" alt="Cambridge">
+        
+        <div class="side-menu">
+            <a href="lieux.htm">Lieux</a>
+            <a href="active.htm">Activités</a>
+        </div>
 
+        <img src="0Cardiff.jpg" alt="Cardiff">
+        
+        <a href="http://hp31.lei-web.click/" target="_blank">
+            <img src="happypeoplenew200.jpg" alt="Happy People">
+        </a>
+    </aside>
 
+    <main>
+        <article class="content-card">
+            <div class="intro-text-blue">
+                L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France.
+            </div>
 
-<script language="JavaScript" type="text/javascript">
+            <div class="intro-text-blue">
+                L’association Bilingue ne demande aucune adhésion de la part de ses participants. Parler en anglais, discuter en espagnol, converser en français, quiz, chez nous, il y a tout.
+            </div>
 
-//Silly Clock - http://www.btinternet.com/~kurt.grigg/javascript
+            <div class="intro-text-blue">
+                L’association Bilingue a été créée par des français qui ont besoin de pratiquer leur langue pour la poursuite de leurs études, de leur formation ou dans le cadre de leur profession. Par souci d’accueillir les étrangers et leur permettre.
+            </div>
 
-var dCol = '#ff0000'; //date colour.
-var fCol = '#ff0000'; //face colour.
-var sCol = '#0000ff'; //seconds colour.
-var mCol = '#ff0000'; //minutes colour.
-var hCol = '#ff0000'; //hours colour.
+            <div class="side-menu" style="display:inline-block; width: auto; padding: 10px 40px; margin: 20px 0;">
+                <a href="photos.htm">Photos</a>
+                <a href="inscription.htm">Inscription</a>
+            </div>
 
-var del = 0.6;        //follow mouse speed.
-var rep = 50;         //run speed (setTimeout).
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; text-transform: uppercase;">café des langues</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
+    </main>
 
-var theDays = new Array("SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY");
-var theMonths = new Array("JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER");
-var r,h,w;
-var d = document;
-var my = 10;
-var mx = 10;
-var timer = null;
-var vis = true;
-var ofy = -7;
-var ofx = -3;
-var ofst = 70;
-var date = new Date();
-var day = date.getDate();
-var year = date.getYear();
- if (year < 2000) year = year+1900; 
+    <aside class="sidebar">
+        <div class="side-menu">
+            <a href="bilingue.htm">Accueil</a>
+            <a href="present.htm">Présentation</a>
+        </div>
 
-var dt = " " + theDays[date.getDay()] + " " + day + " " + theMonths[date.getMonth()] + " " + year;
-var todaysDate = dt.split("");
-var tdlen = todaysDate.length;
+        <img src="0CambridgePont.jpg" alt="Cambridge Pont">
 
-var clockFace = "3 4 5 6 7 8 9 10 11 12 1 2";
-var cfa = clockFace.split(" ");
-var cflen = cfa.length;
+        <div class="side-menu">
+            <a href="contact.htm">Contact</a>
+            <a href="liens.htm">Liens</a>
+        </div>
 
-var _h = "...";
-var hourfin = _h.split("");
-var hlen = hourfin.length;
+        <a href="http://www.happypeople.asso.st/" target="_blank">
+            <img src="logoHP.png" alt="Happy People Logo" style="width: 137px; height: 137px;">
+        </a>
+        
+        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
+            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
+        </a>
+    </aside>
+</div>
 
-var _m = "....";
-var minfin = _m.split("");
-var mlen = minfin.length;
+<div class="bottom-gallery">
+    <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo 1">
+    <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2">
+    <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3">
+    <img src="Photo%20094fv1.jpg" alt="Soirée Papagayo 4">
+</div>
 
-var _s = ".....";
-var secfin = _s.split("");
-var slen = secfin.length;
+<div class="banner-link">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
+    </a>
+</div>
 
-var dims = 40;
-var Q1 = 360/cflen;
-var Q2 = 360/todaysDate.length;
-var handlen = dims/5.5;
-var dy=new Array();
-var dx=new Array();
-var zy=new Array();
-var zx=new Array();
-var theSeconds = new Array();
-var theMinutes = new Array(); 
-var theHours = new Array();
-var theDial = new Array(); 
-var theDate = new Array();
+<script>
+    // 1. HORLOGE MODERNE SUIVEUSE
+    (function() {
+        const nClock = 12;
+        const clockDots = [];
+        const radius = 60;
+        let mouseX = 0, mouseY = 0;
 
-var sum = tdlen + cflen + hlen + mlen + slen + 1;
-for (i = 0; i < sum; i++){
-dy[i] = 0;
-dx[i] = 0;
-zy[i] = 0;
-zx[i] = 0;
-}
+        // Création des chiffres
+        for (let i = 1; i <= 12; i++) {
+            const d = document.createElement('div');
+            d.innerText = i;
+            d.style.cssText = "position:fixed; color:red; font-size:10px; font-weight:bold; pointer-events:none; z-index:9998;";
+            document.body.appendChild(d);
+            clockDots.push({ el: d, x: 0, y: 0, angle: (i * 30 - 90) * (Math.PI / 180) });
+        }
 
-var pix = "px";
-var domWw = (typeof window.innerWidth == "number");
-var domSy = (typeof window.pageYOffset == "number");
-var idx = d.getElementsByTagName('div').length;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
-var isButton = (document.getElementById("clockcontrol"));
+        function updateClock() {
+            clockDots.forEach(dot => {
+                const targetX = mouseX + Math.cos(dot.angle) * radius;
+                const targetY = mouseY + Math.sin(dot.angle) * radius;
+                dot.x += (targetX - dot.x) * 0.15;
+                dot.y += (targetY - dot.y) * 0.15;
+                dot.el.style.left = dot.x + 'px';
+                dot.el.style.top = dot.y + 'px';
+            });
+            requestAnimationFrame(updateClock);
+        }
+        updateClock();
+    })();
 
-if (isButton)
-var controlButton = document.getElementById("clockcontrol");
-
-if (domWw) r = window;
-else{ 
-  if (d.documentElement && 
-  typeof d.documentElement.clientWidth == "number" && 
-  d.documentElement.clientWidth != 0)
-  r = d.documentElement;
- else{ 
-  if (d.body && 
-  typeof d.body.clientWidth == "number")
-  r = d.body;
- }
-}
-
-for (i=0; i < tdlen; i++){
- document.write('<div id="_date'+(idx+i)+'" class="css2" style="color:'+dCol+'">'+todaysDate[i]+'<\/div>');
-}
-
-for (i=0; i < cflen; i++){
- document.write('<div id="_face'+(idx+i)+'" class="css2" style="color:'+fCol+'">'+cfa[i]+'<\/div>');
-}
-
-for (i=0; i < hlen; i++){
- document.write('<div id="_hours'+(idx+i)+'" class="css1" style="color:'+hCol+'">'+hourfin[i]+'<\/div>');
-}
-
-for (i=0; i < mlen; i++){
- document.write('<div id="_minutes'+(idx+i)+'" class="css1" style="color:'+mCol+'">'+minfin[i]+'<\/div>');
-}
-
-for (i=0; i < slen; i++){
- document.write('<div id="_seconds'+(idx+i)+'" class="css1" style="color:'+sCol+'">'+secfin[i]+'<\/div>');
-}
-
-
-function winsize(){
-var oh,sy,ow,sx,rh,rw;
-if (domWw){
-  if (d.documentElement && d.defaultView && 
-  typeof d.defaultView.scrollMaxY == "number"){
-  oh = d.documentElement.offsetHeight;
-  sy = d.defaultView.scrollMaxY;
-  ow = d.documentElement.offsetWidth;
-  sx = d.defaultView.scrollMaxX;
-  rh = oh-sy;
-  rw = ow-sx;
- }
- else{
-  rh = r.innerHeight;
-  rw = r.innerWidth;
- }
-h = rh; 
-w = rw;
-}
-else{
-h = r.clientHeight; 
-w = r.clientWidth;
-}
-}
-
-
-function scrl(yx){
-var y,x;
-if (domSy){
- y = r.pageYOffset;
- x = r.pageXOffset;
- }
-else{
- y = r.scrollTop;
- x = r.scrollLeft;
- }
-return (yx == 0)?y:x;
-}
-
-
-function OnOff(){
-if (vis){ 
- vis = false;
- controlButton.value = "Clock On";
- }
-else{ 
- vis = true;
- controlButton.value = "Clock Off";
- Delay();
- }
-kill();
-}
-
-
-function kill(){
-if (vis) 
- mouseControl(true);
-else 
- mouseControl(false);
-} 
-
-
-function mouseControl(needed){
-if (window.addEventListener){
- if (needed){
-  document.addEventListener("mousemove",mouse,false);
- }
- else{ 
-  document.removeEventListener("mousemove",mouse,false);
- }
-}  
-if (window.attachEvent){
- if (needed){
-  document.attachEvent("onmousemove",mouse);
- }
- else{ 
-  document.detachEvent("onmousemove",mouse);
- }
-}
-}
-
-
-function mouse(e){
-var msy = (domSy)?window.pageYOffset:0;
-if (!e) e = window.event;    
- if (typeof e.pageY == "number"){
-  my = e.pageY + ofst - msy;
-  mx = e.pageX + ofst;
- }
- else{
-  my = e.clientY + ofst - msy;
-  mx = e.clientX + ofst;
- }
-if (!vis) kill();
-}
-
-
-function theClock(){
-var time = new Date();
-
-var secs = time.getSeconds();
-var secOffSet = secs - 15;
-if (secs < 15){ 
- secOffSet = secs+45;
-}
-var sec = Math.PI * (secOffSet/30);
-
-var mins = time.getMinutes();
-var minOffSet = mins - 15;
-if (mins < 15){ 
- minOffSet = mins+45;
-}
-var min = Math.PI * (minOffSet/30);
-
-var hrs = time.getHours();
-if (hrs > 12){
- hrs -= 12;
-}
-var hrOffSet = hrs - 3;
-if (hrs < 3){ 
- hrOffSet = hrs+9;
-}
-var hr = Math.PI * (hrOffSet/6) + Math.PI * time.getMinutes()/360;
-
-for (i=0; i < slen; i++){
- theSeconds[i].top = dy[tdlen + cflen + hlen + mlen + i] + ofy + (i * handlen) * Math.sin(sec) + scrl(0) + pix;
- theSeconds[i].left = dx[tdlen + cflen + hlen + mlen + i] + ofx + (i * handlen) * Math.cos(sec) + pix;
- }
-
-for (i=0; i < mlen; i++){
- theMinutes[i].top = dy[tdlen + cflen + hlen + i] + ofy + (i * handlen) * Math.sin(min) + scrl(0) + pix;
- theMinutes[i].left = dx[tdlen + cflen + hlen + i] + ofx + (i * handlen) * Math.cos(min) + pix;
- }
-
-for (i=0; i < hlen; i++){
- theHours[i].top = dy[tdlen + cflen + i] + ofy + (i * handlen) * Math.sin(hr) + scrl(0) + pix;
- theHours[i].left = dx[tdlen + cflen + i] + ofx + (i * handlen) * Math.cos(hr) + pix;
- }
-
-for (i=0; i < cflen; i++){
- theDial[i].top = dy[tdlen + i] + dims * Math.sin(i * Q1 * Math.PI/180) + scrl(0) + pix;
- theDial[i].left = dx[tdlen + i] + dims * Math.cos(i * Q1 * Math.PI/180) + pix;
- }
-
-for (i=0; i < tdlen; i++){
- theDate[i].top = dy[i] + dims * 1.5 * Math.sin(-sec + i * Q2 * Math.PI/180) + scrl(0) + pix;
- theDate[i].left = dx[i] + dims * 1.5 * Math.cos(-sec + i * Q2 * Math.PI/180) + pix;
- }
-if (!vis) clearTimeout(timer);
-}
-
-
-function Delay(){
-if (!vis){
- dy[0]=-100;
- dx[0]=-100;
-}
-else{
- zy[0]=Math.round(dy[0]+=((my)-dy[0])*del);
- zx[0]=Math.round(dx[0]+=((mx)-dx[0])*del);
-}
-for (i=1; i < sum; i++){
- if (!vis){
-  dy[i]=-100;
-  dx[i]=-100;
- }
- else{
-  zy[i]=Math.round(dy[i]+=(zy[i-1]-dy[i])*del);
-  zx[i]=Math.round(dx[i]+=(zx[i-1]-dx[i])*del);
- }
-if (dy[i-1] >= h-80) dy[i-1]=h-80;
-if (dx[i-1] >= w-80) dx[i-1]=w-80;
-}
-timer = setTimeout(Delay,rep);
-theClock();
-}
-
-
-function init(){
-for (i=0; i < tdlen; i++){
- theDate[i] = document.getElementById("_date"+(idx+i)).style;
-}
-for (i=0; i < cflen; i++){
- theDial[i] = document.getElementById("_face"+(idx+i)).style; 
-}
-for (i=0; i < hlen; i++){
- theHours[i] = document.getElementById("_hours"+(idx+i)).style;
-}
-for (i=0; i < mlen; i++){
- theMinutes[i] = document.getElementById("_minutes"+(idx+i)).style; 
-}
-for (i=0; i < slen; i++){
- theSeconds[i] = document.getElementById("_seconds"+(idx+i)).style;         
-}
-winsize();
-mouseControl(true);
-Delay();
-}
-
-init();
-
+    // 2. POINTS SUIVEURS (TRAINEE)
+    const nDots = 6;
+    const dots = [];
+    let mX = 0, mY = 0;
+    for (let i = 0; i < nDots; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
+    window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
+    function tick() {
+        let tx = mX, ty = mY;
+        dots.forEach(dot => {
+            dot.x += (tx - dot.x) * 0.2;
+            dot.y += (ty - dot.y) * 0.2;
+            dot.el.style.left = dot.x + 'px';
+            dot.el.style.top = dot.y + 'px';
+            tx = dot.x; ty = dot.y;
+        });
+        requestAnimationFrame(tick);
+    }
+    tick();
 </script>
-<table style="text-align: center; vertical-align: text-top; position: absolute; width: 1188px;" id="table1" border="0" width="100%">
-
-
-
-
-	<tbody>
-
-
-
-    <tr>
-
-
-
-
-		<td style="width: 251px;" height="110">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;" height="110">
-		&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;" height="110">
-		<img src="bilingue1.jpg" border="0" height="126" width="371"></td>
-
-
-
-
-		<td style="width: 0px;" height="110">
-		&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;" height="110">&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="width: 251px;" height="21">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;" height="21">
-		&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;" height="21">
-		&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;" height="21">
-		&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;" height="21">&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="width: 251px;" height="129">
-		<img src="0Cambridge.jpg" border="0" height="130" width="200"></td>
-
-
-
-
-		<td style="vertical-align: top; width: 0px;" height="129">
-		&nbsp;</td>
-
-
-
-
-		<td style="vertical-align: top; width: 650px;" height="129">
-		
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">L'association Bilingue 
-		a pour but d'organiser des &eacute;changes de discussion entre des fran&ccedil;ais et 
-		des &eacute;trangers r&eacute;sidant en France.</font></p>
-
-
-
-      </td>
-
-
-
-
-		<td style="vertical-align: top; width: 0px;" height="129">
-		&nbsp;</td>
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="129">
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Pr&eacute;sentation</a></p>
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-		</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="21">
-&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;">
-		&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="136">
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activit&eacute;s</a></p>
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-		</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="vertical-align: top; width: 650px;">
-		
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">L&rsquo;association
-Bilingue ne demande aucune adh&eacute;sion de la part de ses
-participants. Parler en anglais, discuter en espagnol, converser en
-fran&ccedil;ais, quiz, chez nous, il y a tout.</font></p>
-
-
-
-      </td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;">
-		<img src="0CambridgePont.jpg" border="0" height="130" width="200"></td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="width: 251px;"><img src="0Cardiff.jpg" border="0" height="127" width="200"></td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;">
-		
-      
-      
-      
-      <p style="text-align: left;"><span style="vertical-align: top;">
-		<font color="#0000ff">L&rsquo;association Bilingue a &eacute;t&eacute; cr&eacute;&eacute;e par des 
-		fran&ccedil;ais qui ont besoin de pratiquer leur langue pour la poursuite de 
-		leurs &eacute;tudes, de leur formation ou dans le cadre de leur profession. Par 
-		souci d&rsquo;accueillir les &eacute;trangers et leur permettre.</font></span></p>
-
-
-
-
-&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="129">
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a>
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-		</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="136">
-		</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;">
-		
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a>
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
-
-
-
-
-	&nbsp;</div>
-
-
-
-      </td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="129">
-&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="21">
-&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;" bgcolor="#ffffff"><a href="cafelangues.htm">caf&eacute; des 
-        langues</a><br>
-
-
-
-      <span style="vertical-align: top;">(AL, BG, </span><span style="vertical-align: top;">CZ,</span><span style="vertical-align: top;"> DK</span><span style="vertical-align: top;">, GR</span><span style="vertical-align: top;">, </span><span style="vertical-align: top;">HR, </span><span style="vertical-align: top;">HU,</span><span style="vertical-align: top;"> NL,</span><span style="vertical-align: top;"> NO,</span><span style="vertical-align: top;"> PL,</span><span style="vertical-align: top;"> RO, RS,&nbsp;RU, SE).</span></td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;">
-		&nbsp;</td>
-
-
-
-
-	</tr>
-
-
-
-
-	<tr>
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="21">
-&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 650px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-		<td style="width: 250px;">
-		&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-    <tr>
-
-
-
-
-
-      <td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-      <td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-      <td style="width: 650px;">&nbsp;</td>
-
-
-
-
-
-      <td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-    </tr>
-
-
-
-
-    <tr>
-
-
-
-
-
-      <td style="width: 250px;" colspan="5"><a href="http://www.bilingue.new.fr/">
-      <img src="2007_3_22_10h36_182735.gif" border="0" height="60" width="468"></a></td>
-
-
-
-
-
-      </tr>
-
-
-
-
-
-  
-  
-  
-  </tbody>
-</table>
-
-
-
-
 
 </body>
 </html>
