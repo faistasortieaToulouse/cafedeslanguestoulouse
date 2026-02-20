@@ -179,6 +179,62 @@
     </style>
 </head>
 <body>
+    
+<script type="text/javascript">
+(function() {
+    var dots = [];
+    var mouse = { x: 0, y: 0 };
+
+    // Configuration
+    var numDots = 15; // Nombre de segments de la traînée
+    var colors = ["#0000FF", "#009900", "#5F1879"]; // Vos couleurs (Bleu, Vert, Violet)
+
+    // Création des points de la traînée
+    for (var i = 0; i < numDots; i++) {
+        var d = document.createElement("div");
+        d.className = "trail-dot";
+        d.style.cssText = "position:absolute; height:12px; width:12px; border-radius:50%; pointer-events:none; z-index:9999; opacity:0.6;";
+        d.style.backgroundColor = colors[i % colors.length];
+        document.body.appendChild(d);
+        dots.push({
+            element: d,
+            x: 0,
+            y: 0,
+            scale: 1 - (i / numDots) // Les points deviennent plus petits vers la fin
+        });
+    }
+
+    document.addEventListener("mousemove", function(e) {
+        mouse.x = e.pageX;
+        mouse.y = e.pageY;
+    });
+
+    function update() {
+        var x = mouse.x;
+        var y = mouse.y;
+
+        dots.forEach(function(dot, index) {
+            var nextDot = dots[index + 1] || dots[0];
+            
+            dot.x = x;
+            dot.y = y;
+            
+            dot.element.style.left = x - 6 + "px";
+            dot.element.style.top = y - 6 + "px";
+            dot.element.style.transform = "scale(" + dot.scale + ")";
+
+            // Calcul du retard pour l'effet "élastique"
+            x += (nextDot.x - x) * 0.4;
+            y += (nextDot.y - y) * 0.4;
+        });
+
+        requestAnimationFrame(update);
+    }
+
+    update();
+})();
+</script>
+    
 
 <header>
     <img src="bilingue1.jpg" alt="Bilingue">
