@@ -321,7 +321,7 @@
                 </a>
             </p>
 
-            <form action="mailto:bilingue@ass0.fr" method="post" enctype="text/plain">
+            <form id="inscriptionForm" action="" method="post" enctype="text/plain">
                 <label><strong>Votre nom et prénom :</strong></label>
                 <input name="membre" type="text" placeholder="Ex: Jean Dupont">
 
@@ -509,6 +509,21 @@
         <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
     </a>
 </div>
+
+<script>
+(function() {
+    const leForm = document.getElementById('inscriptionForm');
+    if (leForm) {
+        leForm.addEventListener('submit', function() {
+            // Code pour contact@cafedeslanguestoulouse.com
+            const secret = "Y29udGFjdEBjYWZlZGVzbGFuZ3Vlc3RvdWxvdXNlLmNvbQ==";
+            
+            // On décode et on ajoute un sujet automatique pour trier tes mails
+            this.action = "mailto:" + atob(secret) + "?subject=Nouvelle Inscription - Bilingue";
+        });
+    }
+})();
+</script>
 
 </body>
 </html>
