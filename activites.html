@@ -132,6 +132,65 @@
     </style>
 </head>
 <body>
+    
+<script>
+(function() {
+    const n = 8; // Nombre de points
+    const dots = [];
+    const colors = ['#ff0000', '#009900', '#0000ff'];
+
+    for (let i = 0; i < n; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        d.style.cssText = `
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10001;
+            background-color: ${colors[i % colors.length]};
+        `;
+        document.body.appendChild(d);
+        dots.push({ 
+            el: d, 
+            x: Math.random() * window.innerWidth, 
+            y: Math.random() * window.innerHeight,
+            vx: 0, 
+            vy: 0 
+        });
+    }
+
+    let mX = 0, mY = 0;
+    window.addEventListener('mousemove', (e) => {
+        mX = e.clientX;
+        mY = e.clientY;
+    });
+
+    function update() {
+        dots.forEach((dot, i) => {
+            // Physique "élastique" : on calcule la distance entre le point et la souris
+            let dx = mX - dot.x;
+            let dy = mY - dot.y;
+            
+            // Accélération vers la souris
+            dot.vx += dx * 0.01; 
+            dot.vy += dy * 0.01;
+            
+            // Friction (pour que ça s'arrête de bouger)
+            dot.vx *= 0.85;
+            dot.vy *= 0.85;
+            
+            dot.x += dot.vx;
+            dot.y += dot.vy;
+            
+            dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+        });
+        requestAnimationFrame(update);
+    }
+    update();
+})();
+</script>    
 
 <header>
     <img src="bilingue1.jpg" alt="Bilingue Logo">
