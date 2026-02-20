@@ -135,23 +135,6 @@
             font-size: 1.2rem;
         }
 
-        /* Galerie Bas de Page */
-        .photo-gallery {
-            max-width: 1200px;
-            margin: 20px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            text-align: center;
-        }
-        .gallery-item img {
-            width: 100%;
-            max-width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
         /* Footer interne */
         .lang-footer {
             text-align: center;
@@ -165,7 +148,7 @@
         .banner-link {
             display: block;
             text-align: center;
-            padding: 20px 0;
+            padding: 40px 0;
         }
 
         /* Script Dots */
@@ -256,13 +239,6 @@
     </aside>
 </div>
 
-<div class="photo-gallery">
-    <div class="gallery-item"><img src="0Cartagena.jpg" alt="Cartagena"></div>
-    <div class="gallery-item"><img src="0Dublin.jpg" alt="Dublin"></div>
-    <div class="gallery-item"><img src="0Douglas.jpg" alt="Douglas"></div>
-    <div class="gallery-item"><img src="2007_3_22_10h36_182735.gif" alt="Bilingue Info" style="border:none; box-shadow:none; max-height:80px; width:auto;"></div>
-</div>
-
 <div class="banner-link">
     <a href="http://www.bilingue.fr.nf/">
         <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%;">
@@ -270,6 +246,7 @@
 </div>
 
 <script>
+    // Script des points suiveurs
     const dots = [];
     const n = 10; 
     const colors = ['#FF0000', '#00FF00', '#0000FF'];
