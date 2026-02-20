@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilingue - Café des Langues</title>
+    <title>Bilingue - Accueil des nouveaux et étrangers</title>
     <style>
         :root {
             --primary-blue: #0000ff;
@@ -15,20 +15,21 @@
 
         body {
             background-color: var(--bg-color);
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.4;
             color: #333;
         }
 
+        /* Animations de clignotement */
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0; }
             100% { opacity: 1; }
         }
         .txt-clignotant {
-            animation: blink 1s infinite;
+            animation: blink 0.8s infinite;
             color: var(--accent-red);
             font-weight: bold;
             font-size: 1.2rem;
@@ -39,6 +40,10 @@
             text-align: center;
             padding: 20px;
             background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         nav {
@@ -47,121 +52,82 @@
             flex-wrap: wrap;
             gap: 10px;
             background: #fff;
-            padding: 15px 0;
-            margin-bottom: 20px;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         nav a {
             text-decoration: none;
             color: var(--nav-purple);
             font-weight: bold;
-            padding: 8px 15px;
+            padding: 5px 12px;
             transition: 0.3s;
-            border-radius: 20px;
         }
-        nav a:hover { 
-            color: white; 
-            background: var(--accent-red); 
-        }
+        nav a:hover { color: var(--primary-green); text-decoration: underline; }
 
         .main-layout {
             display: grid;
             grid-template-columns: 220px 1fr 220px;
             gap: 20px;
-            max-width: 1250px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: 20px auto;
             padding: 0 15px;
         }
 
         @media (max-width: 950px) {
             .main-layout { grid-template-columns: 1fr; }
-            .sidebar { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
         }
 
         .sidebar {
             display: flex;
             flex-direction: column;
+            gap: 20px;
             align-items: center;
-            gap: 15px;
-        }
-
-        .side-menu {
-            background: white;
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .side-menu a {
-            display: block;
-            text-decoration: none;
-            color: var(--primary-green);
-            font-weight: bold;
-            margin: 5px 0;
         }
 
         .sidebar img {
             width: 100%;
-            max-width: 180px;
+            max-width: 200px;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
+            border: 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
         .content-card {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-height: 600px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+
+        /* Styles spécifiques au formulaire */
+        form { background: #fdfdfd; padding: 15px; border: 1px solid #eee; margin: 20px 0; }
+        label { display: inline-block; width: 160px; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+        input[type="text"], select, textarea { margin-bottom: 10px; border: 1px solid #ccc; padding: 4px; }
+        .form-section { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
         .bottom-gallery {
-            max-width: 1100px;
-            margin: 40px auto;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
-            padding: 0 15px;
+            margin: 30px 0;
         }
-        .bottom-gallery img {
-            width: 200px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border: 3px solid white;
-        }
+        .bottom-gallery img { width: 200px; height: 150px; object-fit: cover; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        .lang-footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 15px;
-            border: 1px dashed var(--primary-blue);
-        }
+        .footer-banner { text-align: center; margin: 20px 0; }
 
-        .banner-link { text-align: center; padding: 40px 0; }
-
-        .dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 999;
-        }
+        /* Style des liens menu vert comme l'original */
+        .menu-link { color: #00CC00; font-weight: bold; text-decoration: none; font-size: 1.1rem; }
+        .menu-link:hover { color: red; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="txt-clignotant">Groupe de discussion</div>
-    <img src="bilingue1.jpg" alt="Bilingue">
+    <img src="bilingue1.jpg" alt="Bilingue Logo">
+    <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
 </header>
 
 <nav>
@@ -177,129 +143,156 @@
 
 <div class="main-layout">
     <aside class="sidebar">
-        <div class="side-menu">
-            <a href="lieux.htm">Lieux</a>
-            <a href="active.htm">Activités</a>
-        </div>
-
-        <img src="0AntiguaBarbuda.jpg" alt="Antigua Barbuda">
+        <img src="0AntiguaBarbuda.jpg" alt="Antigua">
         
         <a href="http://semaineeuropeennedeslangues.venez.fr/" target="_blank">
             <img src="drapeauUEO1.jpg" alt="Semaine Européenne">
         </a>
-        
+
+        <div style="text-align:center">
+            <a href="lieux.htm" class="menu-link">Lieux</a><br><br>
+            <a href="active.htm" class="menu-link">Activités</a>
+        </div>
+
         <a href="http://www.lepetittou.com/" target="_blank">
             <img src="lepetittou.jpg" alt="Le Petit Tou">
         </a>
 
-        <img src="0BerlinColonne.jpg" alt="Berlin">
+        <img src="0BerlinPalais.jpg" alt="Berlin">
 
         <a href="http://hp31.lei-web.com/" target="_blank">
             <img src="happypeoplenew200.jpg" alt="Happy People">
         </a>
 
-        <div class="side-menu">
-            <a href="contact.htm">Contact</a>
-            <a href="liens.htm">Liens</a>
-        </div>
+        <a href="http://www.ensemble.0rg.fr/" target="_blank">
+            <img src="bilensemble.jpg" alt="Association Ensemble">
+        </a>
     </aside>
 
     <main>
         <article class="content-card">
-            <p style="text-align: left;"><b>Principe du café des langues :</b></p>
-            <p style="text-align: left;">Le café des langues a pour but de permettre à des personnes qui veulent parler une langue peu usitée par petits groupes, chaque langue est parlée à une table.</p>
-            
-            <p style="text-align: left;">Pour l'instant, l'allemand et l'italien feront parties des langues pratiquées au cours du café des langues.</p>
-            
-            <p style="text-align: left;"><b>Les langues proposées sont les suivantes :</b></p>
-            <p style="text-align: left;">- allemand / - italien / - portugais</p>
-            <p style="text-align: left;">- autres langues : polonais, serbo-croate, tchèque, néerlandais, russe, hongrois.</p>
-
-            <p style="text-align: left;"><b>Groupes possibles sur demande :</b></p>
-            <p style="text-align: left; font-size: 0.9rem;">Scandinaves, Finnois, Albanais, Bulgare, Baltes, Roumain, Grec, Chinois, Japonais, Occitan, LSF.</p>
-
-            <p style="text-align: left;"><b>Accueil :</b></p>
-            <p style="text-align: left;">- Français pour les étrangers<br>- Accueil des nouveaux venus à Toulouse</p>
-
-            <div class="lang-footer">
-                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">CAFÉ DES LANGUES</a><br>
-                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            <div style="color: blue; text-align: left;">
+                L'association Bilingue a pour but d'organiser des échanges de conversation entre des français et des étrangers résidant en France. 17 langues sont proposées. 
+                <a href="calendrier.htm" style="background: #33cc00; color: white; padding: 2px 5px; font-weight: bold; text-decoration: none;">L'agenda complet de Bilingue</a>. 
+                <b>Discussion en français à la fin de chaque séance.</b>
             </div>
+
+            <p>Séjours à l'étrangers en Europe : <b>Université d'été</b> (Summers Universities) - 80 destinations européennes. 90€ le séjour (15j), cours et hébergement inclus. Contactez-nous.</p>
+            
+            <p><b>Semaine Européenne des Langues :</b> Du 20 au 29 septembre 2013 à Toulouse.</p>
+
+            <hr>
+
+            <form method="post" action="transfert.php">
+                <h3 style="color: var(--nav-purple);">Formulaire de participation</h3>
+                <div class="form-section">
+                    <label>Civilité :</label>
+                    <input name="civilite" value="M." type="radio"> M. 
+                    <input name="civilite" value="Mlle" type="radio"> Mlle 
+                    <input name="civilite" value="Mme" type="radio"> Mme
+                </div>
+                
+                <label>Prénom :</label> <input name="prenom" type="text" size="30"><br>
+                <label>Nom :</label> <input name="nom" type="text" size="30"><br>
+                <label>Email :</label> <input name="email" type="text" size="30"><br>
+                <label>Ville :</label> <input name="ville" type="text" size="30"><br>
+                
+                <label>Tranche d'âge :</label>
+                <select name="age">
+                    <option value="16">16-18</option>
+                    <option value="18">18-25</option>
+                    <option value="20">25-35</option>
+                    <option value="35">plus de 35</option>
+                </select>
+
+                <div class="form-section">
+                    <p><b>Je veux être bénévole :</b></p>
+                    <input name="interets[]" value="com" type="checkbox"> Com 
+                    <input name="interets[]" value="animation" type="checkbox"> Animation
+                    <input name="interets[]" value="organisation" type="checkbox"> Org
+                </div>
+
+                <p><b>Votre message :</b></p>
+                <textarea name="comments" rows="5" style="width: 100%;"></textarea>
+                
+                <div style="text-align: center; margin-top: 10px;">
+                    <input value="Envoyer" type="submit" style="padding: 10px 20px; background: var(--primary-green); color: white; border: none; cursor: pointer; font-weight: bold;">
+                </div>
+            </form>
+
+            <div style="background: #eee; padding: 15px; border: 1px solid #ccc;">
+                <h4 style="margin-top: 0;">Soirées linguistiques à Toulouse !</h4>
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="http://www.newamigos.com/" target="_blank">
+                        <img src="newamigos.jpg" alt="New Amigos" style="width: 150px;">
+                    </a>
+                    <ul style="font-size: 0.85rem; font-weight: bold;">
+                        <li>Conversations en français / Tandems</li>
+                        <li>Auberge espagnole</li>
+                        <li>Visite de Toulouse et de la région</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: green; font-weight: bold; margin-top: 20px;">
+                Langues prévues : Suédois, Grec, Roumain, Occitan, Japonais, Polonais, Russe...
+            </p>
         </article>
     </main>
 
     <aside class="sidebar">
-        <div class="side-menu">
-            <a href="bilingue.htm">Accueil</a>
-            <a href="present.htm">Présentation</a>
+        <div style="text-align:center">
+            <a href="bilingue.htm" class="menu-link">Accueil</a><br><br>
+            <a href="present.htm" class="menu-link">Présentation</a>
         </div>
 
         <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
             <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
         </a>
-        
+
         <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
             <img src="jobetudiant200.jpg" alt="Job Etudiant">
         </a>
 
-        <img src="0Kholn.jpg" alt="Kholn">
+        <img src="0Barbados.jpg" alt="Barbados">
 
         <a href="http://www.toulouse.com/bon-plan-toulouse-le-bracelet-toulouse-vip/" target="_blank">
             <img src="bracelettoulousevip.jpg" alt="Toulouse VIP">
         </a>
 
-        <div class="side-menu">
-            <a href="http://www.newamigos.com/" target="_blank">
-                <img src="newamigos.jpg" alt="New Amigos" style="width:80px; box-shadow:none;"><br>
-                <small>Soirées linguistiques</small>
-            </a>
+        <div style="text-align:center">
+            <a href="contact.htm" class="menu-link">Contact</a><br><br>
+            <a href="liens.htm" class="menu-link">Liens</a>
         </div>
 
-        <div class="side-menu">
-            <a href="photos.htm">Photos</a>
-            <a href="inscription.htm">Inscription</a>
-        </div>
+        <a href="http://www.toulousecoloc.0rg.fr/" target="_blank">
+            <img src="toulousecolocBI.jpg" alt="Toulouse Coloc">
+        </a>
+
+        <a href="http://www.happypeople.asso.st/" target="_blank">
+            <img src="logoHP.png" alt="Logo Happy People" style="width: 100px;">
+            <p style="font-size: 0.8rem; font-style: italic;">Happy People : Echanges internationaux !</p>
+        </a>
     </aside>
 </div>
 
 <div class="bottom-gallery">
-    <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo">
-    <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo">
-    <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo">
-    <img src="Photo%20094fv1.jpg" alt="Soirée Over-culture">
+    <a href="Photo%20147ym.jpg" target="_blank"><img src="Photo%20147ym1.jpg" alt="Soirée Papagayo 1"></a>
+    <a href="Photo%20154ym.jpg" target="_blank"><img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2"></a>
+    <a href="Photo%20179ym.jpg" target="_blank"><img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3"></a>
+    <a href="Photo%20094fv.jpg" target="_blank"><img src="Photo%20094fv1.jpg" alt="Soirée Over-culture"></a>
 </div>
 
-<div class="banner-link">
-    <a href="http://www.bilingue.fr.nf/">
-        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
+<div style="text-align: center; margin-bottom: 20px;">
+    <a href="cafelangues.htm" style="font-weight: bold; color: var(--primary-blue); text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+    <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+</div>
+
+<div class="footer-banner">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner Bilingue">
     </a>
 </div>
-
-<script>
-    const dots = [];
-    const n = 10; 
-    const colors = ['#FF0000', '#00FF00', '#0000FF'];
-    for (let i = 0; i < n; i++) {
-        const d = document.createElement('div');
-        d.className = 'dot';
-        d.style.backgroundColor = colors[i % 3];
-        document.body.appendChild(d);
-        dots.push({ el: d, x: 0, y: 0 });
-    }
-    let mX = 0, mY = 0;
-    window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
-    function tick() {
-        let x = mX, y = mY;
-        dots.forEach((dot) => {
-            dot.x += (x - dot.x) * 0.35;
-            dot.y += (y - dot.y) * 0.35;
-            dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
-            x = dot.x; y = dot.y;
-        });
-        requestAnimationFrame(tick);
-    }
-    tick();
-</script>
 
 </body>
 </html>
