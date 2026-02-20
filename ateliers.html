@@ -1,522 +1,253 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="fr-fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Inscription et Informations</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --nav-purple: #5F1879;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
 
-  
-  <style type="text/css">
-#supertext {
-position:absolute;
-left:0;
-top:0;
-visibility:hide;
-visibility:hidden;
-}
-  </style>
-  
-  <meta http-equiv="Content-Language" content="fr">
+        /* En-tête */
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+        }
 
-  
+        /* Navigation Moderne */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--nav-purple);
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+        }
 
+        /* Layout 3 Colonnes */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-  
-  <title>Bilingue</title>
-  <style type="text/css">#title9
-.suit {
-FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red
-}
-.suit1 {
-FONT-WEIGHT: bold; COLOR: white
-}
-.over {
-FONT-WEIGHT: bold; COLOR: white
-}
-.out {
-FONT-WEIGHT: bold; COLOR: #5F1879
-}
-  </style>
-  
-  <style type="text/css">
-.gris {
-BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; }
-.blanc {
-BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; }
-.sous {
-COLOR: #00CC00; FONT-SIZE: 40px; Text-Decoration: underline
-}
-}
-.oui {
-FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #cccccc
-}
-.non {
-FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #FFFFFF
-}
-.oui1 {
-FONT-WEIGHT: bold; COLOR: green
-}
-.non1 {
-FONT-WEIGHT: bold; COLOR: red
-}
-.green1 {
-FONT-WEIGHT: bold; COLOR: red
-}
-  </style>
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Bloc Central Blanc (La Carte) */
+        .content-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 600px; /* Allongé vers le bas */
+        }
+
+        .content-card h2 { color: var(--primary-green); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .content-card p { margin-bottom: 15px; text-align: left; }
+
+        /* Formulaire stylisé */
+        form {
+            background: #fdfdfd;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        input[type="submit"]:hover { background: #007700; transform: scale(1.05); }
+
+        /* Footer */
+        .lang-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px dashed var(--primary-blue);
+        }
+
+        .banner-link { text-align: center; padding: 40px 0; }
+    </style>
 </head>
-
-
-<body style="background-color: rgb(204, 255, 255);">
-
-
-<table style="text-align: center; vertical-align: text-top; position: absolute;" id="table1" border="0" width="100%">
-
-
-  <tbody>
-
-
-    <tr>
-
-
-      <td height="110">&nbsp;</td>
-
-
-      <td height="110" width="4"> &nbsp;</td>
-
-
-      <td height="110" width="371"> <img src="bilingue1.jpg" border="0" height="126" width="371"></td>
-
-
-      <td height="110" width="4"> &nbsp;</td>
-
-
-      <td height="110" width="149">&nbsp;</td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td height="21">&nbsp;</td>
-
-
-      <td height="21" width="4"> &nbsp;</td>
-
-
-      <td height="21" width="371"> <a href="calendrier2006.htm">notre calendrier pass&eacute;</a></td>
-
-
-      <td height="21" width="4"> &nbsp;</td>
-
-
-      <td height="21" width="149">&nbsp;</td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td height="129" valign="top">
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activit&eacute;s</a></p>
-
-
-&nbsp;</div>
-
-
-      <br>
-
-
-      <br>
-
-
-      <br>
-
-
-      <img src="0LondonGare.jpg" border="0" height="200" width="132"><br>
-
-
-      <br>
-
-
-      <br>
-
-
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a>
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
-
-
-&nbsp;</div>
-
-
-      </td>
-
-
-      <td style="vertical-align: top;" height="129" width="4"> &nbsp;</td>
-
-
-      <td style="vertical-align: top;" height="129" width="371">
-      
-      <p style="text-align: left;"><font color="#0000ff"><span style="color: rgb(0, 0, 0);">Attention ! A la fin de chaque
-session : Les &eacute;trangers pourront parler en
-fran&ccedil;ais !</span></font></p>
-
-
-      
-      <p style="text-align: left;"><font color="#0000ff"><span style="color: rgb(0, 0, 0);">Concernant les
-&eacute;v&egrave;nements o&ugrave; les lieux ne sont pas
-indiqu&eacute;s, l'inscription ets obligatoire avant de venir et
-ceci afin de nous aider &agrave; mieux organiser la
-soir&eacute;e. <span style="color: rgb(0, 102, 0); font-weight: bold; text-decoration: underline;">En
-vous inscrivant, vous recevrez l'adresse du lieu o&ugrave; a lieu
-la soir&eacute;e, de m&ecirc;me que les informations sur la
-soir&eacute;e.</span></span></font></p>
-
-
-      
-      <p style="text-align: left;"><font color="#0000ff"><span style="color: rgb(0, 0, 0);">N'h&eacute;sitez pas
-&agrave; nous &eacute;crire pour nous poser vos questions, nous
-vous donnerons les informations que vous d&eacute;sirez
-conna&icirc;tre.&nbsp;</span></font></p>
-
-
-      
-      <p style="text-align: left;"><span style="vertical-align: top;">Pour conna&icirc;tre les
-langues qui seront parl&eacute;es au caf&eacute; des langues de
-votre inscription, veuillez</span><span style="vertical-align: top;"></span><span style="vertical-align: top;"></span><span style="vertical-align: top;">&nbsp;</span><span style="vertical-align: top;"><i> </i><a href="calendrier.htm"><span style="background-color: rgb(51, 204, 0); font-weight: bold;">Voir
-le reste de l'agenda</span></a><i>.</i></span></p>
-
-
-      
-      <p style="text-align: left;"><font color="#0000ff">pour
-vous inscrire, veuillez choisir votre soir&eacute;e :</font> </p>
-
-
-      
-      <form action="mailto:bilingue@ass0.fr" method="post">Votre
-nom et pr&eacute;nom : <input name="membre" size="40" maxlength="30">
-        
-        <p> Votre adresse e-mail : <textarea name="commentaire" rows="2" cols="30"></textarea>
-        </p>
-
-
-        
-        <p> <font color="#0000ff">vous
-&ecirc;tes int&eacute;ress&eacute; pour discuter en :</font>
-        <br>
-
-
-        <input name="langue" value="anglais" type="checkbox">en anglais <input name="langue" value="espagnol" type="checkbox">en espagnol <input name="langue" value="italien" type="checkbox">en
-italien <input name="langue" value="allemand" type="checkbox">en allemand <input name="langue" value="france" type="checkbox">en fran&ccedil;ais
-        <input name="langue" value="autre" type="checkbox">autre
-langue <br>
-
-
-        <br>
-
-
-        <font color="#0000ff">Inscrivez le nombre de
-personnes qui doivent venir : </font><input name="membre" size="10" maxlength="10"> <br>
-
-
-        <br>
-
-
-        <font color="#0000ff">s&eacute;lectionnez
-votre atelier :</font> <br>
-
-
-        
-        <select name="soir" size="112" multiple="multiple">
-        <option> je cherche un atelier d'albanais </option>
-        <option> je cherche un atelier d'allemand </option>
-        <option> je cherche un atelier d'amharique </option>
-        <option> je cherche un atelier d'anglais </option>
-        <option> je cherche un atelier d'arabe </option>
-        <option> je cherche un atelier d'arm&eacute;nien </option>
-        <option> je cherche un atelier de basque </option>
-        <option> je cherche un atelier de berb&egrave;re </option>
-        <option> je cherche un atelier de breton </option>
-        <option> je cherche un atelier de bulgare </option>
-        <option> je cherche un atelier de catalan </option>
-        <option> je cherche un atelier de chinois </option>
-        <option> je cherche un atelier de cor&eacute;en </option>
-        <option> je cherche un atelier de corse </option>
-        <option> je cherche un atelier de croate </option>
-        <option> je cherche un atelier de danois </option>
-        <option> je cherche un atelier d'espagnol </option>
-        <option> je cherche un atelier d'esp&eacute;ranto </option>
-        <option> je cherche un atelier de finnois </option>
-        <option> je cherche un atelier de fran&ccedil;ais </option>
-        <option> je cherche un atelier de grec </option>
-        <option> je cherche un atelier de hongrois </option>
-        <option> je cherche un atelier d'indon&eacute;sien </option>
-        <option> je cherche un atelier d'italien </option>
-        <option> je cherche un atelier de japonais </option>
-        <option> je cherche un atelier de LSF </option>
-        <option> je cherche un atelier de malais </option>
-        <option> je cherche un atelier de n&eacute;erlandais </option>
-        <option> je cherche un atelier de norv&eacute;gien </option>
-        <option> je cherche un atelier d'occitan </option>
-        <option> je cherche un atelier de persan </option>
-        <option> je cherche un atelier de polonais </option>
-        <option> je cherche un atelier de portugais </option>
-        <option> je cherche un atelier de roumain </option>
-        <option> je cherche un atelier de russe </option>
-        <option> je cherche un atelier de serbe </option>
-        <option> je cherche un atelier de su&eacute;dois </option>
-        <option> je cherche un atelier de tch&egrave;que </option>
-        <option> je cherche un atelier de tha&iuml; </option>
-        <option> je cherche un atelier de turc </option>
-        <option> je cherche un atelier de vietnamien </option>
-        <option> je cherche un atelier administratif </option>
-        <option> je cherche un atelier de botanique </option>
-        <option> je cherche un atelier de bricolage </option>
-        <option> je cherche un ateliere s&eacute;ance de cours </option>
-        <option> je cherche un atelier de couture </option>
-        <option> je cherche un atelier de cuisine </option>
-        <option> je cherche un atelier de CV et Emploi </option>
-        <option> je cherche un atelier de danse </option>
-        <option> je cherche un atelier de dessin </option>
-        <option> je cherche un atelier de jardinage </option>
-        <option> je cherche de la cr&eacute;ation d'objets </option>
-        <option> je cherche un atelier de recyclage </option>
-        <option> je cherche un atelier de troc </option>
-        <option> je cherche : autres </option>
-        <option> je cherche un atelier &eacute;change de services </option>
-        <option> je propose un atelier d'albanais </option>
-        <option> je propose un atelier d'allemand </option>
-        <option> je propose un atelier d'amharique </option>
-        <option> je propose un atelier d'anglais </option>
-        <option> je propose un atelier d'arabe </option>
-        <option> je propose un atelier d'arm&eacute;nien </option>
-        <option> je propose un atelier de basque </option>
-        <option> je propose un atelier de berb&egrave;re </option>
-        <option> je propose un atelier de breton </option>
-        <option> je propose un atelier de bulgare </option>
-        <option> je propose un atelier de catalan </option>
-        <option> je propose un atelier de chinois </option>
-        <option> je propose un atelier de cor&eacute;en </option>
-        <option> je propose un atelier de corse </option>
-        <option> je propose un atelier de croate </option>
-        <option> je propose un atelier de danois </option>
-        <option> je propose un atelier d'espagnol </option>
-        <option> je propose un atelier d'esp&eacute;ranto </option>
-        <option> je propose un atelier de finnois </option>
-        <option> je propose un atelier de fran&ccedil;ais </option>
-        <option> je propose un atelier de grec </option>
-        <option> je propose un atelier de hongrois </option>
-        <option> je propose un atelier d'indon&eacute;sien </option>
-        <option> je propose un atelier d'italien </option>
-        <option> je propose un atelier de japonais </option>
-        <option> je propose un atelier de LSF </option>
-        <option> je propose un atelier de malais </option>
-        <option> je propose un atelier de n&eacute;erlandais </option>
-        <option> je propose un atelier de norv&eacute;gien </option>
-        <option> je propose un atelier d'occitan </option>
-        <option> je propose un atelier de persan </option>
-        <option> je propose un atelier de polonais </option>
-        <option> je propose un atelier de portugais </option>
-        <option> je propose un atelier de roumain </option>
-        <option> je propose un atelier de russe </option>
-        <option> je propose un atelier de serbe </option>
-        <option> je propose un atelier de su&eacute;dois </option>
-        <option> je propose un atelier de tch&egrave;que </option>
-        <option> je propose un atelier de tha&iuml; </option>
-        <option> je propose un atelier de turc </option>
-        <option> je propose un atelier de vietnamien </option>
-        <option> je propose un atelier administratif </option>
-        <option> je propose un atelier de botanique </option>
-        <option> je propose un atelier de bricolage </option>
-        <option> je propose un ateliere s&eacute;ance de cours </option>
-        <option> je propose un atelier de couture </option>
-        <option> je propose un atelier de cuisine </option>
-        <option> je propose un atelier de CV et Emploi </option>
-        <option> je propose un atelier de danse </option>
-        <option> je propose un atelier de dessin </option>
-        <option> je propose un atelier de jardinage </option>
-        <option> je propose de la cr&eacute;ation d'objets </option>
-        <option> je propose un atelier de recyclage </option>
-        <option> je propose un atelier de troc </option>
-        <option> je propose : autres </option>
-        <option> je propose un atelier &eacute;change de services </option>
-        </select>
-
-
-        <br>
-
-
-        <input value="inscription" type="submit"> </p>
-
-
-      </form>
-
-
-      </td>
-
-
-      <td style="vertical-align: top;" height="129" width="4"> &nbsp;</td>
-
-
-      <td style="vertical-align: top;" height="129" width="149">
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Pr&eacute;sentation</a></p>
-
-
-&nbsp;</div>
-
-
-      <br>
-
-
-      <br>
-
-
-      <br>
-
-
-      <img src="0Nevis.jpg" border="0" height="200" width="136"><br>
-
-
-      <br>
-
-
-      <br>
-
-
-      
-      <div class="blanc"> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a>
-      
-      <p> <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
-
-
-&nbsp;</div>
-
-
-      </td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td style="vertical-align: top;" height="21" width="149">&nbsp;</td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td width="371">si vous ne pouvez pas vous inscrire
-&agrave; partir de cette page, contactez-nous juste sur notre
-e-mail :&nbsp;<a href="mailto:bilingue@ass0.fr">bilingue@ass0.fr</a>
-      <br>
-
-
-Vous pouvez aussi vous inscrire &agrave; partir d'ici : <span style="vertical-align: top;"><br>
-
-
-      <a target="_blank" href="http://hp31.lei-web.com/"><span style="background-color: rgb(51, 204, 0); font-weight: bold;">Inscription
-aux soir&eacute;es de Bilingue</span></a></span></td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td width="149"> &nbsp;</td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td style="vertical-align: top;" height="21" width="149">&nbsp;</td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td bgcolor="#ffffff" width="371"><a href="cafelangues.htm">caf&eacute; des langues</a><br>
-
-
-      <span style="vertical-align: top;">(AL, BG, </span><span style="vertical-align: top;">CZ,</span><span style="vertical-align: top;"> DK</span><span style="vertical-align: top;">, GR</span><span style="vertical-align: top;">, </span><span style="vertical-align: top;">HR, </span><span style="vertical-align: top;">HU,</span><span style="vertical-align: top;"> NL,</span><span style="vertical-align: top;"> NO,</span><span style="vertical-align: top;"> PL,</span><span style="vertical-align: top;"> RO, RS,&nbsp;RU, SE).</span></td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td width="149"> &nbsp;</td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td style="vertical-align: top;" height="21" width="149">&nbsp;</td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td style="vertical-align: top;" height="21" width="149">&nbsp;</td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td width="149"> &nbsp;</td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td>&nbsp;</td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td width="371">&nbsp;</td>
-
-
-      <td width="4">&nbsp;</td>
-
-
-      <td width="149">&nbsp;</td>
-
-
-    </tr>
-
-
-    <tr>
-
-
-      <td colspan="5"><a href="http://www.bilingue.new.fr/"> </a><a href="http://www.bilingue.new.fr/"> <img src="2007_3_22_10h36_182735.gif" border="0" height="60" width="468"></a></td>
-
-
-    </tr>
-
-
-  
-  </tbody>
-</table>
-
+<body>
+
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue">
+</header>
+
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <img src="0LondonGare.jpg" alt="Gare de Londres">
+        <p style="text-align:center"><a href="calendrier2006.htm" style="color:var(--nav-purple); font-weight:bold;">Notre calendrier passé</a></p>
+    </aside>
+
+    <main>
+        <article class="content-card">
+            <p><strong>Attention !</strong> À la fin de chaque session : Les étrangers pourront parler en français !</p>
+            
+            <p>Concernant les évènements où les lieux ne sont pas indiqués, l'inscription est obligatoire. <br>
+            <span style="color: var(--primary-green); font-weight: bold; text-decoration: underline;">
+            En vous inscrivant, vous recevrez l'adresse exacte et les informations de la soirée.</span></p>
+
+            <p>Pour connaître les langues parlées : 
+                <a href="calendrier.htm" style="background: #33cc00; color: white; padding: 2px 8px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                    Voir le reste de l'agenda
+                </a>
+            </p>
+
+            <form action="mailto:bilingue@ass0.fr" method="post" enctype="text/plain">
+                <label>Votre nom et prénom :</label>
+                <input name="membre" type="text" placeholder="Ex: Jean Dupont">
+
+                <label>Votre adresse e-mail :</label>
+                <textarea name="email" rows="2" placeholder="votre@email.com"></textarea>
+
+                <p style="color: var(--primary-blue); font-weight: bold;">Vous êtes intéressé pour discuter en :</p>
+                <div class="checkbox-group">
+                    <label><input name="langue" value="anglais" type="checkbox"> Anglais</label>
+                    <label><input name="langue" value="espagnol" type="checkbox"> Espagnol</label>
+                    <label><input name="langue" value="italien" type="checkbox"> Italien</label>
+                    <label><input name="langue" value="allemand" type="checkbox"> Allemand</label>
+                    <label><input name="langue" value="france" type="checkbox"> Français</label>
+                    <label><input name="langue" value="autre" type="checkbox"> Autre</label>
+                </div>
+
+                <label>Nombre de personnes :</label>
+                <input name="quantite" type="text" style="width: 80px;">
+
+                <label style="color: var(--primary-blue); font-weight: bold;">Sélectionnez votre atelier :</label>
+                <select name="soir" size="5">
+                    <option>je cherche un atelier d'allemand</option>
+                    <option>je cherche un atelier d'anglais</option>
+                    <option>je cherche un atelier d'espagnol</option>
+                    <option>je cherche un atelier d'italien</option>
+                    <option>je cherche un atelier de russe</option>
+                    <option>je propose un atelier d'anglais</option>
+                    <option>je propose un atelier de cuisine</option>
+                    </select>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <input value="S'inscrire maintenant" type="submit">
+                </div>
+            </form>
+
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.1rem;">CAFÉ DES LANGUES</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                Si le formulaire ne fonctionne pas : <a href="mailto:bilingue@ass0.fr">bilingue@ass0.fr</a>
+            </p>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <img src="0Nevis.jpg" alt="Nevis">
+        <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+            <a target="_blank" href="http://hp31.lei-web.com/" style="text-decoration:none; color: var(--primary-green); font-weight: bold;">
+                Inscription aux soirées Happy People
+            </a>
+        </div>
+    </aside>
+</div>
+
+<div class="banner-link">
+    <a href="http://www.bilingue.fr.nf/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
+    </a>
+</div>
 
 </body>
 </html>
