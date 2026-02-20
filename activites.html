@@ -50,20 +50,47 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px; /* Espace réduit pour faire tenir plus de liens */
             background: #fff;
-            padding: 10px 0;
-            border-top: 1px solid #eee;
+            padding: 15px 10px;
+            margin-bottom: 20px;
+            width: 100%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 1px solid #eee;
+            box-sizing: border-box; /* Important pour que le padding ne fasse pas déborder le menu */
         }
+
         nav a {
             text-decoration: none;
-            color: var(--nav-purple);
+            color: #5F1879;
             font-weight: bold;
-            padding: 5px 12px;
+            padding: 8px 12px;
             transition: 0.3s;
+            border-radius: 20px;
+            font-size: 14px; /* Taille de police légèrement réduite pour le nombre de liens */
+            background: #f8f9fa; /* Fond léger pour simuler des boutons sur mobile */
+            border: 1px solid #eee;
         }
-        nav a:hover { color: var(--primary-green); text-decoration: underline; }
+
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+            border-color: var(--accent-red);
+        }
+
+        /* AJOUT : Style spécifique pour mobile */
+        @media (max-width: 600px) {
+            nav {
+                gap: 5px;
+                padding: 10px 5px;
+            }
+            nav a {
+                flex: 1 1 calc(45% - 5px); /* Affiche 2 boutons par ligne sur mobile */
+                text-align: center;
+                padding: 10px 5px;
+                font-size: 12px;
+            }
+        }
 
         .main-layout {
             display: grid;
@@ -197,14 +224,19 @@
 </header>
 
 <nav>
-    <a href="bilingue.htm">Accueil</a>
-    <a href="present.htm">Présentation</a>
-    <a href="lieux.htm">Lieux</a>
-    <a href="active.htm">Activités</a>
-    <a href="contact.htm">Contact</a>
-    <a href="liens.htm">Liens</a>
-    <a href="photos.htm">Photos</a>
-    <a href="inscription.htm">Inscription</a>
+    <a href="index.html">Accueil</a>
+    <a href="present.html">Présentation</a>
+    <a href="cafelangues.html">Café des Langues</a>
+    <a href="active.html">Activités</a>
+    <a href="activeHP.html">Activités HP</a>
+    <a href="ateliers.html">Ateliers</a>
+    <a href="activites.html">Bénévolat</a>
+    <a href="contact.html">Contact</a>
+    <a href="http://bilingue31.free.fr/inscription.htm">Inscription</a>
+    <a href="lieux.html">Lieux</a>
+    <a href="liens.html">Liens</a>
+    <a href="http://bilingue31.free.fr/photos.htm">Photos</a>
+    <a href="http://bilingue31.free.fr/calendrier.htm">Calendrier</a>
 </nav>
 
 <div class="main-layout">
@@ -217,11 +249,11 @@
 
         <img src="0BerlinPalais.jpg" alt="Berlin">
 
-        <a href="http://hp31.lei-web.com/" target="_blank">
+        <a href="http://www.lei-web.click/" target="_blank">
             <img src="happypeoplenew200.jpg" alt="Happy People">
         </a>
 
-        <a href="http://www.ensemble.0rg.fr/" target="_blank">
+        <a href="https://www.facebook.com/groups/1433439290101937/" target="_blank">
             <img src="bilensemble.jpg" alt="Association Ensemble">
         </a>
 
@@ -323,20 +355,20 @@
         </a>
 
         <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
-            <img src="jobetudiant200.jpg" alt="Job Etudiant">
+            <img src="https://www.facebook.com/groups/610512799102569/" alt="Job Etudiant">
         </a>
 
         <img src="0Barbados.jpg" alt="Barbados">
 
-        <a href="http://www.toulouse.com/bon-plan-toulouse-le-bracelet-toulouse-vip/" target="_blank">
+        <a href="https://www.facebook.com/groups/1443232687438416" target="_blank">
             <img src="bracelettoulousevip.jpg" alt="Toulouse VIP">
         </a>
 
-        <a href="http://www.toulousecoloc.0rg.fr/" target="_blank">
+        <a href="https://www.facebook.com/groups/559216034241574/" target="_blank">
             <img src="toulousecolocBI.jpg" alt="Toulouse Coloc">
         </a>
 
-    <a href="http://www.happypeople.asso.st/" target="_blank">
+    <a href="https://www.facebook.com/groups/996796667051330" target="_blank">
         <img src="logoHP.png" alt="Happy People : Echanges internationaux" style="width: 137px; height: 137px;">
     </a>
 
