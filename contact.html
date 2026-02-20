@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Café des Langues</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --nav-purple: #5F1879;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--nav-purple);
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .side-menu {
+            background: white;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .side-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* PARTIE CENTRALE ALLONGÉE */
+        .content-card {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 1000px; /* Longueur augmentée ici */
+            text-align: center;
+        }
+
+        .contact-box {
+            text-align: left;
+            margin-bottom: 50px;
+        }
+
+        .lang-footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px dashed var(--primary-blue);
+        }
+
+        .bottom-gallery {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+        .bottom-gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        .banner-link { text-align: center; padding: 40px 0; }
+
+        /* Animation des points */
+        .dot {
+            position: fixed;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            background-color: red; /* Couleur par défaut */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue">
+</header>
+
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <img src="0Ponteveccio.jpg" alt="Ponteveccio">
+        
+        <div class="side-menu">
+            <a href="lieux.htm">Lieux</a>
+            <a href="active.htm">Activités</a>
+        </div>
+
+        <img src="0RomePalais.jpg" alt="Rome Palais">
+    </aside>
+
+    <main>
+        <article class="content-card">
+            <div class="contact-box">
+                <p><font color="#0000ff"><b>Pour nous contacter :</b></font></p>
+                <p><font color="#0000ff">05-61-61-03-46</font></p>
+                <p><a href="mailto:bilingue@ass0.fr">bilingue@ass0.fr</a></p>
+            </div>
+
+            <div id="jumpx" style="font-family: Arial; font-size: 1.2rem; color: #333; margin: 40px 0;">
+                </div>
+
+            <div class="side-menu" style="display:inline-block; width: auto; padding: 20px 40px;">
+                <a href="photos.htm">Photos</a>
+                <a href="inscription.htm">Inscription</a>
+            </div>
+
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">CAFÉ DES LANGUES</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <div class="side-menu">
+            <a href="bilingue.htm">Accueil</a>
+            <a href="present.htm">Présentation</a>
+        </div>
+
+        <img src="0RomeColisee.jpg" alt="Rome Colisée">
+
+        <div class="side-menu">
+            <a href="contact.htm">Contact</a>
+            <a href="liens.htm">Liens</a>
+        </div>
+    </aside>
+</div>
+
+<div class="bottom-gallery">
+    <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo 1">
+    <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2">
+    <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3">
+    <img src="Photo%20094fv1.jpg" alt="Soirée Papagayo 4">
+</div>
+
+<div class="banner-link">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
+    </a>
+</div>
+
+<script>
+    /* Script de l'animation des points qui suivent la souris */
+    const nDots = 7;
+    const dots = [];
+    let mouseX = 0, mouseY = 0;
+
+    for (let i = 0; i < nDots; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY + window.scrollY;
+    });
+
+    function animateDots() {
+        let x = mouseX;
+        let y = mouseY;
+        dots.forEach((dot, index) => {
+            dot.x += (x - dot.x) * 0.3;
+            dot.y += (y - dot.y) * 0.3;
+            dot.el.style.left = dot.x + 'px';
+            dot.el.style.top = dot.y + 'px';
+            x = dot.x; y = dot.y;
+        });
+        requestAnimationFrame(animateDots);
+    }
+    animateDots();
+
+    /* Script du texte qui saute */
+    const message = "Contactez nous pour avoir les dates et les lieux de rendez vous";
+    const jumpContainer = document.getElementById("jumpx");
+    let content = "";
+    for(let i=0; i<message.length; i++) {
+        content += `<span id="char${i}" style="position:relative;">${message[i]}</span>`;
+    }
+    jumpContainer.innerHTML = content;
+
+    let degree = 0;
+    function jumpEffect() {
+        for(let i=0; i<message.length; i++) {
+            const char = document.getElementById("char"+i);
+            char.style.top = (Math.sin((degree + i*10) * Math.PI / 180) * 10) + "px";
+        }
+        degree += 5;
+        requestAnimationFrame(jumpEffect);
+    }
+    jumpEffect();
+</script>
+
+</body>
+</html>
