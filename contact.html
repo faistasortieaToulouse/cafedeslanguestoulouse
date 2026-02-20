@@ -300,56 +300,40 @@
 </div>
 
 <script>
-    /* Script de l'animation des points qui suivent la souris */
-    const nDots = 7;
-    const dots = [];
-    let mouseX = 0, mouseY = 0;
+(function() {
+    // On emballe tout dans une fonction qui attend que la page soit prête
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('email-container');
+        
+        // Sécurité au cas où l'ID n'est pas trouvé
+        if (!container) return;
 
-    for (let i = 0; i < nDots; i++) {
-        const d = document.createElement('div');
-        d.className = 'dot';
-        document.body.appendChild(d);
-        dots.push({ el: d, x: 0, y: 0 });
-    }
+        const encoded = "Y29udGFjdEBjYWZlZGVzbGFuZ3Vlc3RvdWxvdXNlLmNvbQ==";
+        const finalEmail = atob(encoded); 
+        
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let iterations = 0;
 
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY + window.scrollY;
+        const interval = setInterval(() => {
+            container.innerText = finalEmail
+                .split("")
+                .map((letter, index) => {
+                    if (index < iterations) {
+                        return finalEmail[index];
+                    }
+                    return characters[Math.floor(Math.random() * characters.length)];
+                })
+                .join("");
+
+            if (iterations >= finalEmail.length) {
+                clearInterval(interval);
+                container.innerHTML = `<a href="mailto:${finalEmail}" style="color: var(--accent-red); text-decoration: none;">${finalEmail}</a>`;
+            }
+            
+            iterations += 1/2; 
+        }, 30);
     });
-
-    function animateDots() {
-        let x = mouseX;
-        let y = mouseY;
-        dots.forEach((dot, index) => {
-            dot.x += (x - dot.x) * 0.3;
-            dot.y += (y - dot.y) * 0.3;
-            dot.el.style.left = dot.x + 'px';
-            dot.el.style.top = dot.y + 'px';
-            x = dot.x; y = dot.y;
-        });
-        requestAnimationFrame(animateDots);
-    }
-    animateDots();
-
-    /* Script du texte qui saute */
-    const message = "Contactez nous pour avoir les dates et les lieux de rendez vous";
-    const jumpContainer = document.getElementById("jumpx");
-    let content = "";
-    for(let i=0; i<message.length; i++) {
-        content += `<span id="char${i}" style="position:relative;">${message[i]}</span>`;
-    }
-    jumpContainer.innerHTML = content;
-
-    let degree = 0;
-    function jumpEffect() {
-        for(let i=0; i<message.length; i++) {
-            const char = document.getElementById("char"+i);
-            char.style.top = (Math.sin((degree + i*10) * Math.PI / 180) * 10) + "px";
-        }
-        degree += 5;
-        requestAnimationFrame(jumpEffect);
-    }
-    jumpEffect();
+})();
 </script>
 
 </body>
