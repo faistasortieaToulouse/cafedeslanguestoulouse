@@ -14,10 +14,11 @@
 
         body {
             background-color: var(--bg-color);
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            color: #333;
         }
 
         @keyframes blink {
@@ -39,7 +40,6 @@
             background: white;
         }
 
-        /* --- MODIFICATION MENU PLEINE LARGEUR --- */
         nav {
             display: flex;
             justify-content: center;
@@ -48,21 +48,21 @@
             background: #fff;
             padding: 15px 0;
             margin-bottom: 20px;
-            width: 100%; /* Toute la largeur */
+            width: 100%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border-top: 1px solid #eee;
         }
         nav a {
             text-decoration: none;
-            color: var(--primary-green);
+            color: #5F1879;
             font-weight: bold;
             padding: 8px 15px;
             transition: 0.3s;
+            border-radius: 20px;
         }
         nav a:hover { 
-            color: var(--accent-red); 
-            background: #f0f0f0;
-            border-radius: 5px;
+            color: white; 
+            background: var(--accent-red); 
         }
 
         .main-layout {
@@ -70,7 +70,7 @@
             grid-template-columns: 220px 1fr 220px;
             gap: 20px;
             max-width: 1200px;
-            margin: 0 auto; /* Centré */
+            margin: 0 auto;
             padding: 0 15px;
         }
 
@@ -80,18 +80,19 @@
         }
 
         .sidebar img {
-            width: 200px;
+            width: 100%;
+            max-width: 200px;
             height: auto;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 50px; /* Espace augmenté comme demandé précédemment */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .content-card {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         /* Style du Formulaire */
@@ -100,6 +101,7 @@
             padding: 20px;
             border-radius: 8px;
             border: 1px solid #ddd;
+            margin-top: 20px;
         }
         fieldset {
             border: none;
@@ -112,7 +114,7 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
-        input[type="text"], select, textarea {
+        input[type="text"], select {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -120,17 +122,31 @@
             min-width: 200px;
         }
 
-        .photo-gallery {
+        /* GALERIE DU BAS (Harmonisée) */
+        .bottom-gallery {
+            max-width: 1100px;
+            margin: 40px auto;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            padding: 0 15px;
         }
-        .photo-gallery img {
-            width: 180px;
+        .bottom-gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border: 3px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Footer Stylisé */
+        .lang-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9; /* Légèrement grisé pour se distinguer du blanc du dessus */
+            border-radius: 15px;
         }
 
         .btn-submit {
@@ -141,6 +157,21 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        .banner-link {
+            display: block;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
         }
     </style>
 </head>
@@ -172,19 +203,13 @@
         <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
             <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
         </a>
-        <a href="http://www.lepetittou.com/" target="_blank">
-            <img src="lepetittou.jpg" alt="Le Petit Tou">
-        </a>
-        <a href="http://www.happypeople.asso.st/" target="_blank">
-            <img src="happypeoplenew200.jpg" alt="Happy People">
-        </a>
     </aside>
 
     <main>
-        <section class="content-card">
+        <article class="content-card">
             <p style="color: var(--primary-blue); font-weight: bold;">
                 L'association Bilingue organise des échanges de conversation entre Français et étrangers. 
-                17 langues proposées. <a href="calendrier.htm" style="background: #33cc00; padding: 2px 5px; color: white;">Consultez l'agenda complet</a>.
+                17 langues proposées. <a href="calendrier.htm" style="background: #33cc00; padding: 2px 5px; color: white; text-decoration: none; border-radius: 3px;">Consultez l'agenda complet</a>.
             </p>
 
             <div style="border-left: 4px solid var(--primary-green); padding-left: 15px; margin: 20px 0;">
@@ -220,14 +245,12 @@
                     <input value="Envoyer mon inscription" type="submit" class="btn-submit">
                 </div>
             </form>
-        </section>
 
-        <div class="photo-gallery">
-            <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo">
-            <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo">
-            <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo">
-            <img src="Photo%20094fv1.jpg" alt="Soirée Over-culture">
-        </div>
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
     </main>
 
     <aside class="sidebar">
@@ -238,16 +261,47 @@
         <a href="http://www.toulouse.com/bon-plan-toulouse-le-bracelet-toulouse-vip/" target="_blank">
             <img src="bracelettoulousevip.jpg" alt="Toulouse VIP">
         </a>
-        <img src="0BerlinPalais.jpg" alt="Berlin">
-        <a href="http://www.happypeople.asso.st/" target="_blank">
-            <img src="logoHP.png" alt="Logo Happy People" style="width: 120px; display: block; margin: 0 auto;">
-        </a>
     </aside>
 </div>
 
-<footer style="text-align: center; padding: 20px;">
-    <p><a href="cafelangues.htm">Café des langues</a> (AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</p>
-</footer>
+<div class="bottom-gallery">
+    <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo">
+    <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo">
+    <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo">
+    <img src="Photo%20094fv1.jpg" alt="Soirée Over-culture">
+</div>
+
+<div class="banner-link">
+    <a href="http://www.bilingue.fr.nf/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%;">
+    </a>
+</div>
+
+<script>
+    const dots = [];
+    const n = 10; 
+    const colors = ['#FF0000', '#00FF00', '#0000FF'];
+    for (let i = 0; i < n; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        d.style.backgroundColor = colors[i % 3];
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
+    let mX = 0, mY = 0;
+    window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
+    function tick() {
+        let x = mX, y = mY;
+        dots.forEach((dot) => {
+            dot.x += (x - dot.x) * 0.35;
+            dot.y += (y - dot.y) * 0.35;
+            dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+            x = dot.x; y = dot.y;
+        });
+        requestAnimationFrame(tick);
+    }
+    tick();
+</script>
 
 </body>
 </html>
