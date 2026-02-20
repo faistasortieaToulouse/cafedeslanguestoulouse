@@ -20,7 +20,6 @@
             line-height: 1.6;
         }
 
-        /* Animations de clignotement modernes */
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0; }
@@ -38,7 +37,32 @@
             text-align: center;
             padding: 20px;
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- MODIFICATION MENU PLEINE LARGEUR --- */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            width: 100%; /* Toute la largeur */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 1px solid #eee;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+        }
+        nav a:hover { 
+            color: var(--accent-red); 
+            background: #f0f0f0;
+            border-radius: 5px;
         }
 
         .main-layout {
@@ -46,7 +70,7 @@
             grid-template-columns: 220px 1fr 220px;
             gap: 20px;
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 0 auto; /* Centré */
             padding: 0 15px;
         }
 
@@ -69,24 +93,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-
-        /* Menu de navigation */
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            background: #fff;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        nav a {
-            text-decoration: none;
-            color: var(--primary-green);
-            font-weight: bold;
-            padding: 5px 10px;
-        }
-        nav a:hover { color: var(--accent-red); }
 
         /* Style du Formulaire */
         form {
@@ -113,14 +119,7 @@
             width: calc(100% - 170px);
             min-width: 200px;
         }
-        .checkbox-group {
-            background: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
 
-        /* Galerie de photos en bas */
         .photo-gallery {
             display: flex;
             justify-content: center;
@@ -153,6 +152,17 @@
     <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
 </header>
 
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
 <div class="main-layout">
     <aside class="sidebar">
         <img src="0AntiguaBarbuda.jpg" alt="Antigua">
@@ -171,15 +181,6 @@
     </aside>
 
     <main>
-        <nav>
-            <a href="bilingue.htm">Accueil</a>
-            <a href="present.htm">Présentation</a>
-            <a href="lieux.htm">Lieux</a>
-            <a href="active.htm">Activités</a>
-            <a href="contact.htm">Contact</a>
-            <a href="liens.htm">Liens</a>
-        </nav>
-
         <section class="content-card">
             <p style="color: var(--primary-blue); font-weight: bold;">
                 L'association Bilingue organise des échanges de conversation entre Français et étrangers. 
@@ -215,35 +216,10 @@
                     </select>
                 </fieldset>
 
-                <fieldset class="checkbox-group">
-                    <strong>Je suis intéressé par :</strong><br>
-                    <input name="interets[]" value="com" type="checkbox"> Communication
-                    <input name="interets[]" value="animation" type="checkbox"> Animation
-                    <input name="interets[]" value="organisation" type="checkbox"> Organisation
-                    <input name="interets[]" value="langue" type="checkbox"> Initiation langue
-                    <input name="interets[]" value="cuisine" type="checkbox"> Atelier Cuisine
-                </fieldset>
-
-                <fieldset>
-                    <label>Message :</label><br>
-                    <textarea name="comments" rows="5" style="width: 100%;"></textarea>
-                </fieldset>
-
                 <div style="text-align: center;">
                     <input value="Envoyer mon inscription" type="submit" class="btn-submit">
                 </div>
             </form>
-
-            <div style="margin-top: 30px; text-align: center;">
-                <h4 style="color: var(--accent-red);">Appel à bénévole !</h4>
-                <p>Participez à l'organisation : communication, administration, sorties, jeux...</p>
-                <div style="background: #fff; border: 1px solid var(--primary-blue); padding: 10px;">
-                    <img src="newamigos.jpg" alt="New Amigos" style="width: 100px; float: left; margin-right: 15px;">
-                    <strong>Soirées rencontre français-étrangers</strong><br>
-                    Auberge espagnole, visites de Toulouse, tandems linguistiques.
-                    <div style="clear: both;"></div>
-                </div>
-            </div>
         </section>
 
         <div class="photo-gallery">
@@ -271,9 +247,6 @@
 
 <footer style="text-align: center; padding: 20px;">
     <p><a href="cafelangues.htm">Café des langues</a> (AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</p>
-    <a href="http://www.bilingue.fr.nf/">
-        <img src="2007_3_22_10h36_182735.gif" alt="Bannière">
-    </a>
 </footer>
 
 </body>
