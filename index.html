@@ -38,23 +38,49 @@
         }
 
         nav {
-            background: #003f7d;
             display: flex;
             justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 8px; /* Espace réduit pour faire tenir plus de liens */
+            background: #fff;
+            padding: 15px 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 1px solid #eee;
+            box-sizing: border-box; /* Important pour que le padding ne fasse pas déborder le menu */
         }
 
         nav a {
-            color: white;
-            padding: 15px 20px;
             text-decoration: none;
+            color: #5F1879;
             font-weight: bold;
+            padding: 8px 12px;
+            transition: 0.3s;
+            border-radius: 20px;
+            font-size: 14px; /* Taille de police légèrement réduite pour le nombre de liens */
+            background: #f8f9fa; /* Fond léger pour simuler des boutons sur mobile */
+            border: 1px solid #eee;
         }
 
-        nav a:hover {
-            background: #0073e6;
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+            border-color: var(--accent-red);
+        }
+
+        /* AJOUT : Style spécifique pour mobile */
+        @media (max-width: 600px) {
+            nav {
+                gap: 5px;
+                padding: 10px 5px;
+            }
+            nav a {
+                flex: 1 1 calc(45% - 5px); /* Affiche 2 boutons par ligne sur mobile */
+                text-align: center;
+                padding: 10px 5px;
+                font-size: 12px;
+            }
         }
 
         section {
@@ -126,9 +152,19 @@
 </header>
 
 <nav>
-    <a href="http://bilingue31.free.fr/bilingue.htm">Accueil</a>
-    <a href="http://bilingue31.free.fr/calendrier.htm">Calendrier</a>
+    <a href="index.html">Accueil</a>
+    <a href="present.html">Présentation</a>
+    <a href="cafelangues.html">Café des Langues</a>
+    <a href="active.html">Activités</a>
+    <a href="activeHP.html">Activités HP</a>
+    <a href="ateliers.html">Ateliers</a>
+    <a href="activites.html">Bénévolat</a>
+    <a href="contact.html">Contact</a>
     <a href="http://bilingue31.free.fr/inscription.htm">Inscription</a>
+    <a href="lieux.html">Lieux</a>
+    <a href="liens.html">Liens</a>
+    <a href="http://bilingue31.free.fr/photos.htm">Photos</a>
+    <a href="http://bilingue31.free.fr/calendrier.htm">Calendrier</a>
 </nav>
 
 <section>
