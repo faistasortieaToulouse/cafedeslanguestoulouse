@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilingue - Activités</title>
+    <title>Bilingue - Accueil des nouveaux et étrangers</title>
     <style>
         :root {
             --primary-blue: #0000ff;
@@ -17,133 +17,124 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
             color: #333;
-            overflow-x: hidden;
         }
 
-        /* Header & Logo */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .txt-clignotant {
+            animation: blink 1s infinite;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
         header {
             text-align: center;
-            padding: 20px 0;
+            padding: 20px;
             background: white;
-        }
-        .logo-main {
-            max-width: 90%;
-            height: auto;
-            border-radius: 10px;
         }
 
-        /* Navigation */
         nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
-            padding: 15px;
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            width: 100%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 1px solid #eee;
         }
         nav a {
             text-decoration: none;
             color: #5F1879;
             font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 8px 15px;
             transition: 0.3s;
+            border-radius: 20px;
         }
-        nav a:hover {
-            background: var(--accent-red);
-            color: white;
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
         }
 
-        /* Layout Principal */
-        .main-container {
-            max-width: 1200px;
-            margin: 20px auto;
+        .main-layout {
             display: grid;
             grid-template-columns: 220px 1fr 220px;
             gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 15px;
         }
 
         @media (max-width: 950px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-            .sidebar { 
-                display: flex; 
-                flex-wrap: wrap; 
-                justify-content: center; 
-                gap: 15px; 
-                margin-bottom: 20px;
-            }
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         }
 
-        /* Colonnes latérales */
         .sidebar {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .sidebar img {
             width: 100%;
             max-width: 200px;
+            height: auto;
             border-radius: 8px;
+            margin-bottom: 30px; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
             transition: transform 0.2s;
         }
-        .sidebar img:hover { transform: scale(1.05); }
+        
+        .sidebar img:hover {
+            transform: scale(1.03);
+        }
 
-        /* Contenu Principal */
-        .content {
+        .content-card {
             background: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            line-height: 1.6;
-            color: var(--primary-blue);
         }
 
-        .content h2 {
-            color: var(--primary-green);
-            border-bottom: 2px solid var(--primary-green);
-            padding-bottom: 5px;
-            margin-top: 0;
+        /* Formulaire */
+        form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
         }
-
-        .content p {
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-
-        .activity-list {
-            list-style: none;
+        fieldset {
+            border: none;
             padding: 0;
+            margin-bottom: 20px;
         }
-
-        .activity-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            border-bottom: 1px dotted #eee;
-            padding-bottom: 5px;
-        }
-
-        .activity-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
+        label {
+            display: inline-block;
+            width: 150px;
             font-weight: bold;
-            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        input[type="text"], select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 170px);
+            min-width: 200px;
         }
 
-        /* Galerie Bas de Page */
-        .photo-gallery {
+        /* STYLE DE LA GALERIE HARMONISÉ */
+        .bottom-gallery {
             max-width: 1100px;
             margin: 40px auto;
             display: grid;
@@ -151,37 +142,44 @@
             gap: 20px;
             padding: 20px;
             justify-items: center;
-            align-items: center;
         }
-        .gallery-item img {
+        .bottom-gallery img {
             width: 100%;
-            max-width: 220px;
+            max-width: 230px;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: 0.3s;
+            border: 5px solid white; /* Cadre blanc propre */
+            transition: transform 0.3s ease;
         }
-        .gallery-item img:hover {
+        .bottom-gallery img:hover {
             transform: translateY(-5px);
         }
 
-        /* Footer interne */
         .lang-footer {
             text-align: center;
             margin-top: 30px;
             padding: 20px;
             background: #f9f9f9;
             border-radius: 15px;
-            border: 1px solid #eee;
+        }
+
+        .btn-submit {
+            background: var(--primary-green);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         .banner-link {
             display: block;
             text-align: center;
-            padding: 30px 0;
-            background: rgba(255,255,255,0.5);
+            padding: 40px 0;
         }
 
-        /* Script Dots */
         .dot {
             position: fixed;
             width: 6px;
@@ -195,7 +193,9 @@
 <body>
 
 <header>
-    <img src="bilingue1.jpg" alt="Bilingue Logo" class="logo-main">
+    <div class="txt-clignotant">Groupe de discussion</div>
+    <img src="bilingue1.jpg" alt="Bilingue">
+    <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
 </header>
 
 <nav>
@@ -209,57 +209,94 @@
     <a href="inscription.htm">Inscription</a>
 </nav>
 
-<div class="main-container">
+<div class="main-layout">
     <aside class="sidebar">
-        <img src="0Cartagena.jpg" alt="Cartagena">
+        <img src="0AntiguaBarbuda.jpg" alt="Antigua Barbuda">
+        
         <a href="http://semaineeuropeennedeslangues.venez.fr/" target="_blank">
             <img src="drapeauUEO1.jpg" alt="Semaine Européenne des Langues">
         </a>
-        <img src="0Dublin.jpg" alt="Dublin">
+        
         <a href="http://www.lepetittou.com/" target="_blank">
-            <img src="lepetittou.jpg" alt="Le Petit Tou">
+            <img src="lepetittou.jpg" alt="Le Petit Tou - Guide de Toulouse">
         </a>
-    </aside>
-
-    <article class="content">
-        <h2>Nos Activités</h2>
-        <p>
-            L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
-        </p>
-
-        <p>
-            Chaque participant pourra proposer des activités autre que se réunir autour d’un verre à condition qu’elles soient pratiquées dans une langue souhaitée. Les participants sélectionnent les activités dans la langue étrangère qui les intéressent.
-        </p>
-
-        <ul class="activity-list">
-            <li>Echange de conversation à Toulouse ! Gratuit !</li>
-            <li>Accueil des nouveaux toulousains et étrangers !</li>
-            <li>Visite de Toulouse et de sa région.</li>
-            <li>Lecture en langue étrangère, cuisine de plats étrangers et régionaux.</li>
-            <li>Participation aux spectacles en langues étrangères et soirées théâtre.</li>
-            <li>Sorties au cinéma pour voir des films en VO.</li>
-            <li>Soirées festives et culturelles à thèmes.</li>
-            <li>Soirées dans des pubs, des cafés ou restaurants étrangers.</li>
-            <li>Conférence, exposition sur des pays lointains.</li>
-        </ul>
-
-        <div class="lang-footer">
-            <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
-            <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
-        </div>
-    </article>
-
-    <aside class="sidebar">
-        <img src="0Douglas.jpg" alt="Douglas">
-        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
-            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
-        </a>
-        <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
-            <img src="jobetudiant200.jpg" alt="Job Etudiant">
-        </a>
+        
+        <img src="0BerlinPalais.jpg" alt="Berlin Palais">
+        
         <a href="http://hp31.lei-web.com/" target="_blank">
             <img src="happypeoplenew200.jpg" alt="Happy People Toulouse">
         </a>
+    </aside>
+
+    <main>
+        <article class="content-card">
+            <p style="color: var(--primary-blue); font-weight: bold;">
+                L'association Bilingue organise des échanges de conversation entre Français et étrangers. 
+                17 langues proposées. <a href="calendrier.htm" style="background: #33cc00; padding: 2px 5px; color: white; text-decoration: none; border-radius: 3px;">Consultez l'agenda complet</a>.
+            </p>
+
+            <div style="border-left: 4px solid var(--primary-green); padding-left: 15px; margin: 20px 0;">
+                <p><strong>Universités d'été :</strong> 80 destinations européennes. 90€ le séjour (15j), cours et hébergement inclus. Contactez-nous !</p>
+                <p><strong>Semaine Européenne des Langues :</strong> Du 20 au 29 septembre à Toulouse.</p>
+            </div>
+
+            <hr>
+
+            <form method="post" action="transfert.php">
+                <h3>Formulaire de participation</h3>
+                <fieldset>
+                    <label>Civilité :</label>
+                    <input name="civilite" value="M." type="radio"> M. 
+                    <input name="civilite" value="Mlle" type="radio"> Mlle 
+                    <input name="civilite" value="Mme" type="radio"> Mme
+                </fieldset>
+
+                <fieldset>
+                    <label>Prénom :</label> <input name="prenom" type="text"><br><br>
+                    <label>Nom :</label> <input name="nom" type="text"><br><br>
+                    <label>Email :</label> <input name="email" type="text"><br><br>
+                    <label>Tranche d'âge :</label>
+                    <select name="age">
+                        <option value="16">16-18</option>
+                        <option value="18">18-25</option>
+                        <option value="20">25-35</option>
+                        <option value="35">plus de 35</option>
+                    </select>
+                </fieldset>
+
+                <div style="text-align: center;">
+                    <input value="Envoyer mon inscription" type="submit" class="btn-submit">
+                </div>
+            </form>
+
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
+            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
+        </a>
+        
+        <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
+            <img src="jobetudiant200.jpg" alt="Job Etudiant">
+        </a>
+        
+        <img src="0Barbados.jpg" alt="Barbados">
+        
+        <a href="http://www.toulouse.com/bon-plan-toulouse-le-bracelet-toulouse-vip/" target="_blank">
+            <img src="bracelettoulousevip.jpg" alt="Toulouse VIP">
+        </a>
+        
+        <div style="text-align:center; padding: 10px; background: white; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <a href="http://www.newamigos.com/" target="_blank">
+                <img src="newamigos.jpg" alt="New Amigos" style="margin-bottom: 5px;">
+                <br><small><strong>Soirées linguistiques</strong></small>
+            </a>
+        </div>
     </aside>
 </div>
 
@@ -278,9 +315,8 @@
 
 <script>
     const dots = [];
-    const n = 12; // Un peu plus de points pour plus de fluidité
+    const n = 10; 
     const colors = ['#FF0000', '#00FF00', '#0000FF'];
-
     for (let i = 0; i < n; i++) {
         const d = document.createElement('div');
         d.className = 'dot';
@@ -288,13 +324,8 @@
         document.body.appendChild(d);
         dots.push({ el: d, x: 0, y: 0 });
     }
-
     let mX = 0, mY = 0;
-    window.addEventListener('mousemove', (e) => { 
-        mX = e.clientX; 
-        mY = e.clientY; 
-    });
-
+    window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
     function tick() {
         let x = mX, y = mY;
         dots.forEach((dot) => {
