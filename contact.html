@@ -177,36 +177,33 @@
     
 <script>
 (function() {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@.";
+    const container = document.getElementById('email-container');
     
-    function animateEmail(el) {
-        const finalEmail = el.getAttribute('data-email');
-        let iterations = 0;
+    // L'adresse est encodée ici (invisible pour les robots scanneurs)
+    const encoded = "Y29udGFjdEBjYWZlZGVzbGFuZ3Vlc3RvdWxvdXNlLmNvbQ==";
+    const finalEmail = atob(encoded); // Le navigateur décode l'adresse ici
+    
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let iterations = 0;
+
+    const interval = setInterval(() => {
+        container.innerText = finalEmail
+            .split("")
+            .map((letter, index) => {
+                if (index < iterations) {
+                    return finalEmail[index];
+                }
+                return characters[Math.floor(Math.random() * characters.length)];
+            })
+            .join("");
+
+        if (iterations >= finalEmail.length) {
+            clearInterval(interval);
+            container.innerHTML = `<a href="mailto:${finalEmail}" style="color: var(--accent-red); text-decoration: none;">${finalEmail}</a>`;
+        }
         
-        const interval = setInterval(() => {
-            el.innerText = finalEmail
-                .split("")
-                .map((letter, index) => {
-                    if (index < iterations) {
-                        return finalEmail[index];
-                    }
-                    return characters[Math.floor(Math.random() * characters.length)];
-                })
-                .join("");
-
-            if (iterations >= finalEmail.length) {
-                clearInterval(interval);
-                el.innerHTML = `<a href="mailto:${finalEmail}" style="color: var(--primary-blue); text-decoration: none; border-bottom: 1px dashed;">${finalEmail}</a>`;
-            }
-            
-            iterations += 1/2; // Vitesse : augmente pour aller plus vite
-        }, 30);
-    }
-
-    // On lance l'animation pour chaque email trouvé sur la page
-    window.addEventListener('load', () => {
-        document.querySelectorAll('.decode-email').forEach(animateEmail);
-    });
+        iterations += 1/2; // Vitesse un peu plus rapide car l'adresse est longue
+    }, 30);
 })();
 </script>
     
@@ -255,7 +252,7 @@
             <div class="contact-box">
                 <p><font color="#0000ff"><b>Pour nous contacter :</b></font></p>
                 <p><font color="#0000ff">05-61-61-03-46</font></p>
-                <p>📧 <span class="decode-email" data-email="contact@cafedeslanguestoulouse.com"></span></p>
+                <p id="email-container" style="text-align: left; font-weight: bold; min-height: 1.6em;"></p>
             </div>
 
             <div id="jumpx" style="font-family: Arial; font-size: 1.2rem; color: #333; margin: 40px 0;">
