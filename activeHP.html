@@ -187,6 +187,74 @@
 </head>
 <body>
 
+    <script type="text/javascript">
+(function() {
+    var xCol = "#FF0000", yCol = "#00FF00", zCol = "#0000FF";
+    var n = 6;    // Nombre de points par traînée
+    var t = 40;   // Vitesse du rafraîchissement (ms)
+    var s = 0.2;  // Vitesse de l'effet orbital
+
+    var d = document;
+    var mouseX = 0, mouseY = 0;
+    var stp = 0;
+    var evn = 360 / 3;
+    
+    var vx = [], vy = [], vz = [];
+    var dy = [], dx = [];
+
+    // 1. Création dynamique des points
+    var container = d.createElement('div');
+    for (var i = 0; i < n; i++) {
+        var size = (i + 1) / 2;
+        container.innerHTML += 
+            '<div id="vx'+i+'" style="position:fixed; top:0; left:0; width:'+size+'px; height:'+size+'px; background:'+xCol+'; z-index:999; pointer-events:none;"></div>' +
+            '<div id="vy'+i+'" style="position:fixed; top:0; left:0; width:'+size+'px; height:'+size+'px; background:'+yCol+'; z-index:999; pointer-events:none;"></div>' +
+            '<div id="vz'+i+'" style="position:fixed; top:0; left:0; width:'+size+'px; height:'+size+'px; background:'+zCol+'; z-index:999; pointer-events:none;"></div>';
+    }
+    d.body.appendChild(container);
+
+    // 2. Capture de la position de la souris (Moderne)
+    d.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // 3. Animation
+    function animate() {
+        // Calcul des 3 positions orbitales
+        for (var j = 0; j < 3; j++) {
+            dy[j] = mouseY + 50 * Math.cos(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2);
+            dx[j] = mouseX + 50 * Math.sin(stp + j * evn * Math.PI / 180) * Math.sin((stp + j * 25) / 2) * Math.sin(stp / 4);
+        }
+        stp += s;
+
+        // Effet de traînée (chaque point suit le suivant)
+        for (var i = 0; i < n; i++) {
+            if (i < n - 1) {
+                vx[i].top = vx[i+1].top; vx[i].left = vx[i+1].left;
+                vy[i].top = vy[i+1].top; vy[i].left = vy[i+1].left;
+                vz[i].top = vz[i+1].top; vz[i].left = vz[i+1].left;
+            } else {
+                vx[i].top = dy[0] + "px"; vx[i].left = dx[0] + "px";
+                vy[i].top = dy[1] + "px"; vy[i].left = dx[1] + "px";
+                vz[i].top = dy[2] + "px"; vz[i].left = dx[2] + "px";
+            }
+        }
+        setTimeout(animate, t);
+    }
+
+    // 4. Initialisation
+    window.addEventListener('load', function() {
+        for (var i = 0; i < n; i++) {
+            vx[i] = d.getElementById("vx" + i).style;
+            vy[i] = d.getElementById("vy" + i).style;
+            vz[i] = d.getElementById("vz" + i).style;
+        }
+        animate();
+    });
+})();
+</script>
+
 <header>
     <img src="bilingue1.jpg" alt="Bilingue Logo" class="logo-main">
 </header>
