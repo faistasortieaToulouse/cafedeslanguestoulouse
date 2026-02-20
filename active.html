@@ -101,13 +101,6 @@
             color: var(--primary-blue);
         }
 
-        .content h2 {
-            color: var(--primary-green);
-            border-bottom: 2px solid var(--primary-green);
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-
         .content p {
             margin-bottom: 25px;
             font-size: 1.1rem;
@@ -122,17 +115,14 @@
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
-            border-bottom: 1px dotted #eee;
-            padding-bottom: 5px;
         }
 
         .activity-list li::before {
-            content: "•";
+            content: "✓";
             position: absolute;
             left: 0;
-            color: var(--primary-blue);
+            color: var(--primary-green);
             font-weight: bold;
-            font-size: 1.2rem;
         }
 
         /* Footer interne */
@@ -195,7 +185,6 @@
     </aside>
 
     <article class="content">
-        <h2>Nos Activités</h2>
         <p>
             L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
         </p>
@@ -209,8 +198,7 @@
             <li>Accueil des nouveaux toulousains et étrangers !</li>
             <li>Visite de Toulouse et de sa région.</li>
             <li>Lecture en langue étrangère, cuisine de plats étrangers et régionaux.</li>
-            <li>Participation aux spectacles en langues étrangères et soirées théâtre.</li>
-            <li>Sorties au cinéma pour voir des films en VO.</li>
+            <li>Spectacles en langues étrangères, soirées théâtre, et films en VO au cinéma.</li>
             <li>Soirées festives et culturelles à thèmes.</li>
             <li>Soirées dans des pubs, des cafés ou restaurants étrangers.</li>
             <li>Conférence, exposition sur des pays lointains.</li>
@@ -232,7 +220,7 @@
         <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
             <img src="jobetudiant200.jpg" alt="Job Etudiant">
         </a>
-
+        
         <a href="http://hp31.lei-web.com/" target="_blank">
             <img src="happypeoplenew200.jpg" alt="Happy People Toulouse">
         </a>
@@ -246,7 +234,7 @@
 </div>
 
 <script>
-    // Script des points suiveurs
+    // Script des points suiveurs (optimisé)
     const dots = [];
     const n = 10; 
     const colors = ['#FF0000', '#00FF00', '#0000FF'];
