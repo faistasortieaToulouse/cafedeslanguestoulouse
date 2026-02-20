@@ -99,41 +99,35 @@
             transform: scale(1.03);
         }
 
+        /* RÉTABLISSEMENT DU BLOC CENTRAL */
         .content-card {
             background: white;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            color: var(--primary-blue); /* Texte en bleu comme demandé */
         }
 
-        /* Formulaire */
-        form {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-top: 20px;
+        .activity-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 20px 0;
         }
-        fieldset {
-            border: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-        label {
-            display: inline-block;
-            width: 150px;
-            font-weight: bold;
+
+        .activity-list li {
             margin-bottom: 10px;
-        }
-        input[type="text"], select {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: calc(100% - 170px);
-            min-width: 200px;
+            padding-left: 20px;
+            position: relative;
         }
 
-        /* STYLE DE LA GALERIE HARMONISÉ */
+        .activity-list li::before {
+            content: "•";
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         .bottom-gallery {
             max-width: 1100px;
             margin: 40px auto;
@@ -149,7 +143,7 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 5px solid white; /* Cadre blanc propre */
+            border: 5px solid white;
             transition: transform 0.3s ease;
         }
         .bottom-gallery img:hover {
@@ -162,16 +156,6 @@
             padding: 20px;
             background: #f9f9f9;
             border-radius: 15px;
-        }
-
-        .btn-submit {
-            background: var(--primary-green);
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
         }
 
         .banner-link {
@@ -229,33 +213,33 @@
     </aside>
 
     <main>
-<article class="content">
-        <h2>Nos Activités</h2>
-        <p>
-            L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
-        </p>
+        <article class="content-card">
+            <h2 style="color: var(--primary-green); border-bottom: 2px solid #eee; padding-bottom: 10px;">Nos Activités</h2>
+            <p>
+                L'association Bilingue a pour but d'organiser des échanges de discussion entre des français et des étrangers résidant en France. L'échange peut avoir lieu autour d'un thème défini auparavant.
+            </p>
 
-        <p>
-            Chaque participant pourra proposer des activités autre que se réunir autour d’un verre à condition qu’elles soient pratiquées dans une langue souhaitée. Les participants sélectionnent les activités dans la langue étrangère qui les intéressent.
-        </p>
+            <p>
+                Chaque participant pourra proposer des activités autre que se réunir autour d’un verre à condition qu’elles soient pratiquées dans une langue souhaitée. Les participants sélectionnent les activités dans la langue étrangère qui les intéressent.
+            </p>
 
-        <ul class="activity-list">
-            <li>Echange de conversation à Toulouse ! Gratuit !</li>
-            <li>Accueil des nouveaux toulousains et étrangers !</li>
-            <li>Visite de Toulouse et de sa région.</li>
-            <li>Lecture en langue étrangère, cuisine de plats étrangers et régionaux.</li>
-            <li>Participation aux spectacles en langues étrangères et soirées théâtre.</li>
-            <li>Sorties au cinéma pour voir des films en VO.</li>
-            <li>Soirées festives et culturelles à thèmes.</li>
-            <li>Soirées dans des pubs, des cafés ou restaurants étrangers.</li>
-            <li>Conférence, exposition sur des pays lointains.</li>
-        </ul>
+            <ul class="activity-list">
+                <li>Echange de conversation à Toulouse ! Gratuit !</li>
+                <li>Accueil des nouveaux toulousains et étrangers !</li>
+                <li>Visite de Toulouse et de sa région.</li>
+                <li>Lecture en langue étrangère, cuisine de plats étrangers et régionaux.</li>
+                <li>Participation aux spectacles en langues étrangères et soirées théâtre.</li>
+                <li>Sorties au cinéma pour voir des films en VO.</li>
+                <li>Soirées festives et culturelles à thèmes.</li>
+                <li>Soirées dans des pubs, des cafés ou restaurants étrangers.</li>
+                <li>Conférence, exposition sur des pays lointains.</li>
+            </ul>
 
-        <div class="lang-footer">
-            <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
-            <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
-        </div>
-    </article>
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 1.2rem;">CAFÉ DES LANGUES</a><br>
+                <small style="color: #666;">(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
     </main>
 
     <aside class="sidebar">
