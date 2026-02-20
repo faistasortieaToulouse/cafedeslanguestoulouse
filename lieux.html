@@ -1,1435 +1,305 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingue - Lieux de discussion</title>
+    <style>
+        :root {
+            --primary-blue: #0000ff;
+            --primary-green: #009900;
+            --accent-red: #ff0000;
+            --bg-color: #ccffff;
+            --nav-purple: #5F1879;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
 
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+        }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #fff;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--nav-purple);
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        nav a:hover { 
+            color: white; 
+            background: var(--accent-red); 
+        }
 
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            gap: 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-  
-  
-  
-  
-  <meta http-equiv="Content-Language" content="fr">
+        @media (max-width: 950px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
+        }
 
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
 
+        .side-menu {
+            background: white;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .side-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin: 5px 0;
+        }
 
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
+        /* BLANC CENTRAL ALLONGÉ */
+        .content-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 1200px; 
+            text-align: center;
+        }
 
+        .intro-text {
+            color: var(--primary-blue);
+            text-align: left;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
 
-  
-  
-  
-  
-  
-  
-  
-  
-  <title>Bilingue</title>
-  <style type="text/css">#title9
-.suit {
-	FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red
-}
-.suit1 {
-	FONT-WEIGHT: bold; COLOR: white
-	}
-.over {
-	FONT-WEIGHT: bold; COLOR: white
-}
-.out {
-	FONT-WEIGHT: bold; COLOR: #5F1879
-}
-  </style>
+        .photo-grid-center {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            justify-items: center;
+            margin: 30px 0;
+        }
+        .photo-grid-center img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 100%;
+        }
 
-  
-  
-  
-  
-  <style type="text/css">
-.gris {
-	BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
-}
-.blanc {
-	BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; LEFT: 0px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; 
-}
-.sous {
-	COLOR: #00CC00; FONT-SIZE: 40px; Text-Decoration: underline
-}
-}
-.oui {
-	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #cccccc
-}
-.non {
-	FONT-WEIGHT: bold; COLOR: red; BACKGROUND-COLOR: #FFFFFF
-}
-.oui1 {
-	FONT-WEIGHT: bold; COLOR: green
-}
-.non1 {
-	FONT-WEIGHT: bold; COLOR: red
-}
-.green1 {
-	FONT-WEIGHT: bold; COLOR: red
-}
-  </style>
-  
-  
-  
-  
-  <style type="text/css">
-#supertext 
-{
-position:absolute;
-left:0;
-top:0;
-visibility:hide;
-visibility:hidden;
-}
-        </style>
+        .lang-footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px dashed var(--primary-blue);
+        }
+
+        .bottom-gallery {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+        .bottom-gallery img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        .banner-link { text-align: center; padding: 40px 0; }
+
+        /* Animation Points */
+        .dot {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-red);
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
 </head>
-
-
-<body bgcolor="#ccffff">
-
-
-
-
-
-
-<table style="text-align: center; vertical-align: text-top; position: absolute; width: 1195px;" id="table1" border="0" width="100%">
-
-
-
-
-
-	<tbody>
-
-
-
-
-    <tr>
-
-
-
-
-
-		<td style="width: 250px;" height="110">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;" height="110">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;" height="110">
-		<img src="bilingue1.jpg" border="0" height="126" width="371"></td>
-
-
-
-
-
-		<td style="width: 0px;" height="110">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;" height="110">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;" height="21">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;" height="21">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;" height="21">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;" height="21">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;" height="21">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;" height="129">
-		<img src="0MadridPalais.jpg" border="0" height="118" width="200"></td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 0px;" height="129">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 658px;" height="129">
-		
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">L'association se 
-		r&eacute;unit dans un lieu public ou priv&eacute; et organise des &eacute;changes de 
-		conversation dans une langue donn&eacute;e.</font></p>
-
-
-
-
-      </td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 0px;" height="129">
-		&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="129">
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Pr&eacute;sentation</a></p>
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-		</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="21">
-&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">
-		&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="136">
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activit&eacute;s</a></p>
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-		</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;" valign="top">
-      
-      
-      
-      
-      <script language="JavaScript1.2" type="text/javascript">
-
-var thecontent='<font size="1" color="#0000FF">Pr&eacute;sentation des lieux ed discussion</font>'
-var hidetimer='';
-var BallSpeed = 10;
-
-var contentWidth;
-var contentHeight;
-var maxBallSpeed = 500;
-
-var xMax;
-var yMax;
-var xPos = 0;
-var yPos = 0;
-var xDir = 'right';
-var yDir = 'down';
-var superballRunning = true;
-var tempBallSpeed;
-var currentBallSrc;
-var newXDir;
-var newYDir;
-
-function initializeBall() 
-{
-   if (document.all) 
-   {
-      xMax = document.body.clientWidth
-      yMax = document.body.clientHeight
-      document.all("supertext").style.visibility = "visible";
-      contentWidth=supertext.offsetWidth
-      contentHeight=supertext.offsetHeight
-   }
-   else 
-   if (document.layers) 
-   {
-      xMax = window.innerWidth;
-      yMax = window.innerHeight;
-      contentWidth=document.supertext.document.width
-      contentHeight=document.supertext.document.height
-      document.layers["supertext"].visibility = "show";
-   }
-   setTimeout('moveBall()',800);
-   if (hidetimer!='')
-   setTimeout("hidetext()",hidetimer)
-}
-
-function moveBall() 
-{
-   if (superballRunning == true) 
-   {
-      calculatePosition();
-      if (document.all) 
-      {
-         document.all("supertext").style.left = xPos + document.body.scrollLeft;
-         document.all("supertext").style.top = yPos + document.body.scrollTop;
-      }
-      else 
-      if (document.layers) 
-      {
-         document.layers["supertext"].left = xPos + pageXOffset;
-         document.layers["supertext"].top = yPos + pageYOffset;
-      }
-      animatetext=setTimeout('moveBall()',80);
-   }
-}
-
-function calculatePosition() 
-{
-   if (xDir == "right") 
-   {
-      if (xPos > (xMax - contentWidth - BallSpeed)) 
-      { 
-         xDir = "left";
-      }
-   }
-   else 
-   if (xDir == "left") 
-   {
-      if (xPos < (0 + BallSpeed)) 
-      {
-         xDir = "right";
-      }
-   }
-   if (yDir == "down") 
-   {
-      if (yPos > (yMax - contentHeight - BallSpeed)) 
-      {
-         yDir = "up";
-      }
-   }
-   else 
-   if (yDir == "up") 
-   {
-      if (yPos < (0 + BallSpeed)) 
-      {
-         yDir = "down";
-      }
-   }
-   if (xDir == "right") 
-   {
-      xPos = xPos + BallSpeed;
-   }
-   else 
-   if (xDir == "left") 
-   {
-      xPos = xPos - BallSpeed;
-   }
-   else 
-   {
-      xPos = xPos;
-   }
-   if (yDir == "down") 
-   {
-      yPos = yPos + BallSpeed;
-   }
-   else 
-   if (yDir == "up") 
-   {
-      yPos = yPos - BallSpeed;
-   }
-   else 
-   {
-      yPos = yPos;
-   }
-}
-
-function hidetext()
-{
-   if (document.all)
-      supertext.style.visibility="hidden"
-   else 
-   if (document.layers)
-      document.supertext.visibility="hide"
-   clearTimeout(animatetext)
-}
-
-if (document.all||document.layers)
-{
-   document.write('<span id="supertext"><nobr>'+thecontent+'</nobr></span>')
-   window.onload = initializeBall;
-   window.onresize = new Function("window.location.reload()");
-}
-
-        </script>
-		
-      
-      
-      
-      
-      <p style="text-align: left;"><font color="#0000ff">Les
-discussions en anglais ont lieu au caf&eacute; Jo de Bruges (17, rue de
-Toul) et au Roof au caf&eacute; Florida (12, place du Capitole). Les
-discussions en espagnol ont lieu au caf&eacute; Jo de Bruges et au Don
-Huevo (23, avenue du Cimeti&egrave;re). Les discussions en italien ont
-lieu au caf&eacute; Jo de Bruges. Les discussions en allemand ont lieu
-au caf&eacute; La Maison (9, rue Gabriel P&eacute;ri). Bistrot Voyageur
-au 14, pl Arnaud Bernard et le Kalimera au 15, rue de Toul. Au Papagayo, 
-31, rue Deville.</font></p>
-
-
-
-
-      </td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">
-		<img src="0MadridPlaca.jpg" border="0" height="131" width="200"></td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;"><img src="0Palacio.jpg" border="0" height="131" width="200"></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">
-        <img src="P1010195a.jpg" alt="Caf&eacute; Florida" border="0" height="150" width="200"></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="129">
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a>
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-		</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="136">
-      
-      
-      
-      
-      <div class="blanc">
-	&nbsp;
-      
-      
-      
-      
-      <p>&nbsp;</p>
-
-
-
-
-
-	
-      
-      
-      
-      
-      <p>&nbsp;</p>
-
-
-
-
-      </div>
-
-
-
-
-
-		</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">
-		<img src="P1010196a.jpg" alt="Caf&eacute; La Maison" border="0" height="150" width="200"></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="129">
-      <img src="0SanSebastian.jpg" border="0" height="132" width="200"></td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;"><img src="0Segovia.jpg" border="0" height="130" width="200"></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">
-        <img src="P1010197a.jpg" alt="Le Don Huevo" border="0" height="150" width="200"></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="136">
-      
-      
-      
-      
-      <div class="blanc">
-	&nbsp;
-      
-      
-      
-      
-      <p>
-	&nbsp;</p>
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-
-		</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="136">
-      
-      
-      
-      
-      <div class="blanc">
-	&nbsp;
-      
-      
-      
-      
-      <p>&nbsp;</p>
-
-
-
-
-
-	
-      
-      
-      
-      
-      <p>&nbsp;</p>
-
-
-
-
-      </div>
-
-
-
-
-
-		</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">
-		<img src="P1010280.jpg" alt="Le Jo de Bruges" border="0" height="150" width="200"></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="129">
-      <img src="0StLucia.jpg" border="0" height="131" width="200"></td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;"><img src="bistrotvoyageur.jpg" alt="Bistrot Voyageur" border="0" height="150" width="200">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-      		<td style="width: 658px;"> <img style="border: 0px solid ; width: 200px; height: 150px;" src="lepapagayo.jpg" alt="Le Papagayo"> </td>
-
-
-
-
-      
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;"><img src="kalimera.jpg" alt="Le Kalimera" border="0" height="150" width="200">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="136">
-		</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">
-		
-      
-      
-      
-      
-      <div class="blanc">
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a>
-      
-      
-      
-      
-      <p>
-	<a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
-
-
-
-
-
-	&nbsp;</div>
-
-
-
-
-      </td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="vertical-align: top; width: 251px;" height="129">
-&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="21">
-&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;" bgcolor="#ffffff"><a href="cafelangues.htm">caf&eacute; des 
-        langues</a><br>
-
-
-
-
-      <span style="vertical-align: top;">(AL, BG, </span><span style="vertical-align: top;">CZ,</span><span style="vertical-align: top;"> DK</span><span style="vertical-align: top;">, GR</span><span style="vertical-align: top;">, </span><span style="vertical-align: top;">HR, </span><span style="vertical-align: top;">HU,</span><span style="vertical-align: top;"> NL,</span><span style="vertical-align: top;"> NO,</span><span style="vertical-align: top;"> PL,</span><span style="vertical-align: top;"> RO, RS,&nbsp;RU, SE).</span></td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">
-		&nbsp;</td>
-
-
-
-
-
-	</tr>
-
-
-
-
-
-	<tr>
-
-
-
-
-
-		<td style="vertical-align: top; width: 250px;" height="21">
-&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-		<td style="width: 251px;">
-		&nbsp;</td>
-
-
-
-
-
-
-	</tr>
-
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-      <td style="width: 250px;">&nbsp;</td>
-
-
-
-
-
-
-      <td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-      <td style="width: 658px;">&nbsp;</td>
-
-
-
-
-
-
-      <td style="width: 0px;">&nbsp;</td>
-
-
-
-
-
-
-      <td style="width: 251px;">&nbsp;</td>
-
-
-
-
-
-
-    </tr>
-
-
-
-
-
-    <tr>
-
-
-
-
-
-
-      <td style="width: 251px;" colspan="5"><a href="http://www.bilingue.new.fr/">
-      <img src="2007_3_22_10h36_182735.gif" border="0" height="60" width="468"></a></td>
-
-
-
-
-
-
-      </tr>
-
-
-
-
-
-
-  
-  
-  
-  
-  </tbody>
-</table>
-
-
-
-
-
+<body>
+
+<header>
+    <img src="bilingue1.jpg" alt="Bilingue">
+</header>
+
+<nav>
+    <a href="bilingue.htm">Accueil</a>
+    <a href="present.htm">Présentation</a>
+    <a href="lieux.htm">Lieux</a>
+    <a href="active.htm">Activités</a>
+    <a href="contact.htm">Contact</a>
+    <a href="liens.htm">Liens</a>
+    <a href="photos.htm">Photos</a>
+    <a href="inscription.htm">Inscription</a>
+</nav>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <img src="0MadridPalais.jpg" alt="Madrid Palais">
+        
+        <div class="side-menu">
+            <a href="lieux.htm">Lieux</a>
+            <a href="active.htm">Activités</a>
+        </div>
+
+        <img src="0Palacio.jpg" alt="Palacio">
+        <img src="0Segovia.jpg" alt="Segovia">
+        <img src="bistrotvoyageur.jpg" alt="Bistrot Voyageur">
+    </aside>
+
+    <main>
+        <article class="content-card">
+            <div class="intro-text">
+                L'association se réunit dans un lieu public ou privé et organise des échanges de conversation dans une langue donnée.
+            </div>
+
+            <div id="moving-text" style="color: blue; font-weight: bold; margin: 20px 0;">
+                Présentation des lieux de discussion
+            </div>
+
+            <div class="intro-text" style="font-size: 0.95rem; color: #444;">
+                Les discussions en anglais ont lieu au café Jo de Bruges (17, rue de Toul) et au Roof au café Florida (12, place du Capitole). 
+                Les discussions en espagnol ont lieu au café Jo de Bruges et au Don Huevo (23, avenue du Cimetière). 
+                Les discussions en italien ont lieu au café Jo de Bruges. 
+                Les discussions en allemand ont lieu au café La Maison (9, rue Gabriel Péri). 
+                Bistrot Voyageur au 14, pl Arnaud Bernard et le Kalimera au 15, rue de Toul. 
+                Au Papagayo, 31, rue Deville.
+            </div>
+
+            <div class="photo-grid-center">
+                <img src="P1010195a.jpg" alt="Café Florida">
+                <img src="P1010196a.jpg" alt="Café La Maison">
+                <img src="P1010197a.jpg" alt="Le Don Huevo">
+                <img src="P1010280.jpg" alt="Le Jo de Bruges">
+                <img src="lepapagayo.jpg" alt="Le Papagayo">
+            </div>
+
+            <div class="side-menu" style="display:inline-block; width: auto; padding: 20px 40px;">
+                <a href="photos.htm">Photos</a>
+                <a href="inscription.htm">Inscription</a>
+            </div>
+
+            <div class="lang-footer">
+                <a href="cafelangues.htm" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">CAFÉ DES LANGUES</a><br>
+                <small>(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <div class="side-menu">
+            <a href="bilingue.htm">Accueil</a>
+            <a href="present.htm">Présentation</a>
+        </div>
+
+        <img src="0MadridPlaca.jpg" alt="Madrid Placa">
+
+        <div class="side-menu">
+            <a href="contact.htm">Contact</a>
+            <a href="liens.htm">Liens</a>
+        </div>
+
+        <img src="0SanSebastian.jpg" alt="San Sebastian">
+        <img src="0StLucia.jpg" alt="St Lucia">
+        <img src="kalimera.jpg" alt="Le Kalimera">
+    </aside>
+</div>
+
+<div class="bottom-gallery">
+    <img src="Photo%20147ym1.jpg" alt="Soirée Papagayo 1">
+    <img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2">
+    <img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3">
+    <img src="Photo%20094fv1.jpg" alt="Soirée Papagayo 4">
+</div>
+
+<div class="banner-link">
+    <a href="http://www.bilingue.new.fr/">
+        <img src="2007_3_22_10h36_182735.gif" alt="Banner" style="max-width: 100%; border:0;">
+    </a>
+</div>
+
+<script>
+    // Script des points suiveurs
+    const nDots = 8;
+    const dots = [];
+    let mX = 0, mY = 0;
+
+    for (let i = 0; i < nDots; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        mX = e.clientX;
+        mY = e.clientY + window.scrollY;
+    });
+
+    function tick() {
+        let x = mX;
+        let y = mY;
+        dots.forEach((dot) => {
+            dot.x += (x - dot.x) * 0.25;
+            dot.y += (y - dot.y) * 0.25;
+            dot.el.style.left = dot.x + 'px';
+            dot.el.style.top = dot.y + 'px';
+            x = dot.x; y = dot.y;
+        });
+        requestAnimationFrame(tick);
+    }
+    tick();
+</script>
 
 </body>
 </html>
