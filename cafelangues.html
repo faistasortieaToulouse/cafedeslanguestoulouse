@@ -158,6 +158,63 @@
     </style>
 </head>
 <body>
+    
+<script>
+(function() {
+    const dots = [];
+    const nDots = 12; // Nombre de points dans la traînée
+    
+    // Création des points
+    for (let i = 0; i < nDots; i++) {
+        const dot = document.createElement('div');
+        dot.style.cssText = `
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: ${1 - (i / nDots)}; /* Les derniers sont plus transparents */
+        `;
+        document.body.appendChild(dot);
+        dots.push({ el: dot, x: 0, y: 0 });
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // Capture de la position de la souris
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Animation fluide
+    function animate() {
+        let tx = mouseX;
+        let ty = mouseY;
+
+        dots.forEach((dot, index) => {
+            // Calcul de la distance (vitesse de suivi)
+            dot.x += (tx - dot.x) * 0.3;
+            dot.y += (ty - dot.y) * 0.3;
+            
+            dot.el.style.left = dot.x + 'px';
+            dot.el.style.top = dot.y + 'px';
+            
+            // Le point suivant suivra celui-ci
+            tx = dot.x;
+            ty = dot.y;
+        });
+        
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+})();
+</script>
+    
 
 <header>
     <img src="bilingue1.jpg" alt="Bilingue">
