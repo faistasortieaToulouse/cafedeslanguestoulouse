@@ -55,14 +55,21 @@
 	
 <script>
 (function() {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@.";
-    
-    function animateEmail(el) {
-        const finalEmail = el.getAttribute('data-email');
-        let iterations = 0;
+    // On emballe tout dans une fonction qui attend que la page soit prête
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('email-container');
         
+        // Sécurité au cas où l'ID n'est pas trouvé
+        if (!container) return;
+
+        const encoded = "Y29udGFjdEBjYWZlZGVzbGFuZ3Vlc3RvdWxvdXNlLmNvbQ==";
+        const finalEmail = atob(encoded); 
+        
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let iterations = 0;
+
         const interval = setInterval(() => {
-            el.innerText = finalEmail
+            container.innerText = finalEmail
                 .split("")
                 .map((letter, index) => {
                     if (index < iterations) {
@@ -74,19 +81,14 @@
 
             if (iterations >= finalEmail.length) {
                 clearInterval(interval);
-                el.innerHTML = `<a href="mailto:${finalEmail}" style="color: var(--primary-blue); text-decoration: none; border-bottom: 1px dashed;">${finalEmail}</a>`;
+                container.innerHTML = `<a href="mailto:${finalEmail}" style="color: var(--accent-red); text-decoration: none;">${finalEmail}</a>`;
             }
             
-            iterations += 1/2; // Vitesse : augmente pour aller plus vite
+            iterations += 1/2; 
         }, 30);
-    }
-
-    // On lance l'animation pour chaque email trouvé sur la page
-    window.addEventListener('load', () => {
-        document.querySelectorAll('.decode-email').forEach(animateEmail);
     });
 })();
-</script>	
+</script>
 
 <div id="adot0" style="position: absolute; visibility: hidden;">
 <img src="bullet.png"></div>
@@ -357,7 +359,7 @@ function animate()
 		
       <p style="text-align: left;"><font color="#0000ff">Pour nous contacter :</font></p>
       <p style="text-align: left;">
-		<font color="#0000ff">05-61-61-03-46</font></p><p id="email-container" style="text-align: left; font-weight: bold; min-height: 1.6em;"></p>
+		<p id="email-container" style="text-align: left; font-weight: bold; min-height: 1.6em;"></p>
       </td>
 
 		<td style="vertical-align: top;" height="129" width="4">
