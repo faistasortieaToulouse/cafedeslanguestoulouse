@@ -24,6 +24,7 @@
         header {
             text-align: center;
             padding: 20px 0;
+            background: white;
         }
         .logo-main {
             max-width: 90%;
@@ -38,11 +39,11 @@
             justify-content: center;
             gap: 10px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.7);
+            background: white;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         nav a {
             text-decoration: none;
@@ -59,7 +60,7 @@
 
         /* Layout Principal */
         .main-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 20px auto;
             display: grid;
             grid-template-columns: 220px 1fr 220px;
@@ -67,21 +68,31 @@
             padding: 0 15px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             .main-container {
                 grid-template-columns: 1fr;
             }
-            .sidebar { order: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .content { order: 1; }
+            .sidebar { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         }
 
-        /* PHOTOS SUR LE CÔTÉ AVEC ESPACE PLUS GRAND */
+        /* Style des colonnes latérales */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .sidebar img {
             width: 100%;
             max-width: 200px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 50px; /* Espace augmenté entre chaque photo */
+            margin-bottom: 40px; /* Espace entre les éléments */
+            transition: transform 0.2s;
+        }
+        
+        .sidebar img:hover {
+            transform: scale(1.03);
         }
 
         /* Contenu des Activités */
@@ -104,7 +115,7 @@
 
         h2 {
             color: var(--primary-green);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-bottom: 2px solid var(--primary-green);
             padding-bottom: 5px;
             margin-bottom: 15px;
@@ -154,7 +165,7 @@
             text-align: center;
             margin-top: 30px;
             padding: 20px;
-            background: white;
+            background: #f9f9f9;
             border-radius: 15px;
         }
 
@@ -164,7 +175,6 @@
             padding: 40px 0;
         }
 
-        /* Points Script Styles */
         .dot {
             position: fixed;
             width: 6px;
@@ -195,7 +205,18 @@
 <div class="main-container">
     <aside class="sidebar">
         <img src="0Cartagena.jpg" alt="Cartagena">
+        
+        <a href="http://semaineeuropeennedeslangues.venez.fr/" target="_blank">
+            <img src="drapeauUEO1.jpg" alt="Semaine Européenne des Langues">
+        </a>
+        
         <img src="0Dublin.jpg" alt="Dublin">
+        
+        <a href="http://www.lepetittou.com/" target="_blank">
+            <img src="lepetittou.jpg" alt="Le Petit Tou">
+        </a>
+        
+        <img src="0BerlinPalais.jpg" alt="Berlin">
     </aside>
 
     <article class="content">
@@ -264,6 +285,22 @@
 
     <aside class="sidebar">
         <img src="0Douglas.jpg" alt="Douglas">
+        
+        <a href="http://www.toulousejeunes.fr.nf/" target="_blank">
+            <img src="tlsejeuns31.jpg" alt="Toulouse Jeunes">
+        </a>
+        
+        <a href="http://www.jobetudianttoulouse.fr.ht/" target="_blank">
+            <img src="jobetudiant200.jpg" alt="Job Etudiant">
+        </a>
+        
+        <a href="http://www.toulouse.com/bon-plan-toulouse-le-bracelet-toulouse-vip/" target="_blank">
+            <img src="bracelettoulousevip.jpg" alt="Bracelet Toulouse VIP">
+        </a>
+
+        <a href="http://hp31.lei-web.com/" target="_blank">
+            <img src="happypeoplenew200.jpg" alt="Happy People Toulouse">
+        </a>
     </aside>
 </div>
 
