@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Calendrier</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<style type="text/css">
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+table {
+    border-collapse: collapse;
+}
+th {
+    background-color: #dddddd;
+    padding: 5px;
+}
+td {
+    width: 30px;
+    height: 25px;
+}
+button {
+    font-size: 10px;
+}
+</style>
+
+<script type="text/javascript">
+
+var currentDate = new Date();
+
+function renderCalendar() {
+
+    var today = new Date();
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth();
+
+    var monthNames = ["Janvier","Février","Mars","Avril","Mai","Juin",
+                      "Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+
+    var monthDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    // Gestion année bissextile
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+        monthDays[1] = 29;
+    }
+
+    var firstDay = new Date(year, month, 1).getDay();
+    var totalDays = monthDays[month];
+
+    var html = "";
+    html += "<center>";
+    html += "<table border='1' bgcolor='white'>";
+    html += "<tr><th colspan='7'>";
+    html += "<button onclick='changeMonth(-1)'>&lt;</button> ";
+    html += monthNames[month] + " " + year;
+    html += " <button onclick='changeMonth(1)'>&gt;</button>";
+    html += "</th></tr>";
+
+    html += "<tr>";
+    html += "<th>Dim</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th>";
+    html += "</tr><tr>";
+
+    var column = 0;
+
+    // Cases vides avant le 1er jour
+    for (var i = 0; i < firstDay; i++) {
+        html += "<td></td>";
+        column++;
+    }
+
+    // Jours du mois
+    for (var day = 1; day <= totalDays; day++) {
+
+        if (column === 7) {
+            html += "</tr><tr>";
+            column = 0;
+        }
+
+        html += "<td align='center'>";
+
+        if (day === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()) {
+            html += "<font color='red'><b>" + day + "</b></font>";
+        } else {
+            html += day;
+        }
+
+        html += "</td>";
+        column++;
+    }
+
+    html += "</tr></table>";
+    html += "</center>";
+
+    document.getElementById("calendarContainer").innerHTML = html;
+}
+
+function changeMonth(n) {
+    currentDate.setMonth(currentDate.getMonth() + n);
+    renderCalendar();
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div style="position: absolute; top: 50px; left: 50px;">
+    <div id="calendarContainer"></div>
+</div>
+
+<script type="text/javascript">
+renderCalendar();
+</script>
+
+</body>
+</html>

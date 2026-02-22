@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Language" content="fr">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Bilingue - Agenda des Mardis 2026</title>
+  <style type="text/css">
+    /* Styles généraux */
+    .blanc { BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: ARIAL; PADDING: 1px; }
+    .oui1 { FONT-WEIGHT: bold; COLOR: green }
+    .green1 { FONT-WEIGHT: bold; COLOR: red }
+    
+    /* Boutons de navigation violets */
+    .nav-button { 
+        background: #5F1879; 
+        color: white; 
+        border: 1px solid #000; 
+        padding: 6px 14px; 
+        cursor: pointer; 
+        font-family: Arial; 
+        font-weight: bold;
+        border-radius: 4px;
+        margin: 0 4px;
+    }
+    .nav-button:hover { background: red; }
+
+    /* Style des rendez-vous du Mardi */
+    .event-line { 
+        font-family: Arial; 
+        font-size: 14px; 
+        margin-bottom: 25px; /* Espace entre les mardis */
+        text-align: left; 
+        line-height: 1.5;
+        color: #333;
+    }
+    .event-date {
+        color: #993300;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    /* Animation clignotante */
+    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+    .txt-clignotant { animation: blink 0.8s infinite; color: red; font-weight: bold; text-align: center; font-size: 20px; }
+  </style>
+</head>
+
+<body style="background-color: rgb(204, 255, 255); margin: 0; padding: 0;">
+
+<script type="text/javascript">
+(function() {
+    const icons = ['🇫🇷', '🇬🇧', '🇪🇸', '🇮🇹', '🇩🇪', '🇯🇵', '🇷🇺', '🌍'];
+    const dots = [];
+    const n = icons.length;
+    for (let i = 0; i < n; i++) {
+        const d = document.createElement('div');
+        d.innerHTML = icons[i];
+        d.style.cssText = "position:fixed; pointer-events:none; z-index:10001; font-size:18px; user-select:none; opacity:0; transition:opacity 0.5s;";
+        document.body.appendChild(d);
+        dots.push({ el: d, x: 0, y: 0 });
+    }
+    let mX = 0, mY = 0, started = false;
+    window.addEventListener('mousemove', (e) => {
+        mX = e.clientX; mY = e.clientY;
+        if (!started) { dots.forEach(d => d.el.style.opacity = "1"); started = true; }
+    });
+    function update() {
+        let tX = mX, tY = mY;
+        dots.forEach((dot) => {
+            dot.x += (tX - dot.x + 10) * 0.15; 
+            dot.y += (tY - dot.y + 10) * 0.15;
+            dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+            tX = dot.x; tY = dot.y;
+        });
+        requestAnimationFrame(update);
+    }
+    update();
+})();
+</script>
+
+<table style="text-align: center; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td colspan="5" align="center" height="130">
+        <img src="bilingue1.jpg" border="0" height="126" width="371" alt="Logo">
+      </td>
+    </tr>
+
+    <tr>
+      <td style="vertical-align: top; width: 160px; padding-left: 10px;">
+        <div class="blanc">
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm" style="text-decoration:none;">Lieux</a></p>
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm" style="text-decoration:none;">Activités</a></p>
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm" style="text-decoration:none;">Photos</a></p>
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm" style="text-decoration:none;">Inscription</a></p>
+        </div>
+        <br>
+        <img src="0London.jpg" border="0" height="200" width="130" alt="London">
+      </td>
+
+      <td width="10">&nbsp;</td>
+
+      <td style="vertical-align: top; background-color: white; padding: 25px; border: 1px solid #999;">
+        
+        <div class="txt-clignotant">Accueil des nouveaux et étrangers</div>
+        
+        <p style="text-align: center; color: blue; font-weight: bold; margin-top: 15px;">
+            Agenda des soirées "Café des Langues"
+        </p>
+
+        <p style="text-align: center;">
+            <button class="nav-button" onclick="changeMonth(-1)"> &lt; Précédent </button>
+            <button class="nav-button" onclick="resetToToday()"> Aujourd'hui </button>
+            <button class="nav-button" onclick="changeMonth(1)"> Suivant &gt; </button>
+        </p>
+
+        <p style="text-align: center;">
+            <font color="#0000ff">
+                <big style="font-family: Arial Black; text-decoration: underline; color: rgb(153, 51, 0); font-style: italic;">
+                    <big id="current-month-display">Chargement...</big>
+                </big>
+            </font>
+        </p>
+
+        <div id="events-container" style="min-height: 300px; margin-top: 20px;"></div>
+
+        <hr>
+
+        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="Photo%20147ym.jpg" target="_blank"><img src="Photo%20147ym1.jpg" width="150" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+            <a href="Photo%20154ym.jpg" target="_blank"><img src="Photo%20154ym1.jpg" width="150" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+            <a href="Photo%20179ym.jpg" target="_blank"><img src="Photo%20179ym1.jpg" width="150" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+            <a href="Photo%20094fv.jpg" target="_blank"><img src="Photo%20094fv1.jpg" width="150" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="http://www.bilingue.fr.nf/">
+                <img src="2007_3_22_10h36_182735.gif" border="0" alt="Bannière">
+            </a>
+        </div>
+      </td>
+
+      <td width="10">&nbsp;</td>
+
+      <td style="vertical-align: top; width: 160px; padding-right: 10px;">
+        <div class="blanc">
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm" style="text-decoration:none;">Accueil</a></p>
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm" style="text-decoration:none;">Présentation</a></p>
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm" style="text-decoration:none;">Contact</a></p>
+          <p><a class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm" style="text-decoration:none;">Liens</a></p>
+        </div>
+        <br>
+        <img src="0Sanmarino.jpg" border="0" height="200" width="125" alt="San Marino">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+    var viewDate = new Date(); 
+
+    // Calcul des jours fériés pour les reports
+    function getHolidays(year) {
+        var a = year % 19, b = Math.floor(year / 100), c = year % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451), month = Math.floor((h + l - 7 * m + 114) / 31), day = ((h + l - 7 * m + 114) % 31) + 1;
+        var easter = new Date(year, month - 1, day);
+        var fDate = function(dt) { return dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2); };
+        var add = function(n) { var r = new Date(easter); r.setDate(r.getDate() + n); return fDate(r); };
+        return { [year+'-01-01']:"Jour de l'An", [year+'-05-01']:"Fête du Travail", [year+'-05-08']:"Victoire 45", [year+'-07-14']:"Fête Nationale", [year+'-08-15']:"Assomption", [year+'-11-01']:"Toussaint", [year+'-11-11']:"Armistice", [year+'-12-25']:"Noël", [add(1)]:"Lundi de Pâques", [add(39)]:"Ascension", [add(50)]:"Lundi de Pentecôte" };
+    }
+
+    function renderAgenda() {
+        var container = document.getElementById('events-container');
+        var monthDisplay = document.getElementById('current-month-display');
+        var year = viewDate.getFullYear();
+        var month = viewDate.getMonth();
+        var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        var holidays = getHolidays(year);
+        
+        monthDisplay.innerHTML = monthNames[month] + " " + year;
+        container.innerHTML = "";
+        
+        var d = new Date(year, month, 1);
+        var descMardi = "anglais, espagnol, italien, portugais, allemand, russe, chinois, japonais, coréen, turc, polonais, roumain, néerlandais, suédois, serbo-croate, hongrois, bulgare, grec, finnois, tchèque, occitan, esperanto, langue des signes LSF, accueil des nouveaux toulousains et étrangers, français pour les étrangers";
+
+        while (d.getMonth() === month) {
+            var dayW = d.getDay();
+            var dayM = d.getDate();
+            var key = year+'-'+('0'+(month+1)).slice(-2)+'-'+('0'+dayM).slice(-2);
+            
+            // On ne traite que les Mardis (dayW === 2)
+            if (dayW === 2) {
+                var dateStr = "Mardi " + ('0'+dayM).slice(-2)+'/'+('0'+(month+1)).slice(-2)+'/'+String(year).slice(-2);
+                var htmlContent = "";
+
+                if (holidays[key]) {
+                    // Si le mardi est férié, on affiche le report au mercredi
+                    var nextD = new Date(d); nextD.setDate(d.getDate()+1);
+                    var nextStr = "Mercredi " + ('0'+nextD.getDate()).slice(-2)+'/'+('0'+(nextD.getMonth()+1)).slice(-2)+'/'+String(year).slice(-2);
+                    htmlContent = "<div class='event-line'><span class='event-date'>" + nextStr + "</span> : " + descMardi + "<br><small style='color:red'><i>(Report exceptionnel car le mardi était le " + holidays[key] + ")</i></small></div>";
+                } else {
+                    htmlContent = "<div class='event-line'><span class='event-date'>" + dateStr + "</span> : " + descMardi + "</div>";
+                }
+                container.innerHTML += htmlContent;
+            }
+            d.setDate(d.getDate() + 1);
+        }
+        
+        if (container.innerHTML === "") {
+            container.innerHTML = "<p style='text-align:center; font-style:italic;'>Aucun mardi ce mois-ci.</p>";
+        }
+    }
+
+    function changeMonth(dir) { viewDate.setMonth(viewDate.getMonth() + dir); renderAgenda(); }
+    function resetToToday() { viewDate = new Date(); renderAgenda(); }
+    renderAgenda();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Language" content="fr">
+  <title>Bilingue - Agenda Dynamique</title>
+  <style type="text/css">
+    .suit { FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: red }
+    .suit1 { FONT-WEIGHT: bold; COLOR: white }
+    .over { FONT-WEIGHT: bold; COLOR: white }
+    .out { FONT-WEIGHT: bold; COLOR: #5F1879 }
+    .gris { BACKGROUND-COLOR: #cccccc; FONT-SIZE: medium; FONT: ARIAL; PADDING: 1px; }
+    .blanc { BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT: ARIAL; PADDING: 1px; }
+    .oui1 { FONT-WEIGHT: bold; COLOR: green }
+    .green1 { FONT-WEIGHT: bold; COLOR: red }
+    
+    /* Style pour vos nouveaux boutons */
+    .nav-button { 
+        background: #15315d; 
+        color: white; 
+        border: 1px solid #000; 
+        padding: 5px 15px; 
+        cursor: pointer; 
+        font-family: Arial; 
+        font-weight: bold;
+        margin: 0 2px;
+    }
+    .nav-button:hover { background: #2d4a7c; }
+
+    /* Style pour l'affichage des événements */
+    .event-line { font-family: Arial; font-size: 13px; margin-bottom: 6px; text-align: left; border-bottom: 1px dotted #ccc; padding-bottom: 4px; }
+  </style>
+</head>
+
+<body style="background-color: rgb(204, 255, 255);">
+
+<table style="text-align: center; vertical-align: text-top; width: 100%;" id="table1" border="0">
+  <tbody>
+    <tr>
+      <td height="110">&nbsp;</td>
+      <td width="4">&nbsp;</td>
+      <td width="371"><img src="bilingue1.jpg" border="0" height="126" width="371"></td>
+      <td width="4">&nbsp;</td>
+      <td width="149">&nbsp;</td>
+    </tr>
+
+    <tr><td colspan="5" height="21">&nbsp;</td></tr>
+
+    <tr>
+      <td style="vertical-align: top;" width="149">
+        <div class="blanc">
+          <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activités</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
+        </div>
+        <br>
+        <img src="0London.jpg" border="0" height="200" width="130">
+      </td>
+
+      <td width="4">&nbsp;</td>
+
+      <td style="vertical-align: top; background-color: white; padding: 15px; border: 1px solid #999;" width="500">
+        
+        <p style="text-align: left;"><font color="#0000ff">Veuillez trouver ici l'ensemble des évènements :</font></p>
+
+        <p style="text-align: center;">
+            <button class="nav-button" onclick="changeMonth(-1)"> &lt; Précédent </button>
+            <button class="nav-button" onclick="resetToToday()"> Aujourd'hui </button>
+            <button class="nav-button" onclick="changeMonth(1)"> Suivant &gt; </button>
+        </p>
+
+        <p style="text-align: center;">
+            <font color="#0000ff">
+                <big style="font-family: Arial Black; text-decoration: underline; color: rgb(153, 51, 0); font-style: italic;">
+                    <big id="current-month-display">Chargement...</big>
+                </big>
+            </font>
+        </p>
+
+        <div id="events-container">
+            </div>
+      </td>
+
+      <td width="4">&nbsp;</td>
+
+      <td style="vertical-align: top;" width="149">
+        <div class="blanc">
+          <a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Présentation</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
+        </div>
+        <br>
+        <img src="0Sanmarino.jpg" border="0" height="200" width="125">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+    // On démarre à la date d'aujourd'hui
+    var viewDate = new Date(); 
+
+    function getHolidays(year) {
+        var a = year % 19, b = Math.floor(year / 100), c = year % 100;
+        var d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);
+        var h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4;
+        var l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451);
+        var month = Math.floor((h + l - 7 * m + 114) / 31), day = ((h + l - 7 * m + 114) % 31) + 1;
+        var easter = new Date(year, month - 1, day);
+        var fDate = function(dt) { return dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2); };
+        var add = function(n) { var r = new Date(easter); r.setDate(r.getDate() + n); return fDate(r); };
+        
+        return {
+            [year+'-01-01']:"Jour de l'An", [year+'-05-01']:"Fête du Travail", [year+'-05-08']:"Victoire 45",
+            [year+'-07-14']:"Fête Nationale", [year+'-08-15']:"Assomption", [year+'-11-01']:"Toussaint",
+            [year+'-11-11']:"Armistice", [year+'-12-25']:"Noël", [add(1)]:"Lundi de Pâques", 
+            [add(39)]:"Ascension", [add(50)]:"Lundi de Pentecôte"
+        };
+    }
+
+    function renderAgenda() {
+        var container = document.getElementById('events-container');
+        var monthDisplay = document.getElementById('current-month-display');
+        var year = viewDate.getFullYear();
+        var month = viewDate.getMonth();
+        var holidays = getHolidays(year);
+        
+        var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        monthDisplay.innerHTML = monthNames[month] + " " + year;
+        
+        container.innerHTML = "";
+        var d = new Date(year, month, 1);
+        var descMardi = "anglais, espagnol, italien, portugais, allemand, russe, chinois, japonais, coréen, turc, polonais, roumain, néerlandais, suédois, serbo-croate, hongrois, bulgare, grec, finnois, tchèque, occitan, esperanto, langue des signes LSF, accueil des nouveaux toulousains et étrangers, français pour les étrangers";
+
+        while (d.getMonth() === month) {
+            var dayW = d.getDay();
+            var dayM = d.getDate();
+            var key = year+'-'+('0'+(month+1)).slice(-2)+'-'+('0'+dayM).slice(-2);
+            var dateTxt = (dayW==2?"Mardi":dayW==3?"Mercredi":dayW==4?"Jeudi":dayW==5?"Vendredi":dayW==6?"Samedi":"") + " " + ('0'+dayM).slice(-2)+'/'+('0'+(month+1)).slice(-2)+'/'+String(year).slice(-2);
+            
+            var line = "";
+            var note = "";
+
+            if (dayW === 2) {
+                if (holidays[key]) {
+                    var nextD = new Date(d); nextD.setDate(d.getDate()+1);
+                    var nextTxt = "Mercredi " + ('0'+nextD.getDate()).slice(-2)+'/'+('0'+(nextD.getMonth()+1)).slice(-2)+'/'+String(year).slice(-2);
+                    line = "<b>" + nextTxt + "</b> : " + descMardi;
+                    note = " <br><small style='color:#c05621'><i>Reporté car le mardi était le " + holidays[key] + "</i></small>";
+                } else {
+                    line = "<b>" + dateTxt + "</b> : " + descMardi;
+                }
+            }
+            else if (dayW === 4) line = "<b>" + dateTxt + "</b> : Soirée linguistique, français et accueil des nouveaux";
+            else if (dayW === 5) line = "<b>" + dateTxt + "</b> : Soirée cinéma Film en VO / ERASMUS";
+            else if (dayW === 6) line = "<b>" + dateTxt + "</b> : Soirée Internationale et Quiz";
+            else if (dayW === 3 && dayM > 20) line = "<b>" + dateTxt + "</b> : Soirée jeu linguistique et New Amigos";
+
+            if (line !== "") {
+                var div = document.createElement('div');
+                div.className = "event-line";
+                div.innerHTML = line + note;
+                container.appendChild(div);
+            }
+            d.setDate(d.getDate() + 1);
+        }
+    }
+
+    function changeMonth(dir) {
+        viewDate.setMonth(viewDate.setMonth(viewDate.getMonth() + dir));
+        renderAgenda();
+    }
+
+    function resetToToday() {
+        viewDate = new Date();
+        renderAgenda();
+    }
+
+    renderAgenda();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda 3 ans - Café des Langues</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; background: #f8f9fa; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 30px; border-bottom: 3px solid #3498db; display: inline-block; width: 100%; padding-bottom: 10px; }
+        .annee-titre { background: #3498db; color: white; padding: 10px 20px; border-radius: 8px; margin-top: 30px; font-size: 1.4em; }
+        ul { list-style: none; padding: 0; margin-top: 10px; }
+        li { padding: 12px 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .date-normale { color: #27ae60; font-weight: 500; }
+        .date-decalee { color: #d35400; font-weight: 600; background: #fff5e6; }
+        .badge { font-size: 0.75em; background: #e67e22; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; }
+        .nom-ferie { font-size: 0.85em; color: #7f8c8d; display: block; font-weight: normal; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📅 Agenda du Café des Langues (3 ans)</h1>
+    <div id="agenda-global"></div>
+</div>
+
+<script>
+    // Fonction utilitaire pour formater une date en YYYY-MM-DD sans bug de fuseau horaire
+    function formatLocal(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+    function getHolidays(year) {
+        const a = year % 19, b = Math.floor(year / 100), c = year % 100;
+        const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+        const g = Math.floor((b - f + 1) / 3);
+        const h = (19 * a + b - d - g + 15) % 30;
+        const i = Math.floor(c / 4), k = c % 4;
+        const l = (32 + 2 * e + 2 * i - h - k) % 7;
+        const m = Math.floor((a + 11 * h + 22 * l) / 451);
+        const month = Math.floor((h + l - 7 * m + 114) / 31);
+        const day = ((h + l - 7 * m + 114) % 31) + 1;
+        
+        const easter = new Date(year, month - 1, day);
+        const addDays = (base, days) => {
+            let res = new Date(base);
+            res.setDate(res.getDate() + days);
+            return formatLocal(res);
+        };
+
+        return {
+            [`${year}-01-01`]: "Jour de l'An",
+            [`${year}-05-01`]: "Fête du Travail",
+            [`${year}-05-08`]: "Victoire 1945",
+            [`${year}-07-14`]: "Fête Nationale",
+            [`${year}-08-15`]: "Assomption",
+            [`${year}-11-01`]: "Toussaint",
+            [`${year}-11-11`]: "Armistice 1918",
+            [`${year}-12-24`]: "Réveillon Noël",
+            [`${year}-12-25`]: "Noël",
+            [`${year}-12-31`]: "Réveillon Nouvel An",
+            [addDays(easter, 1)]: "Lundi de Pâques",
+            [addDays(easter, 39)]: "Ascension",
+            [addDays(easter, 50)]: "Lundi de Pentecôte"
+        };
+    }
+
+    function genererAgenda() {
+        const container = document.getElementById('agenda-global');
+        const today = new Date();
+        const startYear = today.getFullYear();
+        
+        container.innerHTML = ""; // Nettoyer avant génération
+
+        for (let i = 0; i < 3; i++) {
+            let year = startYear + i;
+            const holidays = getHolidays(year);
+            
+            const yearSection = document.createElement('div');
+            yearSection.innerHTML = `<div class="annee-titre">Année ${year}</div><ul id="list-${year}"></ul>`;
+            container.appendChild(yearSection);
+            
+            const listElement = document.getElementById(`list-${year}`);
+            let d = new Date(year, 0, 1);
+            
+            while (d.getFullYear() === year) {
+                if (d.getDay() === 2) { // On cherche les mardis
+                    let session = new Date(d);
+                    let initialDateStr = formatLocal(d);
+                    let isShifted = false;
+                    let reason = "";
+
+                    // On décale seulement si la date actuelle (mardi, puis mercredi...) est dans les fériés
+                    while (holidays[formatLocal(session)]) {
+                        reason = holidays[formatLocal(session)];
+                        session.setDate(session.getDate() + 1);
+                        isShifted = true;
+                    }
+
+                    if (session >= today) {
+                        const li = document.createElement('li');
+                        li.className = isShifted ? 'date-decalee' : 'date-normale';
+                        
+                        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+                        const dateTexte = session.toLocaleDateString('fr-FR', options);
+                        
+                        li.innerHTML = `
+                            <div>
+                                <span>${dateTexte.charAt(0).toUpperCase() + dateTexte.slice(1)}</span>
+                                ${isShifted ? `<span class="nom-ferie">Reporté car le mardi était le ${reason}</span>` : ''}
+                            </div>
+                            ${isShifted ? `<span class="badge">Reporté au ${session.toLocaleDateString('fr-FR', {weekday: 'long'})}</span>` : ''}
+                        `;
+                        listElement.appendChild(li);
+                    }
+                }
+                d.setDate(d.getDate() + 1);
+            }
+        }
+    }
+
+    genererAgenda();
+</script>
+
+</body>
+</html>

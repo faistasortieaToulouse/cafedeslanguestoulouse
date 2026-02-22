@@ -9,137 +9,6 @@
     .blanc { BACKGROUND-COLOR: #ffffff; FONT-SIZE: medium; FONT-FAMILY: ARIAL; PADDING: 1px; }
     .oui1 { FONT-WEIGHT: bold; COLOR: green }
     .green1 { FONT-WEIGHT: bold; COLOR: red }
-
-        :root {
-            --primary-blue: #0000ff;
-            --primary-green: #009900;
-            --accent-red: #ff0000;
-            --bg-color: #ccffff;
-            --nav-purple: #5F1879;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.4;
-            color: #333;
-        }
-
-        /* Animations de clignotement */
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .txt-clignotant {
-            animation: blink 0.8s infinite;
-            color: var(--accent-red);
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px; /* Espace réduit pour faire tenir plus de liens */
-            background: #fff;
-            padding: 15px 10px;
-            margin-bottom: 20px;
-            width: 100%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-top: 1px solid #eee;
-            box-sizing: border-box; /* Important pour que le padding ne fasse pas déborder le menu */
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #5F1879;
-            font-weight: bold;
-            padding: 8px 12px;
-            transition: 0.3s;
-            border-radius: 20px;
-            font-size: 14px; /* Taille de police légèrement réduite pour le nombre de liens */
-            background: #f8f9fa; /* Fond léger pour simuler des boutons sur mobile */
-            border: 1px solid #eee;
-        }
-
-        nav a:hover { 
-            color: white; 
-            background: var(--accent-red); 
-            border-color: var(--accent-red);
-        }
-
-        /* AJOUT : Style spécifique pour mobile */
-        @media (max-width: 600px) {
-            nav {
-                gap: 5px;
-                padding: 10px 5px;
-            }
-            nav a {
-                flex: 1 1 calc(45% - 5px); /* Affiche 2 boutons par ligne sur mobile */
-                text-align: center;
-                padding: 10px 5px;
-                font-size: 12px;
-            }
-        }
-
-        .main-layout {
-            display: grid;
-            grid-template-columns: 220px 1fr 220px;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        @media (max-width: 950px) {
-            .main-layout { grid-template-columns: 1fr; }
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .sidebar img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            border: 0;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .content-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        
-        .lang-footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 15px;
-            border: 1px dashed var(--primary-blue);
-        }
     
     /* Styles pour les nouveaux boutons de navigation */
     .nav-button { 
@@ -169,18 +38,6 @@
     /* Animation clignotante */
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
     .txt-clignotant { animation: blink 0.8s infinite; color: red; font-weight: bold; text-align: center; }
-
-        .bottom-gallery {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 30px 0;
-        }
-        .bottom-gallery img { width: 200px; height: 150px; object-fit: cover; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-
-        .footer-banner { text-align: center; margin: 20px 0; }
-
   </style>
 </head>
 
@@ -245,55 +102,24 @@
 })();
 </script>
 
-<header>
-    <img src="bilingue1.jpg" alt="Bilingue Logo">
-</header>
-
-<nav>
-    <a href="index.html">Accueil</a>
-    <a href="present.html">Présentation</a>
-    <a href="cafelangues.html">Café des Langues</a>
-    <a href="active.html">Activités</a>
-    <a href="activeHP.html">Activités HP</a>
-    <a href="ateliers.html">Ateliers</a>
-    <a href="activites.html">Bénévolat</a>
-    <a href="contact.html">Contact</a>
-    <a href="http://bilingue31.free.fr/inscription.htm">Inscription</a>
-    <a href="lieux.html">Lieux</a>
-    <a href="liens.html">Liens</a>
-    <a href="http://bilingue31.free.fr/photos.htm">Photos</a>
-    <a href="http://bilingue31.free.fr/calendrier.htm">Calendrier</a>
-</nav>
-
 <table style="text-align: center; vertical-align: text-top; width: 100%;" border="0" cellpadding="0" cellspacing="0">
   <tbody>
+    <tr>
+      <td colspan="5" align="center" height="130">
+        <img src="bilingue1.jpg" border="0" height="126" width="371" alt="Logo">
+      </td>
+    </tr>
 
     <tr>
       <td style="vertical-align: top; width: 160px; padding-left: 10px;">
-
+        <div class="blanc">
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="lieux.htm">Lieux</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="active.htm">Activités</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="photos.htm">Photos</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="inscription.htm">Inscription</a></p>
+        </div>
+        <br>
         <img src="0London.jpg" border="0" height="200" width="130" alt="London">
-        <br>
-        <br>
-
-        <a href="http://www.lepetittou.com/" target="_blank">
-            <img src="lepetittou.jpg" alt="Le Petit Tou - Guide de Toulouse">
-        </a>
-
-        <br>
-        <br>
-        <img src="0Kholn.jpg" alt="Kholn">
-
-        <br><br>
-        <a href="https://www.facebook.com/groups/2376203776102276/" target="_blank">
-            <img src="drapeauUEO1.jpg" alt="Semaine Européenne des Langues">
-        </a>
-
-        <br><br>
-
-        <img src="0Barbados.jpg" alt="Barbados">
-        <br>
-        <br>
-
       </td>
 
       <td width="10">&nbsp;</td>
@@ -322,52 +148,35 @@
 
         <hr>
 
-          <div class="lang-footer">
-            <a href="cafelangues.htm" style="color: #0000ff; font-weight: bold; text-decoration: none; font-size: 1.1rem;">CAFÉ DES LANGUES</a><br>
-            <small style="color: #666;">(AL, BG, CZ, DK, GR, HR, HU, NL, NO, PL, RO, RS, RU, SE)</small>
-          </div>
+        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="Photo%20147ym.jpg" target="_blank"><img src="Photo%20147ym1.jpg" width="160" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+            <a href="Photo%20154ym.jpg" target="_blank"><img src="Photo%20154ym1.jpg" width="160" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+            <a href="Photo%20179ym.jpg" target="_blank"><img src="Photo%20179ym1.jpg" width="160" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+            <a href="Photo%20094fv.jpg" target="_blank"><img src="Photo%20094fv1.jpg" width="160" style="border:2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2);"></a>
+        </div>
 
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="http://www.bilingue.fr.nf/">
+                <img src="2007_3_22_10h36_182735.gif" border="0" alt="Bannière Bilingue">
+            </a>
+        </div>
       </td>
 
       <td width="10">&nbsp;</td>
 
       <td style="vertical-align: top; width: 160px; padding-right: 10px;">
-
+        <div class="blanc">
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="bilingue.htm">Accueil</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="present.htm">Présentation</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="contact.htm">Contact</a></p>
+          <p><a style="text-decoration: none;" class="green1" onmouseover="this.className='oui1'" onmouseout="this.className='green1'" href="liens.htm">Liens</a></p>
+        </div>
+        <br>
         <img src="0Sanmarino.jpg" border="0" height="200" width="125" alt="San Marino">
-        <br>
-        <br>
-        <a href="http://www.lei-web.click/" target="_blank">
-            <img src="happypeoplenew200.jpg" alt="Happy People">
-        </a>
-        <br>
-        <br>
-        <img src="0LondonGare.jpg" border="0" height="200" width="132">
-        <br>
-        <br>
-        <a href="https://www.facebook.com/groups/1443232687438416" target="_blank">
-            <img src="bracelettoulousevip.jpg" alt="Toulouse VIP">
-        </a>
-        <br>
-        <br>
-        <img src="0Dublin.jpg" alt="Dublin">
-
       </td>
     </tr>
   </tbody>
 </table>
-
-<div class="bottom-gallery">
-    <a href="Photo%20147ym.jpg" target="_blank"><img src="Photo%20147ym1.jpg" alt="Soirée Papagayo 1"></a>
-    <a href="Photo%20154ym.jpg" target="_blank"><img src="Photo%20154ym1.jpg" alt="Soirée Papagayo 2"></a>
-    <a href="Photo%20179ym.jpg" target="_blank"><img src="Photo%20179ym1.jpg" alt="Soirée Papagayo 3"></a>
-    <a href="Photo%20094fv.jpg" target="_blank"><img src="Photo%20094fv1.jpg" alt="Soirée Over-culture"></a>
-</div>
-
-<div class="footer-banner">
-    <a href="http://www.bilingue.fr.nf/">
-        <img src="2007_3_22_10h36_182735.gif" alt="Banner Bilingue">
-    </a>
-</div>
 
 <script type="text/javascript">
     var viewDate = new Date(); 
