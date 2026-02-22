@@ -141,6 +141,38 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+/* ===== Bandeau drapeaux ===== */
+.flags-banner {
+    background: linear-gradient(90deg, #005baa, #0099cc);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    position: relative;
+}
+
+.flags-track {
+    display: inline-block;
+    animation: scrollFlags 25s linear infinite;
+    font-size: 28px;
+}
+
+.flags-track span {
+    margin: 0 15px;
+}
+
+@keyframes scrollFlags {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .flags-track {
+        font-size: 22px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -166,6 +198,51 @@
     <a href="http://bilingue31.free.fr/photos.htm">Photos</a>
     <a href="http://bilingue31.free.fr/calendrier.htm">Calendrier</a>
 </nav>
+
+<div class="flags-banner">
+    <div class="flags-track">
+        <span>🇫🇷</span>
+        <span>🇬🇧</span>
+        <span>🇪🇸</span>
+        <span>🇮🇹</span>
+        <span>🇩🇪</span>
+        <span>🇵🇹</span>
+        <span>🇷🇺</span>
+        <span>🇵🇱</span>
+        <span>🇳🇱</span>
+        <span>🇸🇪</span>
+        <span>🇳🇴</span>
+        <span>🇨🇿</span>
+        <span>🇭🇷</span>
+        <span>🇭🇺</span>
+        <span>🇬🇷</span>
+        <span>🇨🇳</span>
+        <span>🇯🇵</span>
+        <span>🇰🇷</span>
+        <span>🇪🇺</span>
+
+        <!-- duplication pour effet fluide -->
+        <span>🇫🇷</span>
+        <span>🇬🇧</span>
+        <span>🇪🇸</span>
+        <span>🇮🇹</span>
+        <span>🇩🇪</span>
+        <span>🇵🇹</span>
+        <span>🇷🇺</span>
+        <span>🇵🇱</span>
+        <span>🇳🇱</span>
+        <span>🇸🇪</span>
+        <span>🇳🇴</span>
+        <span>🇨🇿</span>
+        <span>🇭🇷</span>
+        <span>🇭🇺</span>
+        <span>🇬🇷</span>
+        <span>🇨🇳</span>
+        <span>🇯🇵</span>
+        <span>🇰🇷</span>
+        <span>🇪🇺</span>
+    </div>
+</div>
 
 <section>
     <h2>Présentation</h2>
