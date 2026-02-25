@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.cafedeslanguestoulouse.twa",
+    "sha256_cert_fingerprints": ["CD:42:CC:D3:97:2C:22:74:11:5D:9D:0F:00:95:CA:35:D5:00:A3:D5:9F:4D:01:B6:EB:DA:34:04:F0:83:3E:87"]
+  }
+}]

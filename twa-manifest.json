@@ -1,0 +1,52 @@
+{
+  "packageId": "com.cafedeslanguestoulouse.www.twa",
+  "host": "www.cafedeslanguestoulouse.com",
+  "name": "Café des langues Toulouse",
+  "launcherName": "Langage Café",
+  "display": "standalone",
+  "themeColor": "#005BAA",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#FFFFFF",
+  "enableNotifications": true,
+  "startUrl": "/index.html",
+  "iconUrl": "https://www.cafedeslanguestoulouse.com/icon-512.png",
+  "maskableIconUrl": "https://www.cafedeslanguestoulouse.com/icon-512.png",
+  "monochromeIconUrl": "https://www.cafedeslanguestoulouse.com/icon-512-mono.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "D:\\cafedeslanguestoulouse\\android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://www.cafedeslanguestoulouse.com/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": true
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://www.cafedeslanguestoulouse.com/",
+  "minSdkVersion": 21,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "appVersion": "1"
+}

@@ -1,0 +1,17 @@
+# Sécurité
+*.keystore
+
+# Binaires Android
+*.apk
+*.aab
+*.idsig
+
+# Dossiers de build
+build/
+.bubblewrap/
+
+# Système
+node_modules/
+.DS_Store
+Thumbs.db
+
