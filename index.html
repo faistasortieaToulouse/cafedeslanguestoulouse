@@ -376,6 +376,34 @@
     </div>
 </section>
 
+<section style="text-align: center;">
+    <h2>Télécharger l'Application</h2>
+    <div class="card" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <p>Pratiquez vos langues préférées plus facilement en installant notre application mobile.</p>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <a href="https://play.google.com/store/apps/details?id=com.cafedeslanguestoulouse.twa" 
+               target="_blank" rel="noopener noreferrer" 
+               style="background: #000; padding: 10px; border-radius: 8px; display: flex; align-items: center; min-width: 200px; justify-content: center;">
+                <img src="images/google-play-badge.png" alt="Disponible sur Google Play" style="height: 40px; width: auto;">
+            </a>
+
+            <a href="app-release-signed.apk" download="Cafe_Des_Langues_Toulouse.apk" 
+               style="background: #28a745; color: white; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; gap: 10px; min-width: 200px; justify-content: center;">
+                <span style="font-size: 20px;">⬇</span>
+                <span style="text-align: left; line-height: 1.2;">
+                    Télécharger l'APK<br>
+                    <small style="font-size: 10px; opacity: 0.9;">(Installation Directe)</small>
+                </span>
+            </a>
+        </div>
+
+        <button id="shareBtn" style="background: #6366f1; width: auto; min-width: 200px;">
+            <span>🔗 Partager l'Application</span>
+        </button>
+    </div>
+</section>
+
 <footer>
     © 2026 Association Bilingue 31 - Toulouse - Tous droits réservés
 </footer>
@@ -421,6 +449,20 @@
         .catch(err => console.error('PWA : Erreur de registration', err));
     });
   }
+</script>
+
+<script>
+    document.getElementById('shareBtn').onclick = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Association Bilingue 31',
+                text: 'Téléchargez l\'application du Café des Langues Toulouse !',
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            alert("Copiez ce lien pour partager : " + window.location.href);
+        }
+    };
 </script>
 
 </body>
